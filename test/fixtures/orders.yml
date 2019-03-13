@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  orders_date: 2019-03-12 15:02:29
+  status: 1
+  destination_name: MyString
+  destination_postcode: MyString
+  destination_address: MyText
+  product_id: 1
+  quantity: 1
+  total_price: 1
+
+two:
+  user_id: 1
+  orders_date: 2019-03-12 15:02:29
+  status: 1
+  destination_name: MyString
+  destination_postcode: MyString
+  destination_address: MyText
+  product_id: 1
+  quantity: 1
+  total_price: 1
