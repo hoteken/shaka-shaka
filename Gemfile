@@ -11,7 +11,7 @@ gem 'sqlite3', '~> 1.3.6'
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
-gem 'bootstrap-sass'
+gem 'bootstrap-sass', '~> 3.3.6'
 gem 'jquery-rails'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -67,8 +67,9 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'paranoia'
-gem 'refile'
+gem 'refile', require: "refile/rails", github: 'manfe/refile'
+gem 'refile-mini_magick'
 gem 'devise'
-gem 'kaminari'
+gem 'kaminari', '~> 1.1.1'
 gem 'ransack'
 gem 'font-awesome-rails'
