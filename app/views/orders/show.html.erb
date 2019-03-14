@@ -1,2 +1,39 @@
-<h1>Orders#show</h1>
-<p>Find me in app/views/orders/show.html.erb</p>
+<section class="body">
+	<div class="container">
+		<div class="row">
+			<div class="col">
+				<h2>受注詳細</h2>
+			</div>
+			<div class="col">
+				<h3>受注日</h3>
+				<%= @order.created_at.strftime('%Y/%m/%d') %>
+			</div>
+			<div class="col">
+				<h3>ユーザー名</h3>
+				<%= @user.name %>
+			</div>
+			<div class="col">
+				<h3>受注商品</h3>
+				<%= @product_title %>
+				<%= @quantity %>
+				<%= @product_price %>
+			</div>
+			<div class="col">
+				<h3>ステータス</h3>
+				<%= @status %>
+			</div>
+			<div class="col">
+				<h3>送付先</h3>
+				<%= @destination_address %>
+			</div>
+			<div class="col">
+				<h3>総計</h3>
+				<%= @total_price %>
+			</div>
+			<div>
+				<%= link_to "戻る", "/orders/index", class: "btn" %>
+				<%= link_to "編集", edit_order_path(@order.id), class: "btn" %>
+			</div>
+		</div>
+	</div>
+</section>
