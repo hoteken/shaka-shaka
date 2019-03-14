@@ -1,2 +1,37 @@
-<h1>Artists#index</h1>
-<p>Find me in app/views/artists/index.html.erb</p>
+<body>
+  <div class = "container">
+　   <p class="text">アーティスト管理</p>
+      <div class = "row">
+      	<div class = "main-text">
+      	  <table class = "table">
+      	  	<thead>
+      	  	  <tr>
+      	  	    <th></th>
+      	  	    <th></th>
+      	  	    <th>アーティスト名</th>
+      	  	    <th></th>
+      	  	    <th></th>
+      	  	    <th><a href="/artists/new" class="btn btn-default btn-sm " role="button">新規登録</a></th>
+      	  	  </tr>
+      	  	</thead>
+      	  	  <tbody>
+      	  	  	<% @artists.each do |artist| %>
+      	  	    <tr>
+      	  	      <td></td>
+      	  	      <td></td>
+      	  	      <td><span><%= artist.artist_name %><span></td>
+      	  	      <td></td>
+      	  	      <td></td>
+      	  	      <td><a href="/artists/:id/edit" class="btn btn-default btn-sm " role="button">編集</a></td>
+      	  	    </tr>
+      	  	    <% end %>
+      	  	  </tbody>
+      	  </table>
+      	   <div class = "paginate"><%= paginate @artists %></div>
+      	</div>
+      </div>
+        <footer>
+          <p class="text-bottom text-right">footer</p>
+        </footer>
+  </div>
+</body

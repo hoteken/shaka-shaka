@@ -1,2 +1,24 @@
-<h1>Artists#new</h1>
-<p>Find me in app/views/artists/new.html.erb</p>
+<body>
+  <div class = "container">
+　   <p class="text">アーティスト新規登録</p>
+      <div class="row">
+        <div class = "main">
+          <%= form_for(@artist) do |f| %>
+            <p class = "text1">
+            	<span class = "name"><%= f.label :アーティスト名 %></span>
+            	<%= f.text_field :artist_name %>
+            </p>
+            <div class = "main-bottom">
+                <span class = "botan">
+                	<a href="/artists" class="btn btn-default btn-sm " role="button">戻る</a>
+                </span>
+                	<input class="btn btn-default btn-sm" type="submit" value="送信ボタン">
+            </div>
+                <% end %>
+        </div>
+      </div>
+        <footer>
+          <p class="text-bottom text-right">footer</p>
+        </footer>
+  </div>
+</body>
