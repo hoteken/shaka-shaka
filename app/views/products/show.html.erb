@@ -1,2 +1,41 @@
-<h1>Products#show</h1>
-<p>Find me in app/views/products/show.html.erb</p>
+<div class="container">
+  <div class="col-xs-3">
+    <h3>Categories</h3>
+  </div>
+
+  <div class="col-xs-7">
+    <h3>item</h3>
+    <div class="container">
+      <div class="col-xs-2">
+        <%= attachment_image_tag @product, :image, :fill, 180, 180, format: 'jpeg', class:"jacket-image", fallback:"img/no_image.png", :size => '180x180' %>
+        <% if @product.stock > 3 %>
+          在庫あり
+        <% elsif %>
+          残り<%= @product.stock %>点
+        <% else %>
+          在庫なし
+        <% end %>
+      </div>
+
+      <div class="col-xs-8">
+        <ul>
+          <li>
+            <%= @product.product_title %>
+            aaaaaaaaaaaaアーティスト名aaaaaaaaaaa
+            css list-style noneやで
+          </li>
+          <li><%= @product.genre.genre_name %></li>
+          <li><%= @product.product_price %></li>
+          <li><%= @product.label.label_name %></li>
+          <li><%= @product.explanation %></li>
+        </ul>
+
+        曲名ゾーンです！！！！！！
+        <div class="link-menu" %>
+          <%= link_to "戻る", products_path, class:"btn btn-primary" %>
+          <%= link_to "編集", edit_product_path(@product), class:"btn btn-primary" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
