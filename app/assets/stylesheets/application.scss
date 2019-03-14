@@ -15,3 +15,20 @@
  */
  @import "bootstrap-sprockets";
  @import "bootstrap";
+
+*{
+	margin:0;
+	padding:0;
+	box-sizing:border-box;
+}
+.clearfix::after{
+	content:"";
+	display:block;
+	clear:both;
+}
+body{
+	margin-top:60px;
+}
+span{
+	font-size:37px;
+}
