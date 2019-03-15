@@ -8,9 +8,9 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order.user_id.cart_id.cart_product_id = current_user.id
+    @order.user.cart_id = current_user.id
     @order.save
-    redirect_to '/carts/thanks'
+    redirect_to carts_thanks_path
   end
 
   def edit
@@ -19,8 +19,11 @@ class OrdersController < ApplicationController
 
   def update
     @order = Order.find(params[:id])
-    @order.update(order_params)
-    redirect_to "/orders"
+    if @order.update(order_params)
+    redirect_to order_path(@order.id)
+    else
+      render :edit
+    end
   end
 
   private

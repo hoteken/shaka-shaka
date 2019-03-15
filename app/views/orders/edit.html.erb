@@ -20,7 +20,10 @@
 			</div>
 			<div class="col">
 				<h3>ステータス</h3>
-				<%= @status %>
+				<%= form_for (@order) do |f| %>
+				<%= f.label : %>
+				<%= f.collection_select %>
+				<% end %>
 			</div>
 			<div class="col">
 				<h3>送付先</h3>
@@ -31,7 +34,7 @@
 				<%= @total_price %>
 			</div>
 			<div>
-				<%= link_to "戻る", order_path(@order.id) %>
+				<%= link_to "戻る", order_path(@order.id), class : "btn" %>
 				<%= f.submit "更新", class: "btn" %>
 			</div>
 		</div>
