@@ -1,2 +1,28 @@
-<h1>Songs#index</h1>
-<p>Find me in app/views/songs/index.html.erb</p>
+<div class="container">
+  <div class="col-xs-8">
+    <h3>楽曲管理</h3>
+    <%= link_to "新規登録", new_song_path, class:"btn btn-primary" %>
+
+    <table class="">
+      <thead>
+        <tr>
+          <th>曲名</th>
+          <th>アーティスト名</th>
+          <th>収録CD</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @songs.each do |song| %>
+          <tr>
+            <td><%= song.song_title %></td>
+            <td><%= song.artist.artist_name %></td>
+            <td><%= song.product.product_title %></td>
+            <td><%= link_to "編集", edit_song_path(song), class:"btn btn-primary" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <%= paginate @songs %>
+  </div>
+</div>
