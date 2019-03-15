@@ -25,9 +25,17 @@ class ProductsController < ApplicationController
   end
 
   def edit
+    @product = Product.find(params[:id])
   end
 
   def update
+    @product = Product.find(params[:id])
+    if @product.update(product_params)
+      flash[:notice] = "商品情報の編集に成功しました"
+      redirect_to @product
+    else
+      render 'edit'
+    end
   end
 
   # def search
