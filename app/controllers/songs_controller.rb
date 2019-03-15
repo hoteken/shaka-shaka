@@ -23,7 +23,12 @@ class SongsController < ApplicationController
 
   def update
     @song = Song.find(params[:id])
-    # 更新の成功処理
+    if @song.update(song_params)
+      flash[:notice] = "楽曲の更新に成功しました"
+      redirect_to songs_path
+    else
+      render 'edit'
+    end
   end
 
   def destroy
