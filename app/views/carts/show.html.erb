@@ -1,2 +1,20 @@
-<h1>Carts#show</h1>
-<p>Find me in app/views/carts/show.html.erb</p>
+<h1>ショッピングカート</h1>
+小計：<%= @sum_price %>円
+<%= link_to "買い物に戻る", products_path, class:"btn btn-primary" %>
+<%= link_to "レジに進む", carts_confirm_path, class:"btn btn-primary" %>
+
+
+<%= @cart_products.each do |cart_product| %>
+  <%= cart_product.title %>
+  <%= cart_product.artist.artist_name %>
+  <%= cart_product.genre.genre_name %>
+  <%= cart_product.price %>
+
+  <%= form_for(cart_product) do |f| %>
+    <%= f.label :"数量" %><br>
+    <%= f.select :quantity, [["1", 1], ["2", 2], ["3", 3], ["4", 4], ["5", 5]] ,class:"form-control" %>
+    <%= f.submit "更新", class:"btn btn-default" %>
+  <% end %>
+
+  <%= link_to "削除", cart_cart_product_path, method: :delete, id: cart_product.id %>
+<% end %>

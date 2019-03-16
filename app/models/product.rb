@@ -1,4 +1,5 @@
 class Product < ApplicationRecord
+  has_many :carts, through: :cart_products
   has_many :cart_products
   has_many :songs
   belongs_to :label
@@ -11,8 +12,4 @@ class Product < ApplicationRecord
 
   attachment :image
 
-  # def self.search(search)
-  #   return Product.all unless search
-  #   Product.where(['product_title LIKE ?', "%#{search}%"])
-  # end
 end

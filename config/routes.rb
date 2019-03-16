@@ -15,11 +15,12 @@ Rails.application.routes.draw do
   resources :artists, only: [:index, :new, :create, :edit, :update]
   resources :orders, only: [:index, :show, :create, :edit, :update]
 
+  get 'carts/confirm'
+  get 'carts/thanks'
   resources :carts, only: [:show] do
     resources :cart_products, only: [:create, :update, :destroy]
   end
-  get 'carts/confirm'
-  get 'carts/thanks'
+
 
   get 'inquiries/new'
   get 'inquiries/confirm'
