@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   end
 
   resources :products, only: [:index, :show, :new, :create, :edit, :update]
+  resources :songs
 
   resources :labels, only: [:index, :new, :create, :edit, :update]
   resources :artists, only: [:index, :new, :create, :edit, :update]
