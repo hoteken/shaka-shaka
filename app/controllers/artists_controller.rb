@@ -1,6 +1,8 @@
 class ArtistsController < ApplicationController
   def index
     @artists = Artist.page(params[:page]).reverse_order
+    @search = Artist.ransack(params[:q])
+    @result = @search.result
   end
 
   def new
@@ -19,10 +21,11 @@ class ArtistsController < ApplicationController
 
   def update
     artist = Artist.find(params[:id])
-    artsit.update(artist_params)
+    artist.update(artist_params)
     redirect_to "/artists"
   end
 
+  private
   def artist_params
     params.require(:artist).permit(:artist_name)
   end
