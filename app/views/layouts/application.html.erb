@@ -19,7 +19,7 @@
 
         <nav>
           <ul class="nav navbar-nav navbar-right">
-           <% if user.name = "admin" %>
+           <% if current_user.name = "admin" %>
             <li><%= link_to " 管理者トップ", user_path(current_user.id) %></li>
             <li><%= link_to " ユーザー管理", users_path %></li>
             <li><%= link_to " 商品管理", products_path %></li>
