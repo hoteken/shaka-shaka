@@ -1,2 +1,44 @@
-<h1>Products#new</h1>
-<p>Find me in app/views/products/new.html.erb</p>
+<div class="container">
+  <div class="col-xs-8">
+    <h3>商品新規追加</h3>
+    <%= form_for(@product) do |f| %>
+      <div class="form-group">
+        <%= f.label :product_title %>
+        <%= f.text_field :product_title, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :product_price %>
+        <%= f.text_field :product_price, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :label %>
+        <%= f.collection_select :label_id, Label.all, :id, :label_name %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :genre %>
+        <%= f.collection_select :genre_id, Genre.all, :id, :genre_name %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :explanation %>
+        <%= f.text_area :explanation, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :image %>
+        <%= f.attachment_field :image, placeholder:"ファイルを選択", class:"product_image" %> 
+      </div>
+
+      <div class="form-group">
+        <%= f.label :stock %>
+        <%= f.text_field :stock %>
+      </div>
+
+      <%= link_to "戻る", products_path, class:"btn btn-primary" %>
+      <%= f.submit "追加", class:"btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
