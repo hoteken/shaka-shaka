@@ -6,7 +6,15 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find_by(id: params[:id])
-    @songs = @product.songs.group(:disk_number)
+    @songs = @product.songs
+    
+    #ディスクごとの曲名表示用
+    @max_disk_num = @songs.maximum(:disk_number)  #ディスク枚数をカウント
+    @disked_songs = []
+    (1..@max_disk_num).each do |disk_num|
+      @disked_songs << @songs.where(disk_number: disk_num).order("track_order asc")  #ディスク番号ごとに曲をまとめ、収録順に配列に代入
+    end
+    @disk_count = 1 #ディスク番号表示&ループ用
 
       # 商品に紐づく曲を持ってくる
       #   @product.songs
