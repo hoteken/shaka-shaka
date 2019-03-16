@@ -1,8 +1,8 @@
 <div class="container">
 
-  <p>お問い合わせ</p>
-  <div class="top-message"></div>
-  <%= form_for(@inquiry) do |f| %>
+  <h2>お問い合わせ</h2>
+  <div class="top-message"><p>お問い合わせ内容をご入力ください。</p></div>
+  <%= form_for(@inquiry, url: { action: :confirm }) do |f| %>
     <div class="form-group">
       <%= f.label :name %>
       <%= f.text_field :name, class: "form-control" %>
