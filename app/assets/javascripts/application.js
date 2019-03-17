@@ -16,3 +16,17 @@
 //= require jquery
 //= require bootstrap-sprockets
 //= require_tree .
+
+$(document).ready(function(){
+	$('#rock').on('click', function(){
+		$.get();
+	});
+
+	$('#pop').on('click', function(){
+		$.get();
+	});
+
+	$('#punk').on('click', function(){
+		$.get();
+	});
+});
