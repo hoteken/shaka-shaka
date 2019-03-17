@@ -1,2 +1,49 @@
-<h1>Artists#index</h1>
-<p>Find me in app/views/artists/index.html.erb</p>
+<body>
+  <div class = "container">
+    <div class="row top">
+　    <div class="col-xs-2"><p>アーティスト管理</p></div>
+        <% provide(:artist_name, 'All artists') %>
+          <%= search_form_for @search  do |f| %>
+            <div class="form-group col-xs-3">
+              <%= f.text_field :artist_name_cont, class: "form-control" %>
+            </div>
+              <div class="actions col-xs-3"><%= f.submit "", :class=>"glyphicon glyphicon-zoom-in"%></div>
+          <% end %>
+          <a href="/artists/new" class="btn btn-default btn-sm col-xs-2" role="button">新規登録</a>
+    </div>
+    <div class = "border-top"></div>
+      <div class = "row">
+        <div class="col-xs-1"></div>
+          <div class="col-xs-10">
+      	    <div class = "center-block">
+      	      <table class = "table">
+      	  	  <thead>
+      	  	    <tr>
+      	  	      <th></th>
+      	  	      <th></th>
+      	  	      <th>アーティスト名</th>
+      	  	      <th></th>
+      	  	      <th></th>
+      	  	      <th></th>
+      	  	     </tr>
+      	  	  </thead>
+      	  	  <tbody>
+      	  	    <% @result.each do |artist| %>
+      	  	    <tr>
+      	  	      <td></td>
+      	  	      <td></td>
+      	  	      <td><span><%= artist.artist_name %></span></td>
+      	  	      <td></td>
+      	  	      <td></td>
+      	  	      <td><%=link_to "編集", edit_artist_path(artist.id),class:"btn btn-default btn-sm "%></td>
+      	  	    </tr>
+      	  	    <% end %>
+      	  	  </tbody>
+      	      </table>
+            </div>
+      	   <div class = "paginate"><%= paginate @artists %></div>
+      	  </div>
+          <div class="col-xs-1"></div>
+      </div>
+  </div>
+</body
