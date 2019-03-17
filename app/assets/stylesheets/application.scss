@@ -26,9 +26,18 @@
 	display:block;
 	clear:both;
 }
+header{
+	color:white;
+}
 body{
 	margin-top:60px;
 }
 span{
 	font-size:37px;
+}
+.notice{
+	font-color:green;
+}
+#error-explanation{
+	font-color:red;
 }

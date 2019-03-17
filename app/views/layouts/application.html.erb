@@ -14,7 +14,7 @@
       <div class="container">
 
         <nav class="nav navbar-nav navbar-left">
-          <span><%= link_to "ShakaShaka", root_path %></span>
+          <span><%= link_to "Shaka-Shaka", root_path %></span>
         </nav>
 
         <nav>
@@ -44,6 +44,16 @@
 
       </div>
     </header>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-offset-2">
+          <% if flash[:notice] %>
+            <p class="notice"><%= flash[:notice] %></p>
+          <% end %>
+        </div>
+      </div>
+    </div>
 
     <%= yield %>
 
