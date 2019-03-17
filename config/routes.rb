@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   get 'inquiries/confirm'
   post 'inquiries/confirm' => 'inquiries#confirm'
   get 'inquiries/thanks'
-
+  
   get  'new' =>'inquiries#new'
   post 'thanks' => 'inquiries#thanks'
 
