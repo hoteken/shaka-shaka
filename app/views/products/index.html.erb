@@ -5,6 +5,10 @@
   サイドバー
 <%
 =end%>
+
+  <% flash.each do |key, value| %>
+    <%= content_tag(:div, value, class: "#{key}") %>
+  <% end %>
   <div class="col-xs-3">
     <h3>Categories</h3>
   </div>
