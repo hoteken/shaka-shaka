@@ -1,5 +1,6 @@
 class DestinationsController < ApplicationController
   def index
+    @destinations
   end
 
   def new
