@@ -1,2 +1,33 @@
-<h1>Products#index</h1>
-<p>Find me in app/views/products/index.html.erb</p>
+<div class="container">
+  
+  <%
+=begin%>
+  サイドバー
+<%
+=end%>
+  <div class="col-xs-3">
+    <h3>Categories</h3>
+  </div>
+
+<%
+=begin%>
+  登録画面
+<%
+=end%>
+  <div class="col-xs-9">
+    <p>items<%= link_to "新規登録", new_product_path, class: "btn btn-primary" %></p>
+
+    <div class="product-list">
+      <% @random_products.each do |random_product| %>
+        <div class="product">
+          <%= attachment_image_tag random_product, :image, :fill, 100, 100, format: 'jpeg', class:"jacket-image", fallback:"img/no_image.png", :size => '100x100' %>
+          <p>
+            <%= link_to random_product.product_title, random_product %>
+            <%= "¥"+random_product.product_price.to_s %>
+          </p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <%= paginate @random_products %>
+</div>

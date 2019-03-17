@@ -1,2 +1,29 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<h1>マイページ</h1>
+<%= @user.name%>
+<%= @user.name_kana%>
+<%= @user.postcode%>
+<%= @user.address%>
+<%= @user.phonenumber%>
+<%= @user.email%>
+<%= link_to "送付先リスト", user_destinations_path %>
+<%= link_to "編集", edit_user_path(user) %>
+<%= link_to "退会", products_path %>
+<h1>直近の購入履歴</h1>
+<table class="table table-striped">
+<tr>
+    <th>受注日</th>
+    <th>ステータス</th>
+    <th>ユーザー名</th>
+    <th>注文金額</th>
+    <th colspan="4"></th>
+</tr>
+<% @users.each do |user| %>
+<tr>
+   <td><%= user.created_at %></td>
+   <td><%= user.status %></td>
+   <td><%= user.name %></td>
+   <td><%= user.total_price %></td>
+   <td><%= link_to "詳細", user_path(user)%></td>
+ </tr>
+<% end %>
+</table>

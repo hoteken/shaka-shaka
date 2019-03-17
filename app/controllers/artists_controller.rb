@@ -2,7 +2,7 @@ class ArtistsController < ApplicationController
   def index
     @artists = Artist.page(params[:page]).reverse_order
     @search = Artist.ransack(params[:q])
-    @result = @search.result
+    @result = @search.result.page(params[:page])
   end
 
   def new
