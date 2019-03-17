@@ -2,28 +2,41 @@
 <p>小計：¥<%= @sum_price %></p>
 <p>送料：¥500</p>
 <p>ご請求額：¥<%= @sum_price.to_i + 500 %></p>
+<p>送付先住所：<%=  %></p>
 
-<%= link_to "カートに戻る", cart_path(current_user.cart), class:"btn btn-default" %>
-<%= link_to "注文を確定する", orders_path, method: :post, cart_id:current_user.cart %>
+<%= link_to "カートに戻る", cart_path(1), class:"btn btn-default" %>
+<%= form_for(@order) do |f| %>
+  <%= f.hidden_field :cart_id, value: 1 %>
+  <%= f.submit "注文を確定する", class:"btn btn-default" %>
+<% end %>
 
-<p>送付先住所<%= current_user.address %></p>
-<p class="destination-select">"送付先を選択"</p>
-
-<%
-=begin%>
-  jqueryでやるよ！モーダル表示して送付先IDをGET、住所の表記を変更して、送付先IDをポストできるようにする
-<%
-=end%>
-
-
-<div class="modal">
-  <p>送付先を選択</p>
-  ラジオボタンで選ばせるよ！
+<div class="col-xs-10">
+  <% if @cart_products.count == 0 %>
+    <p>カートの中身は空です。</p>
+  <% else %>
+    <% @cart_products.each do |cart_product| %>
+      <%= attachment_image_tag cart_product.product, :image, :fill, 120, 120, format: 'jpeg', class:"jacket-image", fallback:"img/no_image.png", :size => '120x120' %>
+      <p>
+        <%= link_to cart_product.product.product_title, product_path(cart_product.product) %>
+        <% artist_ary = cart_product.product.artists.uniq %>
+        <% artist_ary.each do |artist| %>
+          <%= artist.artist_name %>
+        <% end %>
+      </p>
+      <p><%= cart_product.product.genre.genre_name %></p>
+      <p>¥<%= cart_product.product.product_price %></p>
+    <% end %>
+  <% end %>
 </div>
 
 
-<%
-=begin%>
- postのthanks注文レコード追加するやつ入れないとダメ？order.create? 引数どうしよ
-<%
-=end%>
+
+
+<p class="destination-select">送付先を選択</p> 
+
+  jqueryでやるよ！モーダル表示して送付先IDをGET、住所の表記を変更して、送付先IDをポストできるようにする
+
+ <div class="modal">
+  <p>送付先を選択</p>
+  ラジオボタンで選ばせるよ！
+</div>

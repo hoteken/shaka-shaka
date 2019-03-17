@@ -4,15 +4,22 @@ class CartsController < ApplicationController
 #   @cart = Cart.find_by(user_id: current_user.user_id)
     @cart = Cart.find(1)
     @cart_products = @cart.cart_products
-    @sum_price = @cart.products.sum(:product_price)
-
+    @sum_price = 0
+    @cart_products.each do |cart_product|
+      @sum_price += cart_product.quantity * cart_product.product.product_price
+    end
   end
 
   def confirm
     #@cart = Cart.find_by(user_id: current_user.user_id)
-    @cart = Cart.find_by(user_id:1)
-    @cart_products = @cart.products
-    @sum_price = @cart_products.sum(:product_price)
+    @cart = Cart.find(1)
+    @cart_products = @cart.cart_products
+    @sum_price = 0
+    @cart_products.each do |cart_product|
+      @sum_price += cart_product.quantity * cart_product.product.product_price
+    end
+
+    @order = Order.new
   end
 
   def thanks
