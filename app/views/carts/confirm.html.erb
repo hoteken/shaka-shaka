@@ -1,29 +1,82 @@
-<h1>注文確認</h1>
-<p>小計：¥<%= @sum_price %></p>
-<p>送料：¥500</p>
-<p>ご請求額：¥<%= @sum_price.to_i + 500 %></p>
+<div class="container">
+  <div class="row">
+    <h1>注文確認</h1>
+    <p>小計：¥<%= @sum_price %></p>
+    <p>送料：¥500</p>
+    <h4>ご請求額：¥<%= @sum_price.to_i + 500 %></h4>
+    <p>送付先住所：<div id="address_result"></div></p>
+    <p class="btn btn-default destination-select">送付先を選択</p> 
 
-<%= link_to "カートに戻る", cart_path(current_user.cart), class:"btn btn-default" %>
-<%= link_to "注文を確定する", orders_path, method: :post, cart_id:current_user.cart %>
+    モーダルfadeInして送付先IDをget、住所の表記(動的に表示)をIDを元に変更して、送付先IDをOrderにポストできるようにする
+    ラジオボタンで選ばせるよ！
+  </div>
 
-<p>送付先住所<%= current_user.address %></p>
-<p class="destination-select">"送付先を選択"</p>
+  <div class="row">
+    <%= link_to "カートに戻る", cart_path(1), class:"btn btn-default" %>
+    <%= form_for(@order) do |f| %>
+      <%= f.hidden_field :cart_id, value: 1 %>
+      <%= f.submit "注文を確定する", class:"btn btn-primary" %>
+    <% end %>
+  </div>
 
-<%
+  <h4>購入商品一覧</h4>
+  <% @cart_products.each do |cart_product| %>
+    <div class="row">
+      <div class="col-xs-2">
+        <%= attachment_image_tag cart_product.product, :image, :fill, 120, 120, format: 'jpeg', class:"jacket-image", fallback:"img/no_image.png", :size => '120x120' %>
+      </div>
+      <div class="col-xs-8">
+        <p>
+          <%= link_to cart_product.product.product_title, product_path(cart_product.product) %>
+          <% artist_ary = cart_product.product.artists.uniq %>
+          <% artist_ary.each do |artist| %>
+            <%= artist.artist_name %>
+          <% end %>
+        </p>
+        <p><%= cart_product.product.genre.genre_name %></p>
+        <p>単価：¥<%= cart_product.product.product_price %></p>
+        <p>数量：<%= cart_product.quantity %></p>
+        <p>合計：¥<%= cart_product.product.product_price*cart_product.quantity %></p>
+
+      </div>
+    </div>
+  <% end %>
+
+
+  <%
 =begin%>
-  jqueryでやるよ！モーダル表示して送付先IDをGET、住所の表記を変更して、送付先IDをポストできるようにする
+  送付先洗濯用モーダル
 <%
 =end%>
 
 
-<div class="modal">
-  <p>送付先を選択</p>
-  ラジオボタンで選ばせるよ！
+  <div class="signup-modal-wrapper" id="signup-modal">
+    <div class="modal">
+      <div>
+        <i class="fa fa-2x fa-times" id="close-modal"></i>
+      </div>
+      <div id="signup-form">
+        <h2>Emailで新規登録</h2>
+        <form action="#">
+          <input class="form-control" type="text" placeholder="メールアドレス">
+          <input class="form-control" type="password" placeholder="パスワード">
+          <div id="submit-btn">新規登録</div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
 </div>
 
 
-<%
-=begin%>
- postのthanks注文レコード追加するやつ入れないとダメ？order.create? 引数どうしよ
-<%
-=end%>
+<script>
+  $(function(){
+    $('.destination-select').click(function(){
+      $('#signup-modal').fadeIn();
+    });
+    $('#close-modal').click(function(){
+      $('#signup-modal').fadeOut();
+    });
+  });
+</script>
