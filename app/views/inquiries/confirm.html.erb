@@ -1,2 +1,29 @@
-<h1>Inquiries#confirm</h1>
-<p>Find me in app/views/inquiries/confirm.html.erb</p>
+<%= form_for @inquiry, :url => thanks_path do |f| %>
+  <div>
+    <h2>メッセージ確認</h2>
+    <div class="top-message"><p>お問い合わせ内容をご確認ください。</p></div>
+    <div>
+      <strong>名前</strong>
+      <p>
+        <%= f.hidden_field :name %>
+        <%= @inquiry.name %>
+      </p>
+    </div>
+    <div>
+      <strong>メールアドレス</strong>
+      <p>
+        <%= f.hidden_field :email %>
+        <%= @inquiry.email %>
+      </p>
+    </div>
+    <div>
+      <strong>内容</strong>
+      <p>
+        <%= f.hidden_field :message %>
+        <%= simple_format(@inquiry.message) %>
+      </p>
+    </div>
+      <%= f.submit '戻る', name: 'back' %>
+      <%= f.submit '送信する' %>
+  </div>
+<% end %>
