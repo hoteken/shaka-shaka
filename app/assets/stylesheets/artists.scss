@@ -10,10 +10,10 @@
 }
 
 .main-bottom{
-	padding-bottom: 80px;
+    padding-bottom: 80px;
 }
 
-.botan {
+.button {
     margin-right: 100px;
 }
 
@@ -26,14 +26,10 @@
 	padding: 30px 30px 0 0;
 }
 
-.col-xs-2 {
-	padding-top: 20px;
-}
-
 .text {
-	border-bottom: solid 4px black;
-	width: 100%;
-	padding: 30px 0 30px 0;
+    border-bottom: solid 4px black;
+    width: 100%;
+    padding: 30px 0 30px 0;
 }
 
 .main {
@@ -55,16 +51,24 @@
 }
 
 .form-group{
-width: 25%;
+    width: 25%;
 }
 
 .border-top{
-	border-top: 5px solid black;
+    border-top: 5px solid black;
 }
 
 .top {
 	padding-top: 20px;
 }
 
+.button-top {
+	margin: 27px;
+}
+
+.border {
+    border: 2px solid black;
+    width: 100%;
+}
 
 
