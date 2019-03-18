@@ -25,7 +25,7 @@
 	<div id="result">
 		<h2>discover new music</h2>
 		<%= image_tag 'img/no_image.png', size: "200x200" %>
-		<button id="close">c l o s e</button>
+		<button id="close">x</button>
 	</div>
 </div>
 
@@ -34,10 +34,11 @@
 		$('#rock,#pop,#punk').on('click',function(){
 			$('#overlay,#result').fadeIn();
 		});
-
-		$('#close').on('click', function(){
+		$('#close,#overlay').on('click', function(){
 			$('#overlay,#result').fadeOut();
 		});
-
+		$('#result').on('click',function(e){
+			e.stopPropagation();
+		});
 	});
 </script>
