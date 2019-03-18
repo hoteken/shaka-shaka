@@ -19,14 +19,20 @@
 
 $(document).ready(function(){
 	$('#rock').on('click', function(){
-		$.get();
+		$.ajax({
+			url:'result',
+			type:'GET',
+			data:
+		})
 	});
+
 
 	$('#pop').on('click', function(){
-		$.get();
+		$.get()
 	});
 
+
 	$('#punk').on('click', function(){
-		$.get();
+		$.get('genres_id');
 	});
 });
