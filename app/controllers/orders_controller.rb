@@ -10,28 +10,35 @@ class OrdersController < ApplicationController
   end
 
   def create
-    order = Order.new
+    # レコード追加処理(ユーザーIDからカート商品テーブル検索（複数）、繰り返し処理でオーダーに洗替)
+    # 送付先は渡されたparams[:destination_id]からテーブル検索して持ってくる！
+    cart_products = CartProduct.where(user_id:1)
+    destination = Destination.find(params[:destination_id])
 
-    # レコード追加処理
-    order.user_id = 1
-    order.status = 10
-    order.destination_name = params[:destination_name]
-    order.destination_postcode = params[:destination_postcode]
-    order.destination_address = params[:destination_address]
-    order.product_id = params[:product_id]
-    order.quantity = params[:quantity]
-    order.total_price = params[:total_price]
-    
-    if @order.save
+    orders = []
+    cart_products.each do |cart_product|
+      order = Order.new
+      order.user_id = 1
+      order.status = 10
+      order.destination_name = destination.destination_name
+      order.destination_postcode = destination.destination_postcode
+      order.destination_address = destination.destination_address
+      order.product_id = cart_product.product_id
+      order.quantity = cart_product.quantity
+      order.total_price = cart_product.product.product_price*cart_product.quantity
+      orders << order
+    end
 
-      # cart_productのレコード削除
-
+    begin
+      Order.transaction do
+        orders.each { |order| order.save! }
+      end
+      cart_products.destroy_all
       redirect_to carts_thanks_path
-    else
-      flash[:danger] = "注文処理に失敗しました"
+      rescue ActionRecord::RecordInvalid, ActionRecord::RecordNotSaved => ex
+      flash[:danger] = "注文処理でエラーが発生しました"
       redirect_to products_path
     end
-    
   end
 
   def edit
