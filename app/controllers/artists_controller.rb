@@ -2,7 +2,7 @@ class ArtistsController < ApplicationController
   def index
     @artists = Artist.page(params[:page]).reverse_order
     @search = Artist.ransack(params[:q])
-    @result = @search.result
+    @result = @search.result.page(params[:page])
   end
 
   def new
@@ -11,8 +11,11 @@ class ArtistsController < ApplicationController
 
   def create
     artist = Artist.new(artist_params)
-    artist.save
-    redirect_to "/artists"
+    if artist.save
+       redirect_to artists_path
+    else
+       redirect_to new_artist_path
+    end
   end
 
   def edit
@@ -21,8 +24,11 @@ class ArtistsController < ApplicationController
 
   def update
     artist = Artist.find(params[:id])
-    artist.update(artist_params)
-    redirect_to "/artists"
+    if artist.update(artist_params)
+       redirect_to artists_path
+    else
+       redirect_to edit_artist_path
+    end
   end
 
   private

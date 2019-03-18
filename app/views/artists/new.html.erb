@@ -9,8 +9,8 @@
             	<%= f.text_field :artist_name %>
             </p>
             <div class = "main-bottom">
-                <span class = "botan">
-                	<a href="/artists" class="btn btn-default btn-sm " role="button">戻る</a>
+                <span class = "button">
+                	<%= link_to "戻る", artists_path, class:"btn btn-default btn-sm", :style=>"margin-bottom: -12px;"%>
                 </span>
                 	<input class="btn btn-default btn-sm" type="submit" value="送信ボタン">
             </div>
@@ -19,3 +19,5 @@
       </div>
   </div>
 </body>
+
+
