@@ -11,7 +11,7 @@
   <div class="row">
     <%= link_to "カートに戻る", cart_path(1), class:"btn btn-default" %>
     <%= form_for(@order) do |f| %>
-      <%= f.hidden_field :cart_id, value: 1 %>
+      <%= f.hidden_field :destination_id, value: 1 %>
       <%= f.submit "注文を確定する", class:"btn btn-primary" %>
     <% end %>
   </div>
