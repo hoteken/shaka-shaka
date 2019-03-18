@@ -21,6 +21,7 @@ class CartsController < ApplicationController
     @order = Order.new
 
     #送付先選択用
+    @user = User.find(1)
     @destinations = Destination.where(user_id:1)  #ほんとはカレントユーザー
 
   end
