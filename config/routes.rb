@@ -15,11 +15,12 @@ Rails.application.routes.draw do
   resources :artists, only: [:index, :new, :create, :edit, :update]
   resources :orders, only: [:index, :show, :create, :edit, :update]
 
+  get 'carts/confirm'
+  get 'carts/thanks'
   resources :carts, only: [:show] do
     resources :cart_products, only: [:create, :update, :destroy]
   end
-  get 'carts/confirm'
-  get 'carts/thanks'
+
 
   get 'inquiries/new'
   get 'inquiries/confirm'
@@ -31,6 +32,8 @@ Rails.application.routes.draw do
 
   # 開発環境メール確認用
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
+
+  
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -8,13 +8,16 @@
     <div class="container">
       <div class="col-xs-2">
         <%= attachment_image_tag @product, :image, :fill, 180, 180, format: 'jpeg', class:"jacket-image", fallback:"img/no_image.png", :size => '180x180' %>
-        <% if @product.stock > 3 %>
-          在庫あり
-        <% elsif %>
-          残り<%= @product.stock %>点
-        <% else %>
-          在庫なし
-        <% end %>
+
+        <p class="stock-status">
+          <% if @product.stock > 3 %>
+            在庫あり
+          <% elsif @product.stock > 0 %>
+            残り<%= @product.stock %>点
+          <% else %>
+            在庫なし
+          <% end %>
+        </p>
       </div>
 
       <div class="col-xs-8">
@@ -24,30 +27,36 @@
             <%= @product.product_title %>
           </li>
           <li>
-            <% @product.songs.each do |song| %>
-              <%= song.artist.artist_name %>
+            <% artist_ary = @product.artists.uniq %>
+            <% artist_ary.each do |artist| %>
+              <%= artist.artist_name %>
             <% end %>
           </li>
           <li><%= @product.genre.genre_name %></li>
-          <li><%= @product.product_price %></li>
+          <li>¥<%= @product.product_price %></li>
           <li><%= @product.label.label_name %></li>
           <li><%= @product.explanation %></li>
         </ul>
 
         <p>収録曲</p>
+        <% disk_count = 1 %>
         <% @disked_songs.each do |one_disk_songs| %>
-          <p>ディスク<%= @disk_count %></p>
+          <p>ディスク<%= disk_count %></p>
           <% one_disk_songs.each do |song| %>
             <p>
               <%= song.track_order %>.
               <%= song.song_title %>
             </p>
           <% end %>
-          <% @disk_count += 1 %>
+          <% disk_count += 1 %>
         <% end %>
 
         <div class="link-menu" %>
-          <%= link_to "カートに追加", cart_cart_products_path(cart_id:1), class:"btn btn-primary", product_id: @product.id, quantity: 1, method: :post %>
+          <%= form_for([@cart, @cart_product]) do |f| %>
+            <%= f.hidden_field :product_id, value: @product.id %>
+            <%= f.select :quantity, [["1", 1], ["2", 2], ["3", 3], ["4", 4], ["5", 5]] ,class:"form-control" %>
+            <%= f.submit "カートに追加", class:"btn btn-primary" %>
+          <% end %>
           <%= link_to "戻る", products_path, class:"btn btn-primary" %>
           <%= link_to "編集", edit_product_path(@product), class:"btn btn-primary" %>
         </div>
