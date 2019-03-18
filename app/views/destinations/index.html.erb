@@ -3,10 +3,23 @@
     <div class = "row">
       <div class="col-xs-1"></div>
         <h1 class ="col-xs-5">送付先リスト</h1>
-        <% link_to "新規登録", new_user_destination_path, class:"btn btn-default btn-sm"%>
-        <a href="/artists/new" class="btn btn-default btn-sm col-xs-2" role="button">新規登録</a>
-    <div>
-      <div class="col-xs-6">
+        <%= link_to "送付先追加", new_user_destination_path, class:"btn btn-default btn-sm button-top"%>
+    </div>
+      <div class ="row">
+        <div class="col-xs-6">
+          <table class="table">
+          	　　<% @destinations.each do |destination| %>
+                 <tr></tr>
+                 <tr>
+                   <th>郵便番号</th><th><%= destination.destination_address %></th><th></th>
+                 </tr>
+                 <tr>
+                   <th>お名前</th><%= destination.destination_name %><th></th><th></th>
+                 </tr>
+                 <tr>
+                   <th>住所</th><th><%= destination.destination_name %></th><th></th>
+                 </tr>
+               <% end %>
+          </table>
+        </div>
       </div>
-  </div>
-</body>
