@@ -49,7 +49,10 @@
       <div class="row">
         <div class="col-xs-offset-2">
           <% if flash[:notice] %>
-            <p class="notice"><%= flash[:notice] %></p>
+           <p class="notice"><%= flash[:notice] %></p>
+          <% end %>
+          <% if flash[:danger] %>
+           <p class="danger"><%= flash[:danger] %></p>
           <% end %>
         </div>
       </div>
@@ -67,5 +70,7 @@
       </div>
     </div>
 
+    <script src="jquery-3.3.1.min.js"></script>
+    <script src="javascript/application.js"></script>
   </body>
 </html>
