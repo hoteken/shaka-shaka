@@ -23,16 +23,9 @@
         <li class = "list">新しいお宛名<%= f.text_field :destination_name,class: "text-main2" %></li>
         <li class = "list">新しい住所<%= f.text_area :destination_address,class: "text-main3" %></li>
         <%= f.hidden_field :user_id, value:1 %>
-    </ul>
-    <div class="col-xs-1"></div>
-  </div>
-  <div class = "row">
-    <div class="col-xs-6"></div>
-    <div class="col-xs-4 ">
-      <%= link_to "戻る", user_destinations_path(1), class:"btn btn-default btn-sm text1-bottom"  %>
-      <%= f.submit '追加', class:"btn btn-primary btn-sm" %>
+        <%= link_to "戻る", user_destinations_path(1), class:"btn btn-default btn-sm text1-bottom"  %>
+        <%= f.submit '追加', class:"btn btn-primary btn-sm" %>
       <% end %>
-    </div>
-    <div class="col-xs-2"></div>
+    </ul>
   </div>
 </div>

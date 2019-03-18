@@ -14,9 +14,6 @@ class DestinationsController < ApplicationController
 
   def create
     @user = User.first
-    p destination_params
-    p destination_params
-    p destination_params
     @destination = Destination.new(destination_params)
     @destination.user_id = params[:user_id]
     if @destination.save
