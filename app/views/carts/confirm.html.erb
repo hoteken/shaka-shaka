@@ -54,12 +54,8 @@
       <%= form_for([@user,destination]) do |f| %>
         <div id="selected_dest">
           <p>
-            <%
-=begin%>
- <%= f.radio_button :destination_name, 1 %>送付先<%= dest_count %> 
-<%
-=end%>
-            <%= radio_button_tag(:dest_id, "#{destination.id}") %>
+            <%= f.radio_button :id, destination.id, value:"#{destination.id}" %>送付先<%= dest_count %> 
+            <%= radio_button_tag(:dest_id, "#{destination.id}") %>送付先
           </p>
           <p>お名前：<%= destination.destination_name %></p>
           <p>ご住所：<%= destination.destination_address %></p>
