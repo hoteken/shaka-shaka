@@ -10,30 +10,31 @@
 			</div>
 			<div class="col">
 				<h3>ユーザー名</h3>
-				<%= @user.name %>
+				<%= @user.user_name %>
 			</div>
 			<div class="col">
 				<h3>受注商品</h3>
-				<%= @product_title %>
+				<%= @order_item.product_title %>
 				<%= @quantity %>
-				<%= @product_price %>
+				¥<%= @order_item.product_price %>
 			</div>
 			<div class="col">
 				<h3>ステータス</h3>
-				<%= f.label :order %>
-				<%= f.collection_select :order_id, Order.all, :id, :status %>
+				<%= form_for(@order) do |f| %>
+					<%= f.select :status, [["受付済み", 10], ["発送準備中", 20], ["発送済み", 30], ["確認中", 90]] ,class:"form-control" %>
+          <%= f.submit "ステータス更新", class:"btn btn-primary" %>
+				<% end %>
 			</div>
 			<div class="col">
 				<h3>送付先</h3>
-				<%= @destination_address %>
+				<%= @order.destination_address %>
 			</div>
 			<div class="col">
 				<h3>総計</h3>
-				<%= @total_price %>
+				¥<%= @order.total_price %>
 			</div>
 			<div>
-				<%= link_to "戻る", order_path(@order.id), class : "btn btn-primary" %>
-				<%= f.submit "更新", class: "btn btn-primary" %>
+				<%= link_to "戻る", order_path(@order), class: "btn btn-primary" %>
 			</div>
 		</div>
 	</div>

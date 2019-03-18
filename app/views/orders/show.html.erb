@@ -10,29 +10,37 @@
 			</div>
 			<div class="col">
 				<h3>ユーザー名</h3>
-				<%= @user.name %>
+				<%= @user.user_name %>
 			</div>
 			<div class="col">
 				<h3>受注商品</h3>
-				<%= @product_title %>
+				<%= @order_item.product_title %>
 				<%= @quantity %>
-				<%= @product_price %>
+				¥<%= @order_item.product_price %>
 			</div>
 			<div class="col">
 				<h3>ステータス</h3>
-				<%= @status %>
+				<% if @order.status.to_i == 10 %>
+					受付済み
+				<% elsif @order.status.to_i == 20 %>
+					発送準備中
+				<% elsif @order.status.to_i == 30 %>
+					発送済み
+				<% else %>
+					確認中
+				<% end %>
 			</div>
 			<div class="col">
 				<h3>送付先</h3>
-				<%= @destination_address %>
+				<%= @order.destination_address %>
 			</div>
 			<div class="col">
 				<h3>総計</h3>
-				<%= @total_price %>
+				¥<%= @order.total_price %>
 			</div>
 			<div>
-				<%= link_to "戻る", "/orders/index", class: "btn btn-primary" %>
-				<%= link_to "編集", edit_order_path(@order.id), class: "btn btn-primary" %>
+				<%= link_to "戻る", orders_path, class: "btn btn-primary" %>
+				<%= link_to "編集", edit_order_path(@order), class: "btn btn-primary" %>
 			</div>
 		</div>
 	</div>
