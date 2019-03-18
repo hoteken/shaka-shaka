@@ -21,50 +21,23 @@
 	</div>
 </section>
 
-<div class="signup-modal-wrapper" id="signup-modal">
-	<div class="modal">
-		<div>
-			<i class="fa fa-times fa-2x" id="close-modal">
-		</div>
-		<div class="result">
-			<h2>discover music</h2>
-			<%= attachment_image_tag products, :image, :fill, 100,100, fallback: 'img/no_image_png' %>
-			<button>close</button>
-		</div>
+<div id="overlay">
+	<div id="result">
+		<h2>discover new music</h2>
+		<%= image_tag 'img/no_image.png', size: "200x200" %>
+		<button id="close">c l o s e</button>
 	</div>
 </div>
 
 <script>
-	// result-modal発火アクション
 	$(function(){
-		$('#rock').on('click', function(){
-			$('#signup-modal').fadeIn();
-		});
-		$('close-modal').on('click', function(){
-			$('#signup-modal').fadeOut();
-		});
-	});
-
-
-
-
-	$(function(){
-		$('#rock').on('click', function(){
-			$.ajax({
-				url:'result',
-				type:'GET',
-				data:
-			})
+		$('#rock,#pop,#punk').on('click',function(){
+			$('#overlay,#result').fadeIn();
 		});
 
-
-		$('#pop').on('click', function(){
-			$.get()
+		$('#close').on('click', function(){
+			$('#overlay,#result').fadeOut();
 		});
 
-
-		$('#punk').on('click', function(){
-			$.get('genres_id');
-		});
 	});
 </script>
