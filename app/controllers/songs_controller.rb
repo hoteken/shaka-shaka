@@ -1,6 +1,8 @@
 class SongsController < ApplicationController
   def index
-    @songs = Song.page(params[:page]).per(10)
+    @songs = Song.page(params[:page]).reverse_order
+    @search = Song.ransack(params[:q])
+    @result = @search.result.page(params[:page])
   end
 
   def new
