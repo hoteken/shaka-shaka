@@ -20,3 +20,51 @@
 		</div>
 	</div>
 </section>
+
+<div class="signup-modal-wrapper" id="signup-modal">
+	<div class="modal">
+		<div>
+			<i class="fa fa-times fa-2x" id="close-modal">
+		</div>
+		<div class="result">
+			<h2>discover music</h2>
+			<%= attachment_image_tag products, :image, :fill, 100,100, fallback: 'img/no_image_png' %>
+			<button>close</button>
+		</div>
+	</div>
+</div>
+
+<script>
+	// result-modal発火アクション
+	$(function(){
+		$('#rock').on('click', function(){
+			$('#signup-modal').fadeIn();
+		});
+		$('close-modal').on('click', function(){
+			$('#signup-modal').fadeOut();
+		});
+	});
+
+
+
+
+	$(function(){
+		$('#rock').on('click', function(){
+			$.ajax({
+				url:'result',
+				type:'GET',
+				data:
+			})
+		});
+
+
+		$('#pop').on('click', function(){
+			$.get()
+		});
+
+
+		$('#punk').on('click', function(){
+			$.get('genres_id');
+		});
+	});
+</script>
