@@ -23,7 +23,7 @@ class CartsController < ApplicationController
 
     #送付先選択用
     @user = User.find(1)
-    @destinations = Destination.where(user_id:1)  #ほんとはカレントユーザー
+    @destinations = Destination.where(user_id:@cart.user.id)  #ほんとはカレントユーザー
 
   end
 
@@ -36,15 +36,15 @@ class CartsController < ApplicationController
     cart.user_id = current_user.user_id
     cart.save
     flash[:notice] = "ログインに成功しました"
-    redirect_to products_path #ここで合ってる？
+    redirect_to products_path
   end
 
-  # def update
-  #   destination_id = params[:data].keys[0]
-  #   cookies[:selected_dest_id] = destination_id
-  #   selected_dest = Destination.find(destination_id)
-  #   results = { :message => selected_dest.destination_address }
-  #   render partial: 'ajax_partial', locals: { :results => results }
-  # end
+  def update
+    destination_id = params[:paramss]
+    cookies[:selected_dest_id] = destination_id
+    selected_dest = Destination.find(destination_id)
+    results = { :message => selected_dest.destination_address }
+    render partial: 'ajax_partial', locals: { :results => results }
+  end
 
 end

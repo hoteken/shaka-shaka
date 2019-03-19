@@ -22,8 +22,8 @@
 	z-index:2
 }
 #close{
-	width:100px;
-	height:50px;
+	width:80px;
+	height:35px;
 	color:red;
 	background-color:#fff;
 	border:2px solid red;
@@ -33,4 +33,22 @@
 #close:hover{
 	background:red;
 	color:#fff;
+}
+
+/* ラジオボタンの隣にあるラベル内のボックスは非表示にしておく */
+.destinations input + label div { 
+	display: none; 
+}
+
+/* チェックが入っているラジオボタンの隣にあるラベル内のボックスは表示 */
+.destinations input:checked + label div {
+	 display: block; 
+	 padding: 5px 0px; 
+	 font-weight:bold; 
+}
+
+.destinations label {
+   display: block;
+   margin: 5px 20px;
+   background-color: silver;
 }

@@ -4,13 +4,7 @@
     <p>小計：¥<%= @sum_price %></p>
     <p>送料：¥500</p>
     <h4>ご請求額：¥<%= @sum_price.to_i + 500 %></h4>
-    <%
-=begin%>
- <p id="updated_by_ajax">送付先：<%= @user.address %></p> 
-<%
-=end%>
-    <p id="address_result">送付先：<%= @user.address %></p> 
-
+    <p id="updated_by_ajax">送付先：<%= @user.address %></p> 
     <p class="btn btn-default" id="dest-select">送付先を選択</p> 
   </div>
 
@@ -46,38 +40,39 @@
 
   <%
 =begin%>
-  送付先洗濯用モーダル
+  送付先選択用モーダル
 <%
 =end%>
 
 <div id="overlay">
 	<div id="result">
 		<h2>送付先変更</h2>
-    <p><input type="radio" name="dest_id" value="default" checked>デフォルトの送付先</p>
-    <p>お名前：<%= @user.user_name %></p>
-    <p>ご住所：<%= @user.address %></p> 
-
+    <div class="destinations">
+      <input type="radio" name="dest_id" value="default" checked="checked">デフォルトの送付先
+      <label>
+        <div>
+          <p>お名前：<%= @user.user_name %></p>
+          <p>ご住所：<%= @user.address %></p> 
+        </div>
+      </label>
+    </div>
     <% dest_count = 1 %>
 		<% @destinations.each do |destination| %>
-      <div id="select_dest">
-        <input type="radio" name="dest_id" value="<%= destination.id %>">送付先<%= dest_count %> 
-        <p>お名前：<%= destination.destination_name %></p>
-        <p>ご住所：<%= destination.destination_address %></p>
+      <div class="destinations">
+        <input type="radio" name="dest_id" value="<%= destination.id %>">送付先<%= dest_count %>
+        <label>
+          <div>
+            <p>お名前：<%= destination.destination_name %></p>
+            <p>ご住所：<%= destination.destination_address %></p>
+          </div>
+          <div class="request_ajax_update" >
+            <%= button_to "この住所に変更",  {:action => "update", :paramss => destination.id }, {:remote => true, :class => "go btn btn-default" } %>
+          </div>
+        </label>
       </div>
-      <%
-=begin%>
- <div id="request_ajax_update" >
-        <%= form_tag(ajax_test_update_path, method: :post, remote: true) { %>
-          <%= hidden_field :data, destination.id %>
-          <%= submit_tag 'この配送先に変更', id:"go", class:"btn btn-primary" %>
-        <% } %>
-      </div> 
-<%
-=end%>
       <% dest_count += 1 %>
     <% end %>
     <button id="close">キャンセル</button>
-    <button id="go" class="btn btn-primary">確定</button> 
 	</div>
 </div>
 
@@ -87,17 +82,12 @@
 		$('#dest-select').on('click',function(){
 			$('#overlay,#result').fadeIn();
     });
-
-    // モーダル閉じる用
 		$('#close').on('click', function(){
 			$('#overlay,#result').fadeOut();
     });
 
     // 確定ボタン
-    $('#go').on('click', function(){
-      var selected_dest_id = $("[name=dest_id]:checked").val();
-      $.cookie('selected_dest_id', selected_dest_id, {path: "/"});
-      $('#address_result').text("送付先：" + selected_dest_id);
+    $('.go').on('click', function(){
       $('#overlay,#result').fadeOut();
       alert("配送先を変更しました");
     });
