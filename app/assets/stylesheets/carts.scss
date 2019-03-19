@@ -1,3 +1,36 @@
-// Place all the styles related to the Carts controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+#overlay{
+	width:100%;
+	height:100%;
+	position:fixed;
+	top:0;
+	left:0;
+	background:rgba(0,0,0,0.3);
+	display:none;
+	z-index:1
+}
+#result{
+	width:700px;
+	height:600px;
+	position:absolute;
+	top:50%;
+	left:50%;
+	transform:translate(-50%,-50%);
+	border:2px solid black;
+	border-radius:6px;
+	background-color:#fff;
+	display:none;
+	z-index:2
+}
+#close{
+	width:100px;
+	height:50px;
+	color:red;
+	background-color:#fff;
+	border:2px solid red;
+	border-radius:3px;
+	transition:.4s;
+}
+#close:hover{
+	background:red;
+	color:#fff;
+}

@@ -1,2 +1,80 @@
-<h1>Carts#confirm</h1>
-<p>Find me in app/views/carts/confirm.html.erb</p>
+<div class="container">
+  <div class="row">
+    <h1>注文確認</h1>
+    <p>小計：¥<%= @sum_price %></p>
+    <p>送料：¥500</p>
+    <h4>ご請求額：¥<%= @sum_price.to_i + 500 %></h4>
+    <p>送付先住所：<div id="address_result"></div></p>
+    <p class="btn btn-default" id="dest-select">送付先を選択</p> 
+  </div>
+
+  <div class="row">
+    <%= link_to "カートに戻る", cart_path(1), class:"btn btn-default" %>
+    <%= form_for(@order) do |f| %>
+      <%= f.hidden_field :destination_id, value: 1 %>
+      <%= f.submit "注文を確定する", class:"btn btn-primary" %>
+    <% end %>
+  </div>
+
+  <h4>購入商品一覧</h4>
+  <% @cart_products.each do |cart_product| %>
+    <div class="row">
+      <div class="col-xs-2">
+        <%= attachment_image_tag cart_product.product, :image, :fill, 120, 120, format: 'jpeg', class:"jacket-image", fallback:"img/no_image.png", :size => '120x120' %>
+      </div>
+      <div class="col-xs-8">
+        <p>
+          <%= link_to cart_product.product.product_title, product_path(cart_product.product) %>
+          <% artist_ary = cart_product.product.artists.uniq %>
+          <% artist_ary.each do |artist| %>
+            <%= artist.artist_name %>
+          <% end %>
+        </p>
+        <p><%= cart_product.product.genre.genre_name %></p>
+        <p>単価：¥<%= cart_product.product.product_price %></p>
+        <p>数量：<%= cart_product.quantity %></p>
+        <p>合計：¥<%= cart_product.product.product_price*cart_product.quantity %></p>
+
+      </div>
+    </div>
+  <% end %>
+
+
+  <%
+=begin%>
+  送付先洗濯用モーダル
+<%
+=end%>
+
+<div id="overlay">
+	<div id="result">
+		<h2>送付先変更</h2>
+    <% dest_count = 1 %>
+		<% @destinations.each do |destination| %>
+      <%= form_for([@user,destination]) do |f| %>
+        <div id="selected_dest">
+          <p>
+            <%= f.radio_button :id, destination.id, value:"#{destination.id}" %>送付先<%= dest_count %> 
+            <%= radio_button_tag(:dest_id, "#{destination.id}") %>送付先
+          </p>
+          <p>お名前：<%= destination.destination_name %></p>
+          <p>ご住所：<%= destination.destination_address %></p>
+        </div>
+        <%= f.submit "変更", class:"btn btn-primary" %>
+      <% end %>
+      <% dest_count += 1 %>
+    <% end %>
+		<button id="close">c l o s e</button>
+	</div>
+</div>
+
+<script>
+	$(function(){
+		$('#dest-select').on('click',function(){
+			$('#overlay,#result').fadeIn();
+		});
+		$('#close').on('click', function(){
+			$('#overlay,#result').fadeOut();
+		});
+	});
+</script>

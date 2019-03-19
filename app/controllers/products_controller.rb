@@ -1,17 +1,28 @@
 class ProductsController < ApplicationController
 
   def index
-    # @random_products = Product.order("RANDOM()")
     @random_products = Product.page(params[:page]).per(9).order("RANDOM()")
   end
 
   def show
-    @product = Product.find_by(id: params[:id])
+    @product = Product.find_by(id:params[:id])
+    @songs = @product.songs
+
+    # カート追加用
+    @cart = Cart.find(1)
+    @cart_product = CartProduct.new
+    
+    #ディスクごとの曲名表示用
+    @max_disk_num = @songs.maximum(:disk_number)  #ディスク枚数をカウント
+    @disked_songs = []
+    (1..@max_disk_num).each do |disk_num|
+      @disked_songs << @songs.where(disk_number: disk_num).order("track_order asc")  #ディスク番号ごとに曲をまとめ、収録順に配列に代入
+    end
+
   end
 
   def new
     @product = Product.new
-    @song = Song.new
   end
 
   def create
@@ -37,10 +48,6 @@ class ProductsController < ApplicationController
       render 'edit'
     end
   end
-
-  # def search
-  #   @products = Product.search(params[:id])
-  # end
 
   private
     def product_params
