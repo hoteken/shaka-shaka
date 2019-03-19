@@ -1,25 +1,36 @@
-<body>
-  <div class = "container">
-    <div class = "row">
-      <div class="col-xs-1"></div>
-        <h1 class ="col-xs-5">送付先リスト</h1>
-        <%= link_to "送付先追加", new_user_destination_path, class:"btn btn-default btn-sm button-top"%>
+<div class = "container">
+  <div class = "row">
+    <h1 class ="col-xs-5">送付先リスト</h1>
+    <%= link_to "送付先追加", new_user_destination_path(1), class:"btn btn-default btn-sm button-top"%>
+  </div>
+  <div class ="row">
+    <div class="col-xs-6">
+      <table class="table">
+        <% destination_num = 1 %>
+    　　 <% @destinations.each do |destination| %>
+          <td><p>送付先<%= destination_num %></p></td>
+          <tr>
+            <th>お宛名</th>
+            <td><%= destination.destination_name %></td>
+          </tr>
+          <tr>
+            <th>郵便番号</th>
+            <td><%= destination.destination_postcode %></td>
+          </tr>
+          <tr>
+            <th>住所</th>
+            <td><%= destination.destination_address %></td>
+          </tr>
+          <tr>
+            <th></th>
+            <td>
+            <%= link_to "編集", edit_user_destination_path(@user, destination), class:"btn btn-primary" %>
+            <%= link_to "削除", user_destination_path(@user, destination), class:"btn btn-primary", method: :delete %>
+            </td>
+          </tr>
+          <% destination_num+= 1 %>
+        <% end %>
+      </table>
     </div>
-      <div class ="row">
-        <div class="col-xs-6">
-          <table class="table">
-          	　　<% @destinations.each do |destination| %>
-                 <tr></tr>
-                 <tr>
-                   <th>郵便番号</th><th><%= destination.destination_address %></th><th></th>
-                 </tr>
-                 <tr>
-                   <th>お名前</th><%= destination.destination_name %><th></th><th></th>
-                 </tr>
-                 <tr>
-                   <th>住所</th><th><%= destination.destination_name %></th><th></th>
-                 </tr>
-               <% end %>
-          </table>
-        </div>
-      </div>
+  </div>
+</div>

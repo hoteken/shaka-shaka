@@ -1,2 +1,42 @@
-<h1>Orders#index</h1>
-<p>Find me in app/views/orders/index.html.erb</p>
+<section class="body">
+	<div class="container">
+		<div class="row">
+			<div class="col">
+			<h2>受注管理</h2>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>受注日</th>
+						<th>ステータス</th>
+						<th>ユーザー名</th>
+						<th>注文金額</th>
+						<th colspan="1"></th>
+					</tr>
+				</thead>
+				<% @orders.each do |order| %>
+				<tbody>
+					<tr>
+						<td><%= order.created_at.strftime('%Y/%m/%d') %></td>
+						<td>
+							<% if order.status.to_i == 10 %>
+								受付済み
+							<% elsif order.status.to_i == 20 %>
+								発送準備中
+							<% elsif order.status.to_i == 30 %>
+								発送済み
+							<% else %>
+								確認中
+							<% end %>
+						</td>
+						<td><%= link_to order.user.user_name, user_path(order.user) %></td>
+						<td>¥<%= order.total_price %></td>
+						<td><%= link_to "詳細", order_path(order), class: "btn btn-primary" %></td>
+					</tr>
+				</tbody>
+				<% end %>
+			</table>
+			<%= paginate @orders, class: "paginate" %>
+			</div>
+		</div>
+	</div>
+</section>
