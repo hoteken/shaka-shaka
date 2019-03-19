@@ -29,7 +29,7 @@
 							<% end %>
 						</td>
 						<td><%= link_to order.user.user_name, user_path(order.user) %></td>
-						<td><%= order.total_price %></td>
+						<td>¥<%= order.total_price %></td>
 						<td><%= link_to "詳細", order_path(order), class: "btn btn-primary" %></td>
 					</tr>
 				</tbody>

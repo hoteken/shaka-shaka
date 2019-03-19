@@ -18,8 +18,12 @@ class CartsController < ApplicationController
     @cart_products.each do |cart_product|
       @sum_price += cart_product.quantity * cart_product.product.product_price
     end
-
     @order = Order.new
+
+    #送付先選択用
+    @user = User.find(1)
+    @destinations = Destination.where(user_id:1)  #ほんとはカレントユーザー
+
   end
 
   def thanks
