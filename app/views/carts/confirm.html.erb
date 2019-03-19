@@ -4,14 +4,19 @@
     <p>小計：¥<%= @sum_price %></p>
     <p>送料：¥500</p>
     <h4>ご請求額：¥<%= @sum_price.to_i + 500 %></h4>
-    <p>送付先住所：<div id="address_result"></div></p>
+    <%
+=begin%>
+ <p id="updated_by_ajax">送付先：<%= @user.address %></p> 
+<%
+=end%>
+    <p id="address_result">送付先：<%= @user.address %></p> 
+
     <p class="btn btn-default" id="dest-select">送付先を選択</p> 
   </div>
 
   <div class="row">
-    <%= link_to "カートに戻る", cart_path(1), class:"btn btn-default" %>
+    <%= link_to "カートに戻る", cart_path(@cart), class:"btn btn-default" %>
     <%= form_for(@order) do |f| %>
-      <%= f.hidden_field :destination_id, value: 1 %>
       <%= f.submit "注文を確定する", class:"btn btn-primary" %>
     <% end %>
   </div>
@@ -34,7 +39,6 @@
         <p>単価：¥<%= cart_product.product.product_price %></p>
         <p>数量：<%= cart_product.quantity %></p>
         <p>合計：¥<%= cart_product.product.product_price*cart_product.quantity %></p>
-
       </div>
     </div>
   <% end %>
@@ -49,32 +53,53 @@
 <div id="overlay">
 	<div id="result">
 		<h2>送付先変更</h2>
+    <p><input type="radio" name="dest_id" value="default" checked>デフォルトの送付先</p>
+    <p>お名前：<%= @user.user_name %></p>
+    <p>ご住所：<%= @user.address %></p> 
+
     <% dest_count = 1 %>
 		<% @destinations.each do |destination| %>
-      <%= form_for([@user,destination]) do |f| %>
-        <div id="selected_dest">
-          <p>
-            <%= f.radio_button :id, destination.id, value:"#{destination.id}" %>送付先<%= dest_count %> 
-            <%= radio_button_tag(:dest_id, "#{destination.id}") %>送付先
-          </p>
-          <p>お名前：<%= destination.destination_name %></p>
-          <p>ご住所：<%= destination.destination_address %></p>
-        </div>
-        <%= f.submit "変更", class:"btn btn-primary" %>
-      <% end %>
+      <div id="select_dest">
+        <input type="radio" name="dest_id" value="<%= destination.id %>">送付先<%= dest_count %> 
+        <p>お名前：<%= destination.destination_name %></p>
+        <p>ご住所：<%= destination.destination_address %></p>
+      </div>
+      <%
+=begin%>
+ <div id="request_ajax_update" >
+        <%= form_tag(ajax_test_update_path, method: :post, remote: true) { %>
+          <%= hidden_field :data, destination.id %>
+          <%= submit_tag 'この配送先に変更', id:"go", class:"btn btn-primary" %>
+        <% } %>
+      </div> 
+<%
+=end%>
       <% dest_count += 1 %>
     <% end %>
-		<button id="close">c l o s e</button>
+    <button id="close">キャンセル</button>
+    <button id="go" class="btn btn-primary">確定</button> 
 	</div>
 </div>
 
 <script>
 	$(function(){
+    // モーダル表示用
 		$('#dest-select').on('click',function(){
 			$('#overlay,#result').fadeIn();
-		});
+    });
+
+    // モーダル閉じる用
 		$('#close').on('click', function(){
 			$('#overlay,#result').fadeOut();
-		});
+    });
+
+    // 確定ボタン
+    $('#go').on('click', function(){
+      var selected_dest_id = $("[name=dest_id]:checked").val();
+      $.cookie('selected_dest_id', selected_dest_id, {path: "/"});
+      $('#address_result').text("送付先：" + selected_dest_id);
+      $('#overlay,#result').fadeOut();
+      alert("配送先を変更しました");
+    });
 	});
 </script>

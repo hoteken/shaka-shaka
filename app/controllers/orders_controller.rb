@@ -13,17 +13,32 @@ class OrdersController < ApplicationController
     # レコード追加処理(ユーザーIDからカート商品テーブル検索（複数）、繰り返し処理でオーダーに洗替)
     # 送付先は渡されたparams[:destination_id]からテーブル検索して持ってくる！
     @cart = Cart.find(1)
+    @user = @cart.user
     @cart_products = CartProduct.where(cart_id:@cart.id)
-    @destination = Destination.find(params[:order][:destination_id])
+    @destination_id = cookies[:selected_dest_id]
+
+    if @destination_id == "default"
+      @destination = @user
+    else
+      @destination = Destination.find(@destination_id)
+    end
+    cookies.delete :selected_dest_id
+    # @destination = Destination.find(params[:order][:destination_id])
 
     @orders = []
     @cart_products.each do |cart_product|
       @order = Order.new
-      @order.user_id = 1
+      @order.user_id = @user.id
       @order.status = 10
-      @order.destination_name = @destination.destination_name
-      @order.destination_postcode = @destination.destination_postcode
-      @order.destination_address = @destination.destination_address
+      if @destination_id == "default"
+        @order.destination_name = @user.user_name
+        @order.destination_postcode = @user.postcode
+        @order.destination_address = @user.address
+      else
+        @order.destination_name = @destination.destination_name
+        @order.destination_postcode = @destination.destination_postcode
+        @order.destination_address = @destination.destination_address
+      end
       @order.product_id = cart_product.product_id
       @order.quantity = cart_product.quantity
       @order.total_price = cart_product.product.product_price*cart_product.quantity
