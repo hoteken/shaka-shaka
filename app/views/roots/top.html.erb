@@ -7,15 +7,15 @@
 			</div>
 			<div class="col-xs-3 col-xs-offset-2">
 				<%= image_tag 'img/no_image.png', size: "200x200", id: "rock" %>
-				<h3 class="shaka_rock">R O C K</h3>
+				<h3 class="rock">R O C K</h3>
 			</div>
 			<div class="col-xs-3">
 				<%= image_tag 'img/no_image.png', size: "200x200", id: "pop" %>
-				<h3>P O P</h3>
+				<h3 class="pop">P O P</h3>
 			</div>
 			<div class="col-xs-3">
 				<%= image_tag 'img/no_image.png', size: "200x200", id: "punk" %>
-				<h3>P U N K</h3>
+				<h3 class="punk">P U N K</h3>
 			</div>
 		</div>
 	</div>
@@ -24,12 +24,59 @@
 <div id="overlay">
 	<div id="result">
 		<h2>discover new music</h2>
-		<%= image_tag 'img/no_image.png', size: "200x200" %>
-		<button id="close">x</button>
+		<%= attachment_image_tag @product, :image, :fill, 200, 200, format: 'jpeg', class: "jacket-iamge", fallback: 'img/no_image.png', size: "200x200"  %>
+		<button id="close">X</button>
 	</div>
 </div>
 
 <script>
+
+<%# =begin ぼつ
+	$(function(){
+		$('#rock,#pop,#punk').on('click',function(){
+			$.ajax({
+				url: 'top.html'
+				type: 'GET'
+				data: 'product.id':$('product.id').val()
+			})
+
+			.done( (data) => {
+				$('#overlay,#result').fadeIn();
+			})
+			.fail( (data) => {
+				$('#overlay,#result').fadeIn();
+			})
+			.always( (data) => {
+
+			});
+
+			$('#close,#overlay').on('click',function(){
+				$('#overlay,#result').fadeOut();
+			});
+			$('result').on('click',function(e){
+				e.stopPropagation();
+			});
+		});
+	});
+%>
+
+<%# =begin ぼつ
+	$(function(){
+		$('#rock,#pop,#punk').on('click',function(){
+			$.get('products/:id', {} ,funfcton(){
+				$('#overlay,#result').fadeIn(data);
+			});
+			$('#close,#overlay').on('click',function(){
+				$('#overlay,#result').fadeOut();
+			});
+			$('#result').on('click',function(e){
+				e.stopPropagation();
+			});
+		});
+	});
+%>
+
+<%# =begin save
 	$(function(){
 		$('#rock,#pop,#punk').on('click',function(){
 			$('#overlay,#result').fadeIn();
@@ -41,4 +88,5 @@
 			e.stopPropagation();
 		});
 	});
+%>
 </script>
