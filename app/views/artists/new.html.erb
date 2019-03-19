@@ -10,9 +10,9 @@
             </p>
             <div class = "main-bottom">
                 <span class = "button">
-                	<%= link_to "戻る", artists_path, class:"btn btn-default btn-sm", :style=>"margin-bottom: -12px;"%>
+                	<%= link_to "戻る", artists_path, class:"btn btn-primary", :style=>"margin-bottom: -12px;padding: 7px 33px;"%>
                 </span>
-                	<input class="btn btn-default btn-sm" type="submit" value="送信ボタン">
+                	<%= f.submit "送信ボタン", class:"btn btn-primary", :style=>"height:36px;width:96px;" %>
             </div>
                 <% end %>
         </div>
