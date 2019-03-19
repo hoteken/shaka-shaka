@@ -5,16 +5,13 @@
     <p>送料：¥500</p>
     <h4>ご請求額：¥<%= @sum_price.to_i + 500 %></h4>
     <p>送付先住所：<div id="address_result"></div></p>
-    <p class="btn btn-default destination-select">送付先を選択</p> 
-
-    モーダルfadeInして送付先IDをget、住所の表記(動的に表示)をIDを元に変更して、送付先IDをOrderにポストできるようにする
-    ラジオボタンで選ばせるよ！
+    <p class="btn btn-default" id="dest-select">送付先を選択</p> 
   </div>
 
   <div class="row">
     <%= link_to "カートに戻る", cart_path(1), class:"btn btn-default" %>
     <%= form_for(@order) do |f| %>
-      <%= f.hidden_field :cart_id, value: 1 %>
+      <%= f.hidden_field :destination_id, value: 1 %>
       <%= f.submit "注文を確定する", class:"btn btn-primary" %>
     <% end %>
   </div>
@@ -49,31 +46,35 @@
 <%
 =end%>
 
-
-  <div class="signup-modal-wrapper" id="signup-modal">
-    <div class="modal">
-      <div>
-        <i class="fa fa-2x fa-times" id="close-modal"></i>
-      </div>
-      <div id="signup-form">
-        <h2>Emailで新規登録</h2>
-        <form action="#">
-          <input class="form-control" type="text" placeholder="メールアドレス">
-          <input class="form-control" type="password" placeholder="パスワード">
-          <div id="submit-btn">新規登録</div>
-        </form>
-      </div>
-    </div>
-  </div>
+<div id="overlay">
+	<div id="result">
+		<h2>送付先変更</h2>
+    <% dest_count = 1 %>
+		<% @destinations.each do |destination| %>
+      <%= form_for([@user,destination]) do |f| %>
+        <div id="selected_dest">
+          <p>
+            <%= f.radio_button :id, destination.id, value:"#{destination.id}" %>送付先<%= dest_count %> 
+            <%= radio_button_tag(:dest_id, "#{destination.id}") %>送付先
+          </p>
+          <p>お名前：<%= destination.destination_name %></p>
+          <p>ご住所：<%= destination.destination_address %></p>
+        </div>
+        <%= f.submit "変更", class:"btn btn-primary" %>
+      <% end %>
+      <% dest_count += 1 %>
+    <% end %>
+		<button id="close">c l o s e</button>
+	</div>
 </div>
 
 <script>
-  $(function(){
-    $('.destination-select').click(function(){
-      $('#signup-modal').fadeIn();
-    });
-    $('#close-modal').click(function(){
-      $('#signup-modal').fadeOut();
-    });
-  });
+	$(function(){
+		$('#dest-select').on('click',function(){
+			$('#overlay,#result').fadeIn();
+		});
+		$('#close').on('click', function(){
+			$('#overlay,#result').fadeOut();
+		});
+	});
 </script>
