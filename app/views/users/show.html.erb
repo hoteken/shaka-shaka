@@ -1,10 +1,10 @@
 <% if user_signed_in? %>
 <h1>マイページ</h1>
-<%= @user.name%>
-<%= @user.name_kana%>
+<%= @user.user_name%>
+<%= @user.user_name_kana%>
 <%= @user.postcode%>
 <%= @user.address%>
-<%= @user.phonenumber%>
+<%= @user.phone_number%>
 <%= @user.email%>
 <%= link_to "送付先リスト", user_destinations_path %>
 <%= link_to "編集", edit_user_path(user) %>
@@ -22,7 +22,7 @@
 <tr>
    <td><%= user.created_at %></td>
    <td><%= user.status %></td>
-   <td><%= user.name %></td>
+   <td><%= user.user_name %></td>
    <td><%= user.total_price %></td>
    <td><%= link_to "詳細", user_path(user)%></td>
  </tr>
@@ -30,8 +30,8 @@
 </table>
  <% else %>
  <h1>ユーザー編集</h1>
-<%= @user.name%>
-<%= @user.name_kana%>
+<%= @user.user_name%>
+<%= @user.user_name_kana%>
 <%= @user.postcode%>
 <%= @user.address%>
 <%= @user.phonenumber%>
@@ -53,7 +53,7 @@
 <tr>
    <td><%= user.created_at %></td>
    <td><%= user.status %></td>
-   <td><%= user.name %></td>
+   <td><%= user.user_name %></td>
    <td><%= user.total_price %></td>
    <td><%= link_to "詳細", user_path(user)%></td>
  </tr>

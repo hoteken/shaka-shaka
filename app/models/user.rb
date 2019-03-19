@@ -4,8 +4,8 @@ class User < ApplicationRecord
   acts_as_paranoid
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  validates :name, presence: true, uniqueness: true, length: {maximum: 20}
-  validates :name_kana, presence: true
+  validates :user_name, presence: true, uniqueness: true, length: {maximum: 20}
+  validates :user_name_kana, presence: true
   validates :postcode, length: {is:7}
   validates :address, presence: true, length: {maximum: 100}
   validates :phone_number, presence: true

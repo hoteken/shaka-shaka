@@ -104,8 +104,8 @@ ActiveRecord::Schema.define(version: 2019_03_14_060929) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "name"
-    t.string "name_kana"
+    t.string "user_name"
+    t.string "user_name_kana"
     t.string "postcode"
     t.string "address"
     t.string "phone_number"
