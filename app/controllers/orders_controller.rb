@@ -52,7 +52,7 @@ class OrdersController < ApplicationController
       @cart_products.destroy_all
       redirect_to carts_thanks_path
       rescue ActionRecord::RecordInvalid, ActionRecord::RecordNotSaved => ex
-      flash[:danger] = "注文処理でエラーが発生しました"
+      flash.now[:danger] = "注文処理でエラーが発生しました"
       redirect_to products_path
     end
   end
@@ -66,7 +66,7 @@ class OrdersController < ApplicationController
   def update
     @order = Order.find(params[:id])
     if @order.update(order_params)
-      flash[:notice] = "ステータスを更新しました"
+      flash.now[:notice] = "ステータスを更新しました"
       redirect_to order_path(@order.id)
     else
       render :edit

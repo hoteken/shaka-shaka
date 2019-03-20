@@ -1,15 +1,17 @@
 <div class="container">
   <div class="row">
     <h1>注文確認</h1>
-    <p>小計：¥<%= @sum_price %></p>
-    <p>送料：¥500</p>
-    <h4>ご請求額：¥<%= @sum_price.to_i + 500 %></h4>
-    <p id="updated_by_ajax">送付先：<%= @user.address %></p> 
-    <p class="btn btn-default" id="dest-select">送付先を選択</p> 
+    <div class="order_price">
+      <p>小計：¥<%= @sum_price %></p>
+      <p>送料：¥500</p>
+      <h4>ご請求額：¥<%= @sum_price.to_i + 500 %></h4>
+      <p id="updated_by_ajax">送付先：<%= @user.address %></p> 
+      <p class="btn btn-default" id="dest-select">送付先を選択</p>
+      <%= link_to "カートに戻る", cart_path(@cart), class:"btn btn-default" %>
+    </div>
   </div>
 
   <div class="row">
-    <%= link_to "カートに戻る", cart_path(@cart), class:"btn btn-default" %>
     <%= form_for(@order) do |f| %>
       <%= f.submit "注文を確定する", class:"btn btn-primary" %>
     <% end %>
@@ -18,10 +20,10 @@
   <h4>購入商品一覧</h4>
   <% @cart_products.each do |cart_product| %>
     <div class="row">
-      <div class="col-xs-2">
-        <%= attachment_image_tag cart_product.product, :image, :fill, 120, 120, format: 'jpeg', class:"jacket-image", fallback:"img/no_image.png", :size => '120x120' %>
+      <div class="col-xs-3">
+        <%= attachment_image_tag cart_product.product, :image, :fill, 200, 200, format: 'jpeg', class:"jacket-image", fallback:"img/no_image.png", :size => '200x200' %>
       </div>
-      <div class="col-xs-8">
+      <div class="col-xs-7">
         <p>
           <%= link_to cart_product.product.product_title, product_path(cart_product.product) %>
           <% artist_ary = cart_product.product.artists.uniq %>

@@ -18,7 +18,7 @@
 
         <nav>
           <ul class="nav navbar-nav navbar-right">
-           <% if current_user_name = "admin" %>
+           <% if true %>
             <li><%= link_to " 管理者トップ", admin_top_path %></li>
             <li><%= link_to " ユーザー管理", users_path %></li>
             <li><%= link_to " 商品管理", products_path %></li>
@@ -69,8 +69,6 @@
       </div>
     </div>
 
-    <script src="jquery-3.3.1.min.js"></script>
-    <script src="javascript/application.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
   </body>
 </html>
