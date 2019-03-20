@@ -2,7 +2,7 @@ class LabelsController < ApplicationController
   def index
     @labels = Label.page(params[:page]).reverse_order
     @search = Label.ransack(params[:q])
-    @result = @search.result
+    @result = @search.result.page(params[:page])
   end
 
   def new
@@ -11,8 +11,11 @@ class LabelsController < ApplicationController
 
   def create
     label = Label.new(label_params)
-    label.save
-    redirect_to "/labels"
+    if label.save
+       redirect_to labels_path
+    else
+       redirect_to new_label_path
+    end
   end
 
   def edit
@@ -21,11 +24,14 @@ class LabelsController < ApplicationController
 
   def update
     label = Label.find(params[:id])
-    label.update(label_params)
-    redirect_to "/labels"
+    if label.update(label_params)
+       redirect_to labels_path
+    else
+       redirect_to edit_label_path
+    end
   end
 
-    private
+  private
   def label_params
     params.require(:label).permit(:label_name)
   end
