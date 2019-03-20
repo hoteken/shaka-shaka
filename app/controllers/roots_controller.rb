@@ -1,5 +1,6 @@
 class RootsController < ApplicationController
   def top
+  	@random_product = Product.order("RANDOM()").first
   end
 
   def about
@@ -7,5 +8,4 @@ class RootsController < ApplicationController
 
   def admin_top
   end
-
 end

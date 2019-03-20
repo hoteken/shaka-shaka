@@ -21,61 +21,18 @@
 	</div>
 </section>
 
+<%# rails側でジャンルに紐づくプロダクトをランダムに１つ取得する %>
 <div id="overlay">
 	<div id="result">
 		<h2>discover new music</h2>
-		<%= attachment_image_tag @product, :image, :fill, 200, 200, format: 'jpeg', class: "jacket-iamge", fallback: 'img/no_image.png', size: "200x200"  %>
+		<%= attachment_image_tag @random_product, :image, :fill, 200, 200, format: 'jpeg', class: "jacket-iamge", fallback: 'img/no_image.png', size: "200x200" %>
+		<%= link_to @random_product.product_title, @random_product %>
 		<button id="close">X</button>
 	</div>
 </div>
 
 <script>
-
-<%# =begin ぼつ
-	$(function(){
-		$('#rock,#pop,#punk').on('click',function(){
-			$.ajax({
-				url: 'top.html'
-				type: 'GET'
-				data: 'product.id':$('product.id').val()
-			})
-
-			.done( (data) => {
-				$('#overlay,#result').fadeIn();
-			})
-			.fail( (data) => {
-				$('#overlay,#result').fadeIn();
-			})
-			.always( (data) => {
-
-			});
-
-			$('#close,#overlay').on('click',function(){
-				$('#overlay,#result').fadeOut();
-			});
-			$('result').on('click',function(e){
-				e.stopPropagation();
-			});
-		});
-	});
-%>
-
-<%# =begin ぼつ
-	$(function(){
-		$('#rock,#pop,#punk').on('click',function(){
-			$.get('products/:id', {} ,funfcton(){
-				$('#overlay,#result').fadeIn(data);
-			});
-			$('#close,#overlay').on('click',function(){
-				$('#overlay,#result').fadeOut();
-			});
-			$('#result').on('click',function(e){
-				e.stopPropagation();
-			});
-		});
-	});
-%>
-
+	<%# modal 発火後モーダル表示させる処理のみ %>
 	$(function(){
 		$('#rock,#pop,#punk').on('click',function(){
 			$('#overlay,#result').fadeIn();
