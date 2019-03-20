@@ -9,8 +9,19 @@
   <% flash.each do |key, value| %>
     <%= content_tag(:div, value, class: "#{key}") %>
   <% end %>
-  <div class="col-xs-3">
-    <h3>Categories</h3>
+  <div class="col-xs-2">
+    <div class="category-bar">
+      <h3>Categories</h3>
+      <div class="genre">
+        <%= image_tag("img/Rock.jpg", alt:"アイコン", size:'50x50') %><%= link_to "Rock", products_path(1), class:"genre_name" %>
+      </div>
+      <div class="genre">
+        <%= image_tag("img/Pop.png", alt:"アイコン", size:'50x50') %><%= link_to "Pop", products_path(2), class:"genre_name" %>
+      </div>
+      <div class="genre">
+        <%= image_tag("img/Punk.jpg", alt:"アイコン", size:'50x50') %><%= link_to "Punk", products_path(3), class:"genre_name" %>
+      </div>
+    </div>
   </div>
 
 <%
@@ -18,20 +29,22 @@
   登録画面
 <%
 =end%>
-  <div class="col-xs-9">
-    <p>items<%= link_to "新規登録", new_product_path, class: "btn btn-primary" %></p>
+  <div class="col-xs-8">
+    <h3>Items<%= link_to "新規登録", new_product_path, class: "btn btn-primary", id:"new_product_button" %></h3>
 
-    <div class="product-list">
-      <% @random_products.each do |random_product| %>
-        <div class="product">
-          <%= attachment_image_tag random_product, :image, :fill, 100, 100, format: 'jpeg', class:"jacket-image", fallback:"img/no_image.png", :size => '100x100' %>
-          <p>
-            <%= link_to random_product.product_title, random_product %>
-            <%= "¥"+random_product.product_price.to_s %>
-          </p>
-        </div>
-      <% end %>
+    <div class="product-list clearfix">
+      <div class="products">
+        <% @random_products.each do |random_product| %>
+          <div class="product">
+            <%= attachment_image_tag random_product, :image, :fill, 100, 100, format: 'jpeg', class:"jacket-image", fallback:"img/no_image.png", :size => '200x200' %>
+            <p>
+              <%= link_to random_product.product_title, random_product %>
+              <%= "¥"+random_product.product_price.to_s %>
+            </p>
+          </div>
+        <% end %>
+      </div>
     </div>
+    <p><%= paginate @random_products %></p>
   </div>
-  <%= paginate @random_products %>
 </div>

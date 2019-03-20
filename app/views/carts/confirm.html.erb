@@ -1,43 +1,50 @@
 <div class="container">
   <div class="row">
-    <h1>注文確認</h1>
     <div class="order_price">
-      <p>小計：¥<%= @sum_price %></p>
-      <p>送料：¥500</p>
-      <h4>ご請求額：¥<%= @sum_price.to_i + 500 %></h4>
-      <p id="updated_by_ajax">送付先：<%= @user.address %></p> 
-      <p class="btn btn-default" id="dest-select">送付先を選択</p>
-      <%= link_to "カートに戻る", cart_path(@cart), class:"btn btn-default" %>
+      <h1>注文確認</h1>
+      <div class>
+      <h5>小計：¥<%= @sum_price %></h5>
+      <h4>送料：¥500</h4>
+      <h3>ご請求額：<span class="total-price">¥<%= @sum_price.to_i + 500 %></span></h3>
+      <%= form_for(@order) do |f| %>
+        <%= link_to "カートに戻る", cart_path(@cart), class:"btn btn-default" %>
+        <%= f.submit "注文を確定する", class:"btn btn-danger order-button" %>
+      <% end %>
     </div>
   </div>
 
   <div class="row">
-    <%= form_for(@order) do |f| %>
-      <%= f.submit "注文を確定する", class:"btn btn-primary" %>
-    <% end %>
+    <div class="destination">
+      <p id="updated_by_ajax">送付先：<%= @user.address %></p> 
+      <p class="btn btn-primary" id="dest-select">送付先を選択</p>
+    </div>
   </div>
 
-  <h4>購入商品一覧</h4>
-  <% @cart_products.each do |cart_product| %>
-    <div class="row">
-      <div class="col-xs-3">
-        <%= attachment_image_tag cart_product.product, :image, :fill, 200, 200, format: 'jpeg', class:"jacket-image", fallback:"img/no_image.png", :size => '200x200' %>
+  <div class="row">
+    <div class="purchase-products">
+      <h2>注文内容</h2>
+      <% @cart_products.each do |cart_product| %>
+        <div class="row purchase-product">
+          <div class="col-xs-3">
+            <%= attachment_image_tag cart_product.product, :image, :fill, 200, 200, format: 'jpeg', class:"jacket-image", fallback:"img/no_image.png", :size => '200x200' %>
+          </div>
+          <div class="col-xs-7 product-detail">
+            <p>
+              <%= link_to cart_product.product.product_title, product_path(cart_product.product) %>
+              <% artist_ary = cart_product.product.artists.uniq %>
+              <% artist_ary.each do |artist| %>
+                <%= artist.artist_name %>
+              <% end %>
+            </p>
+            <p><%= cart_product.product.genre.genre_name %></p>
+            <p>単価：¥<%= cart_product.product.product_price %></p>
+            <p>数量：<%= cart_product.quantity %></p>
+            <p>合計：¥<%= cart_product.product.product_price*cart_product.quantity %></p>
+          </div>
+        </div>
       </div>
-      <div class="col-xs-7">
-        <p>
-          <%= link_to cart_product.product.product_title, product_path(cart_product.product) %>
-          <% artist_ary = cart_product.product.artists.uniq %>
-          <% artist_ary.each do |artist| %>
-            <%= artist.artist_name %>
-          <% end %>
-        </p>
-        <p><%= cart_product.product.genre.genre_name %></p>
-        <p>単価：¥<%= cart_product.product.product_price %></p>
-        <p>数量：<%= cart_product.quantity %></p>
-        <p>合計：¥<%= cart_product.product.product_price*cart_product.quantity %></p>
-      </div>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
 
 
   <%

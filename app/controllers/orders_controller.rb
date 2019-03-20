@@ -20,7 +20,7 @@ class OrdersController < ApplicationController
     if @destination_id == "default"
       @destination = @user
     else
-      @destination = Destination.find(@destination_id)
+      @destination = Destination.find_by(id: @destination_id, user_id: @user.id)
     end
     cookies.delete :selected_dest_id
     # @destination = Destination.find(params[:order][:destination_id])
@@ -41,6 +41,11 @@ class OrdersController < ApplicationController
       end
       @order.product_id = cart_product.product_id
       @order.quantity = cart_product.quantity
+      # 在庫を減算
+        product = cart_product.product
+        left_stock = product.stock - @order.quantity
+        product.stock = left_stock
+        product.save
       @order.total_price = cart_product.product.product_price*cart_product.quantity
       @orders << @order
     end
