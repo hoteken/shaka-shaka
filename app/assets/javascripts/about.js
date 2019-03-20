@@ -8,7 +8,7 @@ $(function() {
     	$('.language-text').fadeOut();
     }
   	);
-		$('.text1').css({
+		$('.mount').css({
   		fontSize: '20pt',
   		'color': 'white',
   		'background-color': '#1e90ff'
