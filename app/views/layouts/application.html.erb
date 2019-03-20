@@ -25,7 +25,7 @@
             <li><%= link_to " 商品管理", products_path %></li>
             <li><%= link_to " 楽曲管理", songs_path %></li>
             <li><%= link_to " 受注管理", orders_path %></li>
-            <li><%= link_to " ログアウト", destroy_user_session_path %></li>
+            <li><%= link_to " ログアウト", destroy_user_session_path, method: :delete %></li>
            <% elsif user_signed_in? %>
             <li><%= link_to " 商品一覧", products_path %></li>
             <li><%= link_to " カート", cart_path(current_user.cart) %></li>
