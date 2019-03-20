@@ -28,7 +28,7 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     if @product.save
-      flash[:notice] = "商品の登録に成功しました"
+      flash.now[:notice] = "商品の登録に成功しました"
       redirect_to products_path
     else
       render 'new'
@@ -42,7 +42,7 @@ class ProductsController < ApplicationController
   def update
     @product = Product.find(params[:id])
     if @product.update(product_params)
-      flash[:notice] = "商品情報の編集に成功しました"
+      flash.now[:notice] = "商品情報の編集に成功しました"
       redirect_to @product
     else
       render 'edit'
