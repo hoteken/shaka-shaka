@@ -7,6 +7,8 @@ class ProductsController < ApplicationController
     else
       @random_products = Product.where(genre_id:genre_id).page(params[:page]).per(9).order("RANDOM()")
     end
+    @search = @random_products.ransack(params[:q])
+    @result = @search.result.page(params[:page])
   end
 
   def show
