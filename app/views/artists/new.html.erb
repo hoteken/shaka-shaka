@@ -1,23 +1,31 @@
-<body>
-  <div class = "container">
-　   <p class="text">アーティスト新規登録</p>
-      <div class="row">
-        <div class = "main">
-          <%= form_for(@artist) do |f| %>
-            <p class = "text1">
-            	<span class = "name"><%= f.label :アーティスト名 %></span>
-            	<%= f.text_field :artist_name %>
-            </p>
-            <div class = "main-bottom">
-                <span class = "button">
-                	<%= link_to "戻る", artists_path, class:"btn btn-primary", :style=>"margin-bottom: -12px;padding: 7px 33px;"%>
-                </span>
-                	<%= f.submit "送信ボタン", class:"btn btn-primary", :style=>"height:36px;width:96px;" %>
-            </div>
-                <% end %>
-        </div>
-      </div>
+<div class = "container">
+  <div class="row">
+    <p class="col-xs-2 artist_titile">アーティスト新規登録</p>
+    <div class="col-xs-10"></div>
   </div>
-</body>
+    <div class="border"></div>
+    <div class="box"></div>
+  <div class="row">
+    <div class="col-xs-2"></div>
+    <div class="col-xs-7">
+      <%= form_for(@artist) do |f| %>
+        <span><%= f.label :アーティスト名, :style=>"margin-right: 67px;" %></span>
+          <%= f.text_field :artist_name, class: "text_box" %>
+    </div>
+      <div class="col-xs-3"></div>
+  </div>
+    <div class="box"></div>
+  <div class="row">
+    <div class="col-xs-4"></div>
+    <div class="col-xs-4">
+      <%= link_to "戻る", artists_path, class:"btn btn-primary", :style=>"margin-bottom: -12px;padding: 7px 33px; margin-right: 67px; "%>
+      <%= f.submit "送信ボタン", class:"btn btn-primary", :style=>"height:36px;width:96px; margin-bottom: -12px;" %>
+      <% end %>
+    </div>
+    <div class="col-xs-4"></div>
+  </div>
+</div>
+<div class="box"></div>
+
 
 

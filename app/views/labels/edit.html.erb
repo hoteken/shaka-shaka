@@ -1,24 +1,20 @@
-<body>
-  <div class = "container">
-　   <p class="text">レーベル名　編集</p>
+
+<div class = "container">
+    <p class="text">レーベル名　編集</p>
       <div class="row">
         <div class = "main">
           <%= form_for(@label) do |f| %>
-            <p class = "text1">
-            	<span class = "name"><%= f.label :レーベル名 %></span>
-            	<%= f.text_field :label_name %>
-            </p>
-            <div class = "main-bottom">
-                <span class = "botan">
-                	<a href="/labels" class="btn btn-default btn-sm " role="button">戻る</a>
-                </span>
-                	<input class="btn btn-default btn-sm" type="submit" value="更新">
-            </div>
-                <% end %>
+          <p class = "text1">
+            <span class = "name"><%= f.label :レーベル名 %></span>
+            <%= f.text_field :label_name %>
+          </p>
+        <div class = "main-bottom">
+          <span class = "botan">
+            <%= link_to "戻る", labels_path, class:"btn btn-primary", :style=>"margin: 0 100px -39px 0;;height:36px;width:96px;"%>
+          </span>
+            <%= f.submit "更新", class:"btn btn-primary", :style=>"height:36px;width:96px;" %>
+          </div>
+            <% end %>
         </div>
       </div>
-        <footer>
-          <p class="text-bottom text-right">footer</p>
-        </footer>
   </div>
-</body>

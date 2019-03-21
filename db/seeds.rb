@@ -45,3 +45,13 @@ end
   Destination.create(destination_name:"送付先#{i}", destination_postcode:"5559999",
                       destination_address:"愛知県名古屋市", user_id: 1)
 end
+
+User.create!(user_name: "admin",
+            user_name_kana: "あどみん",
+            email: 'admin@nozomi.com',
+            postcode: "0010922",
+            phone_number: "09013078353",
+            address: "4-9-5",
+            password: 'admin.com',
+            password_confirmation: 'admin.com' ,
+            admin: true)
