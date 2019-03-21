@@ -7,7 +7,7 @@ class CartProductsController < ApplicationController
       #redirect_to cart_path(current_user.cart)
       redirect_to cart_path(1)
     else
-      flash[:danger] = "カート商品の追加に失敗しました"
+      flash.now[:danger] = "カート商品の追加に失敗しました"
       redirect_to products_path
     end
   end
@@ -16,6 +16,7 @@ class CartProductsController < ApplicationController
     cart_product = CartProduct.find(params[:id])
     if cart_product.update(quantity: params[:cart_product][:quantity])
       #redirect_to cart_path(current_user.cart)
+      flash.now[:flash] = "商品の個数を更新しました"
       redirect_to cart_path(1)
     else
       render 'carts#show'
@@ -26,7 +27,7 @@ class CartProductsController < ApplicationController
     cart_product = CartProduct.find_by(id:params[:id])
     cart_product.destroy
     # redirect_to cart_path(current_user.cart)
-    flash[:notice] = "カート商品を削除しました"
+    flash.now[:notice] = "カート商品を削除しました"
     redirect_to cart_path(1)
   end
 

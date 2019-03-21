@@ -25,14 +25,46 @@
 <div id="overlay">
 	<div id="result">
 		<h2>discover new music</h2>
-		<%= attachment_image_tag @random_product, :image, :fill, 200, 200, format: 'jpeg', class: "jacket-iamge", fallback: 'img/no_image.png', size: "200x200" %>
-		<%= link_to @random_product.product_title, @random_product %>
+		<div class="content">
+			<%#= attachment_image_tag @random_product, :image, :fill, 200, 200, format: 'jpeg', class: "jacket-iamge", fallback: 'img/no_image.png', size: "200x200" %>
+			<%#= link_to @random_product.product_title, @random_product %>
+		</div>
 		<button id="close">X</button>
 	</div>
 </div>
 
 <script>
-<%#	=begin modal 発火後モーダル表示させる処理のみ %>
+<%# ajaxでモーダルが表示されるたびにコントローラの処理を呼び出しproductをランダムで１つ表示させる。 %>
+	$(function(){
+		$(document).on('click', '#rock,#pop,#punk', function(){
+			$.ajax({
+				type:'GET',
+				url:'/',
+				dataType: 'json'
+			})
+			.done(function(data){
+				$('.content').empty();
+				$('#overlay,#result').fadeIn();
+				$('.content').append('<p>${product.product_title}</p>');
+				$('.content').append('<img src="">');
+
+				$(document).on('click', '#overlay,#close', function(){
+					$('#content').empty();
+					$('#overlay,#result').fadeOut();
+					$(document).on('click', '#result', function(e){
+					e.stopPropagation();
+					});
+				});
+			})
+
+			.fail(function(){
+				alert('fail')
+			})
+		})
+	});
+
+
+<%#	=begin modal 発火後モーダル表示させる処理のみ
 	$(function(){
 		$(document).on('click', '#rock,#pop,#punk', function(){
 			$('#overlay,#result').fadeIn();
@@ -44,4 +76,5 @@
 			});
 		});
 	});
+%>
 </script>

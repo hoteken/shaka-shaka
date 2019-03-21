@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root 'roots#top'
+  get '/', to: 'roots#json_top'
   get '/about', to: 'roots#about'
   get '/admin_top', to: 'roots#admin_top'
 
@@ -33,7 +34,7 @@ Rails.application.routes.draw do
   # 開発環境メール確認用
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
 
-  
+  post  'ajax_test/update', to: 'carts#update', as: 'ajax_test_update'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
