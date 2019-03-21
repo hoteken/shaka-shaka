@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
     
     def after_sign_in_path_for(resource)
         if current_user
-        products_path 
+            products_path 
         else
             admin_top_path
         end
