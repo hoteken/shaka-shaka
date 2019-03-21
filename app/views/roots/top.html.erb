@@ -25,7 +25,7 @@
 <div id="overlay">
 	<div id="result">
 		<h2>discover new music</h2>
-		<div class="content">
+		<div id="content">
 			<%#= attachment_image_tag @random_product, :image, :fill, 200, 200, format: 'jpeg', class: "jacket-iamge", fallback: 'img/no_image.png', size: "200x200" %>
 			<%#= link_to @random_product.product_title, @random_product %>
 		</div>
@@ -39,14 +39,17 @@
 		$(document).on('click', '#rock,#pop,#punk', function(){
 			$.ajax({
 				type:'GET',
-				url:'/',
-				dataType: 'json'
+				url:'/api/json_top',
+				dataType: 'json',
 			})
 			.done(function(data){
-				$('.content').empty();
+				console.log(data.name);
+				console.log(data.image);
+
+				$('#content').empty();
 				$('#overlay,#result').fadeIn();
-				$('.content').append('<p>${product.product_title}</p>');
-				$('.content').append('<img src="">');
+				$('#content').html(data.name);
+				$('#content').append(data.image);
 
 				$(document).on('click', '#overlay,#close', function(){
 					$('#content').empty();
@@ -59,8 +62,8 @@
 
 			.fail(function(){
 				alert('fail')
-			})
-		})
+			});
+		});
 	});
 
 

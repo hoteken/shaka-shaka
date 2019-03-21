@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   root 'roots#top'
-  get '/', to: 'roots#json_top'
+  namespace :api, { format: 'json' } do
+    get '/json_top', to: 'roots#top'
+  end
   get '/about', to: 'roots#about'
   get '/admin_top', to: 'roots#admin_top'
 
