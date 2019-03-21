@@ -55,7 +55,55 @@
   background-color: silver;
 }
 
-// その他
-.order_box {
+// カート画面
+
+
+
+
+// 注文確認画面
+.order_price {
+	margin: 0 auto;
+	text-align: center;
+	padding-bottom: 10px;
+	padding-left: 20px;
+}
+
+.purchase-products {
+	margin-left: 30px;
+}
+
+.purchase-product {
+	padding-left: 20px;
+	padding: 20px 0;
+	border-bottom: solid 2px lightgray;
+}
+
+.product-detail {
+	margin: auto 0;
+}
+
+.total-price {
+	color: rgb(0, 180, 0);
+}
+
+.destination {
+	text-align: center;
+	margin: 20px 0;
+}
+
+#updated_by_ajax, #dest-select{
+	display: inline-block;
+	margin: 20px;
+}
+
+
+
+// 注文完了画面
+#purchase-thanks {
+	font-weight: bold;
+	color: rgb(0, 180, 0);
+}
+
+#thanks-body {
 	margin: 0 auto;
 }

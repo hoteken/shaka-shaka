@@ -3,12 +3,18 @@ class CartProductsController < ApplicationController
     cart_product = CartProduct.new(cart_id:params[:cart_id], 
                                     product_id: params[:cart_product][:product_id], 
                                     quantity: params[:cart_product][:quantity])
-    if cart_product.save
-      #redirect_to cart_path(current_user.cart)
-      redirect_to cart_path(1)
+
+    if cart_product.quantity > cart_product.product.stock
+      flash[:danger] = "購入希望数が在庫数を超えています"
+      redirect_to product_path(cart_product.product)
     else
-      flash.now[:danger] = "カート商品の追加に失敗しました"
-      redirect_to products_path
+      if cart_product.save
+        #redirect_to cart_path(current_user.cart)
+        redirect_to cart_path(1)
+      else
+        flash.now[:danger] = "カート商品の追加に失敗しました"
+        redirect_to products_path
+      end
     end
   end
 
