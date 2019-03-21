@@ -9,13 +9,14 @@ class InquiriesController < ApplicationController
     if @inquiry.valid?
       render :action => 'confirm'
     else
+      flash.now[:danger] = "入力内容に誤りがあります"
       render :action => 'new'
     end
   end
 
   def thanks
     @inquiry = Inquiry.new(inquiry_params)
-    if params[:back]
+    if params[:commit] == "戻る"
       render :action => 'new'
     else
       InquiryMailer.received_email(@inquiry).deliver_now
