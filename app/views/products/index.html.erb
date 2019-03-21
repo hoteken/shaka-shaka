@@ -23,15 +23,25 @@
 
 <%
 =begin%>
-  登録画面
+  商品一覧画面
 <%
 =end%>
   <div class="col-xs-8">
     <h3>Items<%= link_to "新規登録", new_product_path, class: "btn btn-primary", id:"new_product_button" %></h3>
 
+    <div class="search-bar">
+      <% provide(:product_title, 'All products') %>
+        <%= search_form_for @search  do |f| %>
+          <i class="fa fa-search"></i>
+          <%= f.label :product_title_cont, "商品名" %>
+          <%= f.text_field :product_title_cont %>
+          <%= f.submit "検索", class:"btn btn-default " %>
+        <% end %>
+    </div>
+
     <div class="product-list clearfix">
       <div class="products">
-        <% @random_products.each do |random_product| %>
+        <% @result.each do |random_product| %>
           <div class="product">
             <%= attachment_image_tag random_product, :image, :fill, 100, 100, format: 'jpeg', class:"jacket-image", fallback:"img/no_image.png", :size => '200x200' %>
             <p>
@@ -40,8 +50,8 @@
             </p>
           </div>
         <% end %>
+        <div class="paginate"><%= paginate @random_products %></div>
       </div>
     </div>
-    <p><%= paginate @random_products %></p>
   </div>
 </div>
