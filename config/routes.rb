@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   get '/about', to: 'roots#about'
   get '/admin_top', to: 'roots#admin_top'
 
-  devise_for :users
+  devise_for :users, :controllers => {
+    :registrations => 'users/registrations'
+  } 
   resources :users, only: [:index, :show, :edit, :update] do
     resources :destinations, only: [:index, :new, :create, :edit, :update, :destroy]
   end
