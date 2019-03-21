@@ -25,10 +25,11 @@
 <div id="overlay">
 	<div id="result">
 		<h2>discover new music</h2>
-		<div id="content">
+		<%= link_to @random_product.product_title, @random_product, id: "content-title" %>
+		<div id="content-image">
+		</div>
 			<%#= attachment_image_tag @random_product, :image, :fill, 200, 200, format: 'jpeg', class: "jacket-iamge", fallback: 'img/no_image.png', size: "200x200" %>
 			<%#= link_to @random_product.product_title, @random_product %>
-		</div>
 		<button id="close">X</button>
 	</div>
 </div>
@@ -46,10 +47,10 @@
 				console.log(data.name);
 				console.log(data.image);
 
-				$('#content').empty();
+				$('#content-title,#content-image').empty();
 				$('#overlay,#result').fadeIn();
-				$('#content').html(data.name);
-				$('#content').append(data.image);
+				$('#content-title').append(data.name);
+				$('#content-image').append(data.image);
 
 				$(document).on('click', '#overlay,#close', function(){
 					$('#content').empty();
