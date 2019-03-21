@@ -1,12 +1,14 @@
 <div class="container">
-  <h1 class="col-xs-7">ショッピングカート</h1>
+  <div class="row">
+    <h1 class="col-xs-7">ショッピングカート</h1>
 
-  <div class="col-xs-5">
-    <p>小計：<%= @sum_price %>円</p>
-    <%= link_to "買い物に戻る", products_path, class:"btn btn-primary" %>
-    <% if @cart_products.count != 0 %>
-      <%= link_to "レジに進む", carts_confirm_path, class:"btn btn-primary" %>
-    <% end %>
+    <div class="col-xs-5">
+      <h3>小計：<%= @sum_price %>円</h3>
+      <%= link_to "買い物に戻る", products_path, class:"btn btn-default" %>
+      <% if @cart_products.count != 0 %>
+        <%= link_to "レジに進む", carts_confirm_path, class:"btn btn-primary" %>
+      <% end %>
+    </div>
   </div>
 
   <div class="row">
