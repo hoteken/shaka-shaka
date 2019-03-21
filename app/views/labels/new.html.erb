@@ -5,17 +5,18 @@
         <div class = "main">
           <%= form_for(@label) do |f| %>
             <p class = "text1">
-            	<span class = "name"><%= f.label :レーベル名 %></span>
-            	<%= f.text_field :label_name %>
+              <span class = "name"><%= f.label :レーベル名 %></span>
+              <%= f.text_field :label_name %>
             </p>
             <div class = "main-bottom">
-                <span class = "botan">
-                	<a href="/labels" class="btn btn-default btn-sm " role="button">戻る</a>
+                <span class = "button">
+                  <%= link_to "戻る", labels_path, class:"btn btn-primary", :style=>"margin-bottom: -12px;padding: 7px 33px;"%>
                 </span>
-                	<input class="btn btn-default btn-sm" type="submit" value="送信ボタン">
+                  <%= f.submit "送信ボタン", class:"btn btn-primary", :style=>"height:36px;width:96px;" %>
             </div>
                 <% end %>
         </div>
       </div>
   </div>
 </body>
+
