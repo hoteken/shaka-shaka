@@ -43,11 +43,7 @@ class CartsController < ApplicationController
     destination_id = params[:paramss]
     cookies[:selected_dest_id] = destination_id
     selected_dest = Destination.find(destination_id)
-    p selected_dest.destination_address
     results = { :message => selected_dest.destination_address }
-
-    p results
-    p results[:message]
     render partial: 'ajax_partial', locals: { :results => results }
   end
 
