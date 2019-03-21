@@ -4,73 +4,12 @@
     <title>ShakaShaka</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <header class="navbar navbar-fixed-top navbar-inverse">
-      <div class="container">
-
-        <nav class="nav navbar-nav navbar-left">
-          <span><%= link_to "Shaka-Shaka", root_path %></span>
-        </nav>
-
-        <nav>
-          <ul class="nav navbar-nav navbar-right">
-           <% if user_signed_in?  %>
-            <% if current_user.admin?%>
-              <li><%= link_to " 管理者トップ", admin_top_path %></li>
-              <li><%= link_to " ユーザー管理", users_path %></li>
-              <li><%= link_to " 商品管理", products_path %></li>
-              <li><%= link_to " 楽曲管理", songs_path %></li>
-              <li><%= link_to " 受注管理", orders_path %></li>
-              <li><%= link_to " ログアウト", destroy_user_session_path, method: :delete %></li>
-            <% else %>
-              <li><%= link_to " 商品一覧", products_path %></li>
-              <li><%= link_to " カート", cart_path(current_user.cart) %></li>
-              <li><%= link_to " マイページ", user_path(current_user.id) %></li>
-              <li><%= link_to " ログアウト", destroy_user_session_path, method: :delete %></li>
-              <li><%= link_to " お問い合わせ", inquiries_new_path %></li>
-            <% end %>
-           <% else %>
-            <li><%= link_to " 商品一覧", products_path %></li>
-            <li><%= link_to " About", about_path %></li>
-            <li><%= link_to " 会員登録", new_user_registration_path %></li>
-            <li><%= link_to " ログイン", new_user_session_path %></li>
-            <li><%= link_to " お問い合わせ", inquiries_new_path %></li>
-           <% end %>
-          </ul>
-        </nav>
-
-      </div>
-    </header>
-
-    <div class="container">
-      <div class="row">
-        <div class="col-xs-offset-2">
-          <% if flash[:notice] %>
-           <p class="notice"><%= flash[:notice] %></p>
-          <% end %>
-          <% if flash[:danger] %>
-           <p class="danger"><%= flash[:danger] %></p>
-          <% end %>
-        </div>
-      </div>
-    </div>
-
     <%= yield %>
-
-    <div class="container">
-      <div class="row">
-        <div class="col-xs-3 col-xs-offset-9">
-          <div class="footer pull-right">
-            <p>CopyRight HotelSeminal</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
   </body>
 </html>

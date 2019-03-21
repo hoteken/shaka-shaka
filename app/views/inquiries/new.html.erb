@@ -1,25 +1,2 @@
-<div class="container">
-
-  <h2>お問い合わせ</h2>
-  <div class="top-message"><p>お問い合わせ内容をご入力ください。</p></div>
-  <%= form_for(@inquiry, url: { action: :confirm }) do |f| %>
-    <div class="form-group">
-      <%= f.label :name %>
-      <%= f.text_field :name, class: "form-control" %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :email %>
-      <%= f.text_field :email, class: "form-control" %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :message %>
-      <%= f.text_area :message, class: "form-control" %>
-    </div>
-    <%= f.submit "確認", class:"btn btn-primary col-xs-12" %>
-
-  <% end %>
-
-
-</div>
+<h1>Inquiries#new</h1>
+<p>Find me in app/views/inquiries/new.html.erb</p>
