@@ -1,2 +1,8 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
+<h1>ユーザー編集</h1>
+<%= @user.user_name%>
+<%= @user.user_name_kana%>
+<%= @user.postcode%>
+<%= @user.address%>
+<%= @user.phonenumber%>
+<%= link_to "戻る" , user_path(user)%>
+<%= link_to "更新", user_path(user)%>

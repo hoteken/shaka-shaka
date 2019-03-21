@@ -12,4 +12,33 @@
  *
  *= require_tree .
  *= require_self
+ *= require font-awesome
  */
+ @import "bootstrap-sprockets";
+ @import "bootstrap";
+
+*{
+	margin:0;
+	padding:0;
+	box-sizing:border-box;
+}
+.clearfix::after{
+	content:"";
+	display:block;
+	clear:both;
+}
+header{
+	color:white;
+}
+body{
+	margin-top:60px;
+}
+span{
+	font-size:37px;
+}
+.notice{
+	font-color:green;
+}
+#error-explanation{
+	font-color:red;
+}

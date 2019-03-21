@@ -1,2 +1,57 @@
-<h1>Products#index</h1>
-<p>Find me in app/views/products/index.html.erb</p>
+<div class="container">
+  
+  <%
+=begin%>
+  サイドバー
+<%
+=end%>
+
+  <div class="col-xs-2">
+    <div class="category-bar">
+      <h3>Categories</h3>
+      <div class="genre">
+        <%= image_tag("img/Rock.jpg", alt:"アイコン", size:'50x50') %><%= link_to "Rock", products_path(1), class:"genre_name" %>
+      </div>
+      <div class="genre">
+        <%= image_tag("img/Pop.png", alt:"アイコン", size:'50x50') %><%= link_to "Pop", products_path(2), class:"genre_name" %>
+      </div>
+      <div class="genre">
+        <%= image_tag("img/Punk.jpg", alt:"アイコン", size:'50x50') %><%= link_to "Punk", products_path(3), class:"genre_name" %>
+      </div>
+    </div>
+  </div>
+
+<%
+=begin%>
+  商品一覧画面
+<%
+=end%>
+  <div class="col-xs-8">
+    <h3>Items<%= link_to "新規登録", new_product_path, class: "btn btn-primary", id:"new_product_button" %></h3>
+
+    <div class="search-bar">
+      <% provide(:product_title, 'All products') %>
+        <%= search_form_for @search  do |f| %>
+          <i class="fa fa-search"></i>
+          <%= f.label :product_title_cont, "商品名" %>
+          <%= f.text_field :product_title_cont %>
+          <%= f.submit "検索", class:"btn btn-default " %>
+        <% end %>
+    </div>
+
+    <div class="product-list clearfix">
+      <div class="products">
+        <% @result.each do |random_product| %>
+          <div class="product">
+            <%= attachment_image_tag random_product, :image, :fill, 100, 100, format: 'jpeg', class:"jacket-image", fallback:"img/no_image.png", :size => '200x200' %>
+            <p>
+              <%= link_to random_product.product_title, random_product %>
+              <%= "¥"+random_product.product_price.to_s %>
+            </p>
+          </div>
+        <% end %>
+        <div class="paginate"><%= paginate @random_products %></div>
+      </div>
+    </div>
+  </div>
+</div>
