@@ -21,42 +21,40 @@
 	</div>
 </section>
 
-<%# rails側でジャンルに紐づくプロダクトをランダムに１つ取得する %>
 <div id="overlay">
 	<div id="result">
 		<h2>discover new music</h2>
-		<%= link_to @random_product.product_title, @random_product, id: "content-title" %>
-		<div id="content-image">
-		</div>
-			<%#= attachment_image_tag @random_product, :image, :fill, 200, 200, format: 'jpeg', class: "jacket-iamge", fallback: 'img/no_image.png', size: "200x200" %>
-			<%#= link_to @random_product.product_title, @random_product %>
+			<div id="content-title"><a href=""></a></div>
+			<div id="content-image"><img src="" fallback="img/no_image.png"></div>
+			<%# ここでランダムにレコードを抽出する処理を記述するとtopを開いた時に抽出され、モーダル表示のクリックイベント毎に抽出されない %>
+			<%#= link_to @random_product.product_title, @random_product, id: "content-title" %>
+			<%#= attachment_image_tag @random_product, :image, :fill, 300, 300, format: 'jpeg', id: 'content-image', fallback: 'img/no_image.png', size: '300x300' %>
 		<button id="close">X</button>
 	</div>
 </div>
 
 <script>
-<%# ajaxでモーダルが表示されるたびにコントローラの処理を呼び出しproductをランダムで１つ表示させる。 %>
+	<%# モーダル表示のクリックイベント毎にajaxでコントローラを叩き、productsテーブルからレコードをランダムに１つ取得 %>
 	$(function(){
 		$(document).on('click', '#rock,#pop,#punk', function(){
 			$.ajax({
-				type:'GET',
-				url:'/api/json_top',
-				dataType: 'json',
+				type:'GET', <%# 今回はデータベースからデータを取得するだけなのでGETを使用 %>
+				url:'/api/json_top', <%# ajaxで呼び出すurlを記述 %>
+				dataType: 'json', <%# jsonを指定　jbuilderを通りjsonデータを返却してくれるように設定 %>
 			})
 			.done(function(data){
-				console.log(data.name);
+				console.log(data.id);
 				console.log(data.image);
 
-				$('#content-title,#content-image').empty();
+				$('#content-title,#content-image').empty(); <%# 前回のデータが残っていれば空にする %>
 				$('#overlay,#result').fadeIn();
-				$('#content-title').append(data.name);
-				$('#content-image').append(data.image);
+				$('#content-title a').attr('href', '/products/' + 'data.id');
+				$('#content-image img').attr('src', 'data.image');
 
 				$(document).on('click', '#overlay,#close', function(){
-					$('#content').empty();
 					$('#overlay,#result').fadeOut();
 					$(document).on('click', '#result', function(e){
-					e.stopPropagation();
+					e.stopPropagation(); <%# result画面をクリックした時にモーダルが消えないように追記 %>
 					});
 				});
 			})
@@ -68,7 +66,7 @@
 	});
 
 
-<%#	=begin modal 発火後モーダル表示させる処理のみ
+<%#	=begin modal 発火後モーダルを表示させる処理
 	$(function(){
 		$(document).on('click', '#rock,#pop,#punk', function(){
 			$('#overlay,#result').fadeIn();
