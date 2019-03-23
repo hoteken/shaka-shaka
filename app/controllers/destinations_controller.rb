@@ -1,4 +1,6 @@
 class DestinationsController < ApplicationController
+  before_action :authenticate_adm_or_correct_user
+
   def index
     @user = User.find(params[:user_id])
     @destinations = Destination.where(user_id:@user.id)
