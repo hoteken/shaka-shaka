@@ -12,7 +12,7 @@ class OrdersController < ApplicationController
   def create
     # レコード追加処理(ユーザーIDからカート商品テーブル検索（複数）、繰り返し処理でオーダーに洗替)
     # 送付先は渡されたparams[:destination_id]からテーブル検索して持ってくる！
-    @cart = Cart.find(1)
+    @cart = Cart.find_by(user_id:current_user.id)
     @user = @cart.user
     @cart_products = CartProduct.where(cart_id:@cart.id)
     @destination_id = cookies[:selected_dest_id]
@@ -20,7 +20,7 @@ class OrdersController < ApplicationController
     if @destination_id == "default"
       @destination = @user
     else
-      @destination = Destination.find(@destination_id)
+      @destination = Destination.find_by(id: @destination_id, user_id: @user.id)
     end
     cookies.delete :selected_dest_id
     # @destination = Destination.find(params[:order][:destination_id])
@@ -41,6 +41,11 @@ class OrdersController < ApplicationController
       end
       @order.product_id = cart_product.product_id
       @order.quantity = cart_product.quantity
+      # 在庫を減算
+        product = cart_product.product
+        left_stock = product.stock - @order.quantity
+        product.stock = left_stock
+        product.save
       @order.total_price = cart_product.product.product_price*cart_product.quantity
       @orders << @order
     end

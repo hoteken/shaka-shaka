@@ -1,3 +1,61 @@
 // Place all the styles related to the Products controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.clearfix::after{
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.genre {
+  margin: 10px;
+}
+
+.genre_name {
+  margin-left: 10px;
+}
+
+.product {
+  float: left;
+  margin: 10px;
+}
+
+.product p {
+  text-align: center;
+}
+
+#new_product_button {
+  float: right;
+}
+
+.item-image {
+  padding: 10px;
+}
+
+.stock-status {
+  text-align: center;
+}
+
+.add_item_form, .link_buttons {
+  float: left;
+  margin: 5px;
+}
+
+.category-bar {
+  padding: 20px;
+}
+
+.search-bar input {
+  width: 300px;
+  border-radius: 5px;
+  border-color: gray;
+}
+
+.paginate {
+  text-align: center;
+}
+
+.song-list, .detail-information {
+  padding-left: 20px;
+}

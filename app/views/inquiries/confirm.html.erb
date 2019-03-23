@@ -1,29 +1,35 @@
-<%= form_for @inquiry, :url => thanks_path do |f| %>
-  <div>
-    <h2>メッセージ確認</h2>
-    <div class="top-message"><p>お問い合わせ内容をご確認ください。</p></div>
-    <div>
-      <strong>名前</strong>
-      <p>
-        <%= f.hidden_field :name %>
-        <%= @inquiry.name %>
-      </p>
+<div id="inquiry-background">
+  <div class="row">
+    <div class="inquiries">
+      <div class="top-message">
+        <h2>メッセージ確認</h2>
+        <p>お問い合わせ内容をご確認ください。</p>
+      </div>
+      <%= form_for(@inquiry, url: thanks_path) do |f| %>
+        <div class="form-group center-block">
+          <strong>お名前</strong>
+          <%= f.hidden_field :name %>
+          <p><%= @inquiry.name %></p>
+        </div>
+
+        <div class="form-group center-block">
+          <strong>メールアドレス</strong>
+          <%= f.hidden_field :email %>
+          <p><%= @inquiry.email %></p>
+        </div>
+
+        <div class="form-group center-block">
+          <strong>お問い合わせ内容</strong>
+          <%= f.hidden_field :message %>
+          <p><%= @inquiry.message %></p>
+        </div>
+        <div class="form-group center-block">
+          <div class="inquiry-submit">
+            <%= f.submit '戻る', class:"btn btn-default center-block submit" %>
+            <%= f.submit "送信する", class:"btn btn-primary center-block submit" %>
+          </div>
+        </div>
+      <% end %>
     </div>
-    <div>
-      <strong>メールアドレス</strong>
-      <p>
-        <%= f.hidden_field :email %>
-        <%= @inquiry.email %>
-      </p>
-    </div>
-    <div>
-      <strong>内容</strong>
-      <p>
-        <%= f.hidden_field :message %>
-        <%= simple_format(@inquiry.message) %>
-      </p>
-    </div>
-      <%= f.submit '戻る', name: 'back' %>
-      <%= f.submit '送信する' %>
   </div>
-<% end %>
+</div>

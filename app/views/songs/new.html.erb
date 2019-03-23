@@ -1,4 +1,5 @@
-<h3>収録曲新規追加</h3>
+<div class="container">
+  <h3>収録曲新規追加</h3>
   <%= form_for(@song) do |f| %>
     <div class="form-group">
       <table class="table table-hover table-inverse">
@@ -25,3 +26,4 @@
       <%= link_to "戻る", songs_path, class:"btn btn-primary" %>
     </div>
   <% end %>
+</div>
