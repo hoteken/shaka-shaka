@@ -16,7 +16,7 @@ class ProductsController < ApplicationController
     @songs = @product.songs
 
     # カート追加用
-    @cart = Cart.find(1)
+    @cart = Cart.find_by(user_id:current_user.id)
     @cart_product = CartProduct.new
     
     #ディスクごとの曲名表示用

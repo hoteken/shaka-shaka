@@ -10,30 +10,35 @@
 	z-index:1
 }
 #result{
-	width:700px;
-	height:600px;
+	width:600px;
+	height:450px;
 	position:absolute;
 	top:50%;
 	left:50%;
 	transform:translate(-50%,-50%);
 	border:2px solid black;
 	border-radius:6px;
-	background-color:#fff;
+	background-color: lightgoldenrodyellow;
 	display:none;
+	padding:30px;
 	z-index:2
 }
 #close{
-	width:80px;
-	height:35px;
-	color:red;
-	background-color:#fff;
-	border:2px solid red;
+	color:gray;
 	border-radius:3px;
+	font-size: 35px;
+	position:absolute;
+	top:2%;
+	left:93%;
 	transition:.4s;
 }
 #close:hover{
-	background:red;
 	color:#fff;
+}
+
+#modal-title {
+	text-align: center;
+	margin-bottom: 30px;
 }
 
 // 送付先選択にかかるアコーディオン
@@ -52,13 +57,24 @@
 .destinations label {
   display: block;
   margin: 5px 20px;
-  background-color: silver;
+}
+
+.destinations p {
+	background-color: #fff;
+}
+
+.destinations .go {
+	width: 100%;
+}
+
+.destinations {
+	margin-left: 20px;
 }
 
 // カート画面
-
-
-
+.cart-product-details {
+	margin-top: 15px;
+}
 
 // 注文確認画面
 .order_price {
@@ -75,7 +91,9 @@
 .purchase-product {
 	padding-left: 20px;
 	padding: 20px 0;
-	border-bottom: solid 2px lightgray;
+	border-bottom: solid 5px white;
+	background-color: aliceblue;
+	border-radius: 10px;
 }
 
 .product-detail {
@@ -95,7 +113,6 @@
 	display: inline-block;
 	margin: 20px;
 }
-
 
 
 // 注文完了画面
