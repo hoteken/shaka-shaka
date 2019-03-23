@@ -25,7 +25,7 @@
 	<div id="result">
 		<h2>discover new music</h2>
 			<div id="content-title"><a href=""></a></div>
-			<div id="content-image"><img src="" fallback="img/no_image.png"></div>
+			<div id="content-image"><img src=""></div>
 			<%# ここでランダムにレコードを抽出する処理を記述するとtopを開いた時に抽出され、モーダル表示のクリックイベント毎に抽出されない %>
 			<%#= link_to @random_product.product_title, @random_product, id: "content-title" %>
 			<%#= attachment_image_tag @random_product, :image, :fill, 300, 300, format: 'jpeg', id: 'content-image', fallback: 'img/no_image.png', size: '300x300' %>
@@ -47,7 +47,7 @@
 				console.log(data.image);
 
 				$('#content-title,#content-image').empty(); <%# 前回のデータが残っていれば空にする %>
-				$('#overlay,#result').fadeIn();
+				$('#overlay,#result,#content-title').fadeIn();
 				$('#content-title a').attr('href', '/products/' + 'data.id');
 				$('#content-image img').attr('src', 'data.image');
 
