@@ -12,7 +12,7 @@ class OrdersController < ApplicationController
   def create
     # レコード追加処理(ユーザーIDからカート商品テーブル検索（複数）、繰り返し処理でオーダーに洗替)
     # 送付先は渡されたparams[:destination_id]からテーブル検索して持ってくる！
-    @cart = Cart.find(1)
+    @cart = Cart.find_by(user_id:current_user.id)
     @user = @cart.user
     @cart_products = CartProduct.where(cart_id:@cart.id)
     @destination_id = cookies[:selected_dest_id]

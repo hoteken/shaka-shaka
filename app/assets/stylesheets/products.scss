@@ -46,10 +46,16 @@
   padding: 20px;
 }
 
-.search-bar {
-  display: inline-block;
+.search-bar input {
+  width: 300px;
+  border-radius: 5px;
+  border-color: gray;
 }
 
 .paginate {
   text-align: center;
+}
+
+.song-list, .detail-information {
+  padding-left: 20px;
 }

@@ -1,25 +1,29 @@
-<div class="container">
+<div id="inquiry-background">
+  <div class="row">
+    <div class="inquiries">
+      <div class="top-message">
+        <h2>お問い合わせフォーム</h2>
+        <p>お問い合わせ内容をご入力ください。</p>
+      </div>
+      <%= form_for(@inquiry, url: { action: :confirm }) do |f| %>
+        <div class="form-group center-block">
+          <%= f.label :name, "お名前" %>
+          <%= f.text_field :name, class: "form-control " %>
+        </div>
 
-  <h2>お問い合わせ</h2>
-  <div class="top-message"><p>お問い合わせ内容をご入力ください。</p></div>
-  <%= form_for(@inquiry, url: { action: :confirm }) do |f| %>
-    <div class="form-group">
-      <%= f.label :name %>
-      <%= f.text_field :name, class: "form-control" %>
+        <div class="form-group center-block">
+          <%= f.label :email, "メールアドレス" %>
+          <%= f.text_field :email, class: "form-control" %>
+        </div>
+
+        <div class="form-group center-block">
+          <%= f.label :message, "お問い合わせ内容" %>
+          <%= f.text_area :message, class: "form-control" %>
+        </div>
+        <div class="form-group center-block">
+          <%= f.submit "確認", class:"btn btn-primary center-block" %>
+        </div>
+      <% end %>
     </div>
-
-    <div class="form-group">
-      <%= f.label :email %>
-      <%= f.text_field :email, class: "form-control" %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :message %>
-      <%= f.text_area :message, class: "form-control" %>
-    </div>
-    <%= f.submit "確認", class:"btn btn-primary col-xs-12" %>
-
-  <% end %>
-
-
+  </div>
 </div>

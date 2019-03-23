@@ -23,27 +23,27 @@
         <%= f.submit "検索", :class=>"btn btn-primary button-top"%>
       </div>
     <% end %>
-      <div class="form-group col-xs-1">
-        <div class = "text2"></div>
-        <%= link_to "CLEAR", songs_path,:class=>"btn btn-primary button-top"%>
-      </div>
-      <div class="form-group col-xs-1">
-        <div class = "text2"></div>
-        <%= link_to "新規登録", new_song_path, class:"btn btn-primary button-top" %>
-      </div>
+    <div class="form-group col-xs-1">
+      <div class = "text2"></div>
+      <%= link_to "結果クリア", songs_path,:class=>"btn btn-primary button-top"%>
+    </div>
+    <div class="form-group col-xs-1">
+      <div class = "text2"></div>
+      <%= link_to "新規登録", new_song_path, class:"btn btn-primary button-top" %>
+    </div>
   </div>
-    <div class="row">
-      <div class = "col-xs-2"></div>
-        <table class="col-xs-8">
-          <thead>
-            <tr>
-              <th>曲名</th>
-              <th>アーティスト名</th>
-              <th>収録CD</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
+  <div class="row">
+    <div class = "col-xs-2"></div>
+      <table class="col-xs-7 table">
+        <thead>
+          <tr>
+            <th>曲名</th>
+            <th>アーティスト名</th>
+            <th>収録CD</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
           <% @result.each do |song| %>
             <tr>
               <td class ="text1"><%= song.song_title %></td>
@@ -52,9 +52,9 @@
               <td class ="text1"><%= link_to "編集", edit_song_path(song), class:"btn btn-primary" %></td>
             </tr>
           <% end %>
-          </tbody>
-        </table>
-        <%= paginate @songs %>
-          <div class = "col-xs-2"></div>
+        </tbody>
+      </table>
+      <div class="paginate"><%= paginate @songs %></div>
     </div>
+  </div>
 </div>
