@@ -1,14 +1,23 @@
 <div class = "container">
   <div class = "row">
-    <h1 class ="col-xs-5">送付先リスト</h1>
-    <%= link_to "送付先追加", new_user_destination_path(1), class:"btn btn-default btn-sm button-top"%>
+    <h1 class ="col-xs-3 col-xs-offset-4 dest-list-title">送付先リスト</h1>
+    <div class="add-button"><%= link_to "送付先を新規追加", new_user_destination_path(@user.id), class:"btn btn-default "%></div>
   </div>
-  <div class ="row">
-    <div class="col-xs-6">
+  <div class ="row center-block">
+    <div class="col-xs-6 col-xs-offset-3">
       <table class="table">
         <% destination_num = 1 %>
     　　 <% @destinations.each do |destination| %>
-          <td><p>送付先<%= destination_num %></p></td>
+          <tr>
+            <th><h3>送付先<%= destination_num %></h3></th>
+            <td class="destination-buttons">
+              <div class="dest_btn">
+                <%= link_to "編集", edit_user_destination_path(@user, destination), class:"btn btn-primary" %>
+                <%= link_to "削除", user_destination_path(@user, destination), 
+                                    class:"btn btn-danger", method: :delete, data: { confirm: '本当に削除しますか？' } %>
+              </div>
+            </td>
+          </tr>
           <tr>
             <th>お宛名</th>
             <td><%= destination.destination_name %></td>
@@ -20,13 +29,6 @@
           <tr>
             <th>住所</th>
             <td><%= destination.destination_address %></td>
-          </tr>
-          <tr>
-            <th></th>
-            <td>
-            <%= link_to "編集", edit_user_destination_path(@user, destination), class:"btn btn-primary" %>
-            <%= link_to "削除", user_destination_path(@user, destination), class:"btn btn-primary", method: :delete %>
-            </td>
           </tr>
           <% destination_num+= 1 %>
         <% end %>
