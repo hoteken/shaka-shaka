@@ -6,16 +6,34 @@
 				<h4>ジャンルを選択してください</h4>
 			</div>
 			<div class="col-xs-3 col-xs-offset-2">
-				<%= image_tag 'img/no_image.png', size: "200x200", id: "rock" %>
-				<h3 class="rock">R O C K</h3>
+				<div class="request_ajax_shaka">
+					<%= link_to ajax_shakashaka_path(:genre_id => 1 ),  method: :post , :remote => true  do %>
+						<%= image_tag 'img/no_image.png', size: "200x200" %>
+						<h3 class="rock">R O C K</h3>
+					<% end %>
+				</div>
 			</div>
 			<div class="col-xs-3">
-				<%= image_tag 'img/no_image.png', size: "200x200", id: "pop" %>
-				<h3 class="pop">P O P</h3>
+				<div class="request_ajax_shaka">
+					<%= link_to ajax_shakashaka_path(:genre_id => 2 ),  method: :post , :remote => true  do %>
+						<%= image_tag 'img/no_image.png', size: "200x200" %>
+						<h3 class="pop">P O P</h3>
+					<% end %>
+
+					<%
+=begin%>
+ <%= link_to "POP",  {:action => "shakashaka", :paramss => 2 }, {:remote => true, :class => "shakashaka btn btn-info", method: :post } %> 
+<%
+=end%>
+				</div>
 			</div>
 			<div class="col-xs-3">
-				<%= image_tag 'img/no_image.png', size: "200x200", id: "punk" %>
-				<h3 class="punk">P U N K</h3>
+				<div class="request_ajax_shaka">
+					<%= link_to ajax_shakashaka_path(:genre_id => 3 ),  method: :post , :remote => true  do %>
+						<%= image_tag 'img/no_image.png', size: "200x200" %>
+						<h3 class="punk">P U N K</h3>
+					<% end %>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -24,59 +42,31 @@
 <div id="overlay">
 	<div id="result">
 		<h2>discover new music</h2>
-			<div id="content-title"><a href=""></a></div>
-			<div id="content-image"><img src=""></div>
-			<%# ここでランダムにレコードを抽出する処理を記述するとtopを開いた時に抽出され、モーダル表示のクリックイベント毎に抽出されない %>
-			<%#= link_to @random_product.product_title, @random_product, id: "content-title" %>
-			<%#= attachment_image_tag @random_product, :image, :fill, 300, 300, format: 'jpeg', id: 'content-image', fallback: 'img/no_image.png', size: '300x300' %>
+			<div id="shaka-content"></div>
 		<button id="close">X</button>
 	</div>
 </div>
 
 <script>
-	<%# モーダル表示のクリックイベント毎にajaxでコントローラを叩き、productsテーブルからレコードをランダムに１つ取得 %>
-	$(function(){
-		$(document).on('click', '#rock,#pop,#punk', function(){
-			$.ajax({
-				type:'GET', <%# 今回はデータベースからデータを取得するだけなのでGETを使用 %>
-				url:'/api/json_top', <%# ajaxで呼び出すurlを記述 %>
-				dataType: 'json', <%# jsonを指定　jbuilderを通りjsonデータを返却してくれるように設定 %>
-			})
-			.done(function(data){
-				console.log(data.id);
-				console.log(data.image);
 
-				$('#content-title,#content-image').empty(); <%# 前回のデータが残っていれば空にする %>
-				$('#overlay,#result,#content-title').fadeIn();
-				$('#content-title a').attr('href', '/products/' + 'data.id');
-				$('#content-image img').attr('src', 'data.image');
-
-				$(document).on('click', '#overlay,#close', function(){
-					$('#overlay,#result').fadeOut();
-					$(document).on('click', '#result', function(e){
-					e.stopPropagation(); <%# result画面をクリックした時にモーダルが消えないように追記 %>
-					});
-				});
-			})
-
-			.fail(function(){
-				alert('fail')
-			});
-		});
-	});
-
-
-<%#	=begin modal 発火後モーダルを表示させる処理
-	$(function(){
-		$(document).on('click', '#rock,#pop,#punk', function(){
-			$('#overlay,#result').fadeIn();
-		});
-		$(document).on('click', '#close,#overlay', function(){
-			$('#overlay,#result').fadeOut();
-			$(document).on('click', '#result', function(e){
+$(function(){
+	// $(document).on('click', '#rock,#pop,#punk, .shakashaka', function(){
+	// 	$('#overlay,#result').fadeIn();
+	// });
+	$('#close,#overlay').on('click', function(){
+		$('#overlay,#result').fadeOut();
+		$('#result').on('click', function(e){
 			e.stopPropagation();
-			});
 		});
 	});
-%>
+
+  $('.request_ajax_shaka').on('ajax:complete', function(event) {
+    var response;
+    response = event.detail[0].response;
+    $('#shaka-content').html(response);
+    $('#overlay,#result').fadeIn();
+  });
+
+
+});
 </script>
