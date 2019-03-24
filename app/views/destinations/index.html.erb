@@ -5,34 +5,38 @@
   </div>
   <div class ="row center-block">
     <div class="col-xs-6 col-xs-offset-3">
-      <table class="table">
-        <% destination_num = 1 %>
-    　　 <% @destinations.each do |destination| %>
-          <tr>
-            <th><h3>送付先<%= destination_num %></h3></th>
-            <td class="destination-buttons">
-              <div class="dest_btn">
-                <%= link_to "編集", edit_user_destination_path(@user, destination), class:"btn btn-primary" %>
-                <%= link_to "削除", user_destination_path(@user, destination), 
-                                    class:"btn btn-danger", method: :delete, data: { confirm: '本当に削除しますか？' } %>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <th>お宛名</th>
-            <td><%= destination.destination_name %></td>
-          </tr>
-          <tr>
-            <th>郵便番号</th>
-            <td><%= destination.destination_postcode %></td>
-          </tr>
-          <tr>
-            <th>住所</th>
-            <td><%= destination.destination_address %></td>
-          </tr>
-          <% destination_num+= 1 %>
-        <% end %>
-      </table>
+      <% if @destinations.count < 1 %>
+        <p>追加の送付先は登録されていません。</p>
+      <% else %>
+        <table class="table">
+          <% destination_num = 1 %>
+      　　 <% @destinations.each do |destination| %>
+            <tr>
+              <th><h3>送付先<%= destination_num %></h3></th>
+              <td class="destination-buttons">
+                <div class="dest_btn">
+                  <%= link_to "編集", edit_user_destination_path(@user, destination), class:"btn btn-primary" %>
+                  <%= link_to "削除", user_destination_path(@user, destination), 
+                                      class:"btn btn-danger", method: :delete, data: { confirm: '本当に削除しますか？' } %>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th>お宛名</th>
+              <td><%= destination.destination_name %></td>
+            </tr>
+            <tr>
+              <th>郵便番号</th>
+              <td><%= destination.destination_postcode %></td>
+            </tr>
+            <tr>
+              <th>住所</th>
+              <td><%= destination.destination_address %></td>
+            </tr>
+            <% destination_num+= 1 %>
+          <% end %>
+        </table>
+      <% end %>
     </div>
   </div>
 </div>
