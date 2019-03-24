@@ -34,7 +34,8 @@
 	width:300px;
 	heght:300px;
 }
-#close{
+#close-result{
+	font-size:12px;
 	position:fixed;
 	top:10px;
 	right:10px;
@@ -46,7 +47,7 @@
 	border-radius:3px;
 	transition:.4s;
 }
-#close:hover{
+#close-result:hover{
 	background:black;
 	color:#fff;
 }
