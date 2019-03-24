@@ -11,6 +11,16 @@
   <body>
     <header class="navbar navbar-fixed-top">
       <div class="container">
+        <nav class="navbar-nav navbar-right">
+          <% if user_signed_in? %>
+            <% user_name = current_user.user_name %>
+          <% else %>
+            <% user_name = "ゲスト" %>
+          <% end %>
+          <%= "ようこそ、#{user_name}さん" %>
+        </nav>
+      </div>
+      <div class="container">
 
         <nav class="nav navbar-nav navbar-left">
           <div>
@@ -75,21 +85,55 @@
               </li>
             <% end %>
            <% else %>
-            <li><%= link_to " 商品一覧", products_path %><i class="fa fa-music"></i></i></li>
-            <li><%= link_to " About", about_path %><i class="fa fa-sticky-note-o"></i></li>
-            <li><%= link_to " 会員登録", new_user_registration_path %><i class="fa fa-user-plus"></i></li>
-            <li><%= link_to " ログイン", new_user_session_path %><i class="fa fa-sign-in"></i></li>
-            <li><%= link_to " お問い合わせ", inquiries_new_path %><i class="fa fa-envelope-o"></i></li>
+            <li>
+              <%= link_to products_path do %>
+                <div class="header-item">
+                  <span><i class="fa fa-music"></i></span>
+                  <p>商品一覧</p>
+                </div>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to about_path do %>
+                <div class="header-item">
+                  <span><i class="fa fa-sticky-note-o"></i></span>
+                  <p>About</p>
+                </div>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to new_user_registration_path do %>
+                <div class="header-item">
+                  <span><i class="fa fa-user-plus"></i></span>
+                  <p>会員登録</p>
+                </div>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to new_user_session_path do %>
+                <div class="header-item">
+                  <span><i class="fa fa-sign-in"></i></span>
+                  <p>ログイン</p>
+                </div>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to inquiries_new_path do %>
+                <div class="header-item">
+                  <span><i class="fa fa-envelope-o"></i></span>
+                  <p>お問い合わせ</p>
+                </div>
+              <% end %>
+            </li>
            <% end %>
           </ul>
         </nav>
-
       </div>
     </header>
 
     <div class="container">
       <div class="row">
-        <div class="col-xs-offset-2">
+        <div class="flash-messages">
           <% if flash[:notice] %>
            <p class="notice"><%= flash[:notice] %></p>
           <% end %>

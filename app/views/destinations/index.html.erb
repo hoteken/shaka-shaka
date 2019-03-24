@@ -2,6 +2,7 @@
   <div class = "row">
     <h1 class ="col-xs-3 col-xs-offset-4 dest-list-title">送付先リスト</h1>
     <div class="add-button"><%= link_to "送付先を新規追加", new_user_destination_path(@user.id), class:"btn btn-default "%></div>
+    <div class="add-button"><%= link_to "戻る", user_path(@user.id), class:"btn btn-default "%></div>
   </div>
   <div class ="row center-block">
     <div class="col-xs-6 col-xs-offset-3">

@@ -92,8 +92,10 @@
 
         <div class="link_buttons">
           <%= link_to "戻る", products_path, class:"btn btn-default" %>
-          <% if current_user.admin? %>
-            <%= link_to "編集", edit_product_path(@product), class:"btn btn-default" %>
+          <% if user_signed_in? %>
+            <% if current_user.admin? %>
+              <%= link_to "編集", edit_product_path(@product), class:"btn btn-default" %>
+            <% end %>
           <% end %>
         </div>
       </div>

@@ -17,8 +17,10 @@ class ProductsController < ApplicationController
     @songs = @product.songs
 
     # カート追加用
-    @cart = Cart.find_by(user_id:current_user.id)
-    @cart_product = CartProduct.new
+    if user_signed_in?
+      @cart = Cart.find_by(user_id:current_user.id)
+      @cart_product = CartProduct.new
+    end
     
     #ディスクごとの曲名表示用
     if @songs.count > 0

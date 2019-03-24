@@ -28,11 +28,11 @@
 	clear:both;
 }
 header{
-	color:white;
-	background-color: rgb(255, 220, 230);
+	color:gray;
+	background-color: rgb(220, 255, 231);
 }
 body{
-	margin-top:80px;
+	margin-top:105px;
 }
 span{
 	font-size:25px;
@@ -46,4 +46,18 @@ span{
 
 .header-item {
 	text-align: center;
+}
+
+.flash-messages {
+	text-align: center;
+}
+
+.navbar-right a {
+	text-decoration: none;
+	color: black;
+}
+
+.navbar-right p {
+	font-size: 11px;
+	line-height: 100%;
 }
