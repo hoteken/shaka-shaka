@@ -1,15 +1,11 @@
 Rails.application.routes.draw do
   root 'roots#top'
-  #ajax用にrouteを追加
-  namespace :api, { format: 'json' } do
-    get '/json_top', to: 'roots#top'
-  end
   get '/about', to: 'roots#about'
   get '/admin_top', to: 'roots#admin_top'
 
   devise_for :users, :controllers => {
     :registrations => 'users/registrations'
-  } 
+  }
   resources :users, only: [:index, :show, :edit, :update] do
     resources :destinations, only: [:index, :new, :create, :edit, :update, :destroy]
   end
@@ -32,7 +28,7 @@ Rails.application.routes.draw do
   get 'inquiries/confirm'
   post 'inquiries/confirm' => 'inquiries#confirm'
   get 'inquiries/thanks'
-  
+
   get  'new' =>'inquiries#new'
   post 'thanks' => 'inquiries#thanks'
 

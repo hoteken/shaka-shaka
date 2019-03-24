@@ -7,32 +7,26 @@
 			</div>
 			<div class="col-xs-3 col-xs-offset-2">
 				<div class="request_ajax_shaka">
-					<%= link_to ajax_shakashaka_path(:genre_id => 1 ),  method: :post , :remote => true  do %>
-						<%= image_tag 'img/no_image.png', size: "200x200" %>
-						<h3 class="rock">R O C K</h3>
-					<% end %>
+				  <%= link_to ajax_shakashaka_path(:genre_id => 1 ),  method: :post , :remote => true  do %>
+					<%= image_tag 'img/Rock.jpg', size: "300x300" %>
+					<h3 class="genre-select"><strong>ROCK</strong></h3>
+				  <% end %>
 				</div>
 			</div>
 			<div class="col-xs-3">
 				<div class="request_ajax_shaka">
-					<%= link_to ajax_shakashaka_path(:genre_id => 2 ),  method: :post , :remote => true  do %>
-						<%= image_tag 'img/no_image.png', size: "200x200" %>
-						<h3 class="pop">P O P</h3>
-					<% end %>
-
-					<%
-=begin%>
- <%= link_to "POP",  {:action => "shakashaka", :paramss => 2 }, {:remote => true, :class => "shakashaka btn btn-info", method: :post } %> 
-<%
-=end%>
+				  <%= link_to ajax_shakashaka_path(:genre_id => 2 ),  method: :post , :remote => true  do %>
+					<%= image_tag 'img/Pop.png', size: "300x300" %>
+					<h3 class="genre-select"><strong>POP</strong></h3>
+				  <% end %>
 				</div>
 			</div>
 			<div class="col-xs-3">
 				<div class="request_ajax_shaka">
-					<%= link_to ajax_shakashaka_path(:genre_id => 3 ),  method: :post , :remote => true  do %>
-						<%= image_tag 'img/no_image.png', size: "200x200" %>
-						<h3 class="punk">P U N K</h3>
-					<% end %>
+				  <%= link_to ajax_shakashaka_path(:genre_id => 3 ),  method: :post , :remote => true  do %>
+					<%= image_tag 'img/Punk.jpg', size: "300x300" %>
+					<h3 class="genre-select"><strong>PUNK</strong></h3>
+				  <% end %>
 				</div>
 			</div>
 		</div>
@@ -42,7 +36,7 @@
 <div id="overlay">
 	<div id="result">
 		<h2>discover new music</h2>
-			<div id="shaka-content"></div>
+		  <div id="shaka-content"></div>
 		<button id="close">X</button>
 	</div>
 </div>
@@ -50,9 +44,6 @@
 <script>
 
 $(function(){
-	// $(document).on('click', '#rock,#pop,#punk, .shakashaka', function(){
-	// 	$('#overlay,#result').fadeIn();
-	// });
 	$('#close,#overlay').on('click', function(){
 		$('#overlay,#result').fadeOut();
 		$('#result').on('click', function(e){
@@ -66,7 +57,5 @@ $(function(){
     $('#shaka-content').html(response);
     $('#overlay,#result').fadeIn();
   });
-
-
 });
 </script>
