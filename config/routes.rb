@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   devise_for :users, :controllers => {
     :registrations => 'users/registrations'
-  } 
+  }
   resources :users, only: [:index, :show, :edit, :update] do
     resources :destinations, only: [:index, :new, :create, :edit, :update, :destroy]
   end
@@ -28,7 +28,7 @@ Rails.application.routes.draw do
   get 'inquiries/confirm'
   post 'inquiries/confirm' => 'inquiries#confirm'
   get 'inquiries/thanks'
-  
+
   get  'new' =>'inquiries#new'
   post 'thanks' => 'inquiries#thanks'
 
@@ -36,6 +36,7 @@ Rails.application.routes.draw do
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
 
   post  'ajax_test/update', to: 'carts#update', as: 'ajax_test_update'
+  post  'shakashaka', to: 'roots#shakashaka', as: 'ajax_shakashaka'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(version: 2019_03_24_043839) do
     t.integer "total_price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "order_date"
   end
 
   create_table "products", force: :cascade do |t|
