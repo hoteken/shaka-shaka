@@ -5,7 +5,7 @@
       <% provide(:label_name, 'All labels') %>
       <%= search_form_for @search  do |f| %>
         <div class="form-group col-xs-3">
-          <%= f.text_field :label_name_cont , class: "form-control ", :style=>"width:140%;" %>
+          <%= f.text_field :label_name_cont , class: "form-control ", :placeholder=>"レーベル名", :style=>"width:140%;" %>
         </div>
           <%= f.submit "検索", :class=>"btn btn-primary ", :style=>"margin:0 0 0 40px;height:36px;width:96px;"%>
       <% end %>
