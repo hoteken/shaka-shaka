@@ -1,4 +1,5 @@
 class ArtistsController < ApplicationController
+  before_action :authenticate_admin
   def index
     @artists = Artist.page(params[:page]).reverse_order
     @search = Artist.ransack(params[:q])
