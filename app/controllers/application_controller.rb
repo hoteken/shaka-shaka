@@ -43,7 +43,11 @@ class ApplicationController < ActionController::Base
     end
 
     def authenticate_adm_or_correct_user
-      user = User.find(params[:user_id])
+      if params[:user_id]
+        user = User.find(params[:user_id])
+      else
+        user ||= User.find(params[:id])
+      end
       if current_user.admin?
       elsif current_user.id != user.id
         redirect_to products_path

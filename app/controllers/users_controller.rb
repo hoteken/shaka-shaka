@@ -1,15 +1,19 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!,only: [:index,:show]
+  before_action :authenticate_admin,only: [:index]
+  before_action :authenticate_adm_or_correct_user, only: [:show, :edit, :update]
   PER = 8
   def index
     @user = current_user
     @users = User.page(params[:page]).per(PER)
-    @search = User.ransack(params[:q])  
+    @search = @users.ransack(params[:q])  
     @result = @search.result     
   
   end
 
   def show
     @user = User.find(params[:id])
+    @users = User.all
   end
 
   def edit
