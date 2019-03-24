@@ -2,20 +2,12 @@
 <h1>ユーザー管理</h1>
 <%= search_form_for @search  do |f| %>
   <div class="form-group">
-    <%= f.label :name_cont, "Name" %>
-    <%= f.text_field :name_cont, class: "form-control" %>
+    <%= f.label :user_name_cont, "Name" %>
+    <%= f.text_field :user_name_cont, class: "form-control" %>
   </div>
   <div class="actions"><%= f.submit "Search" %></div>
-  <% end %>
-  <% if @result.any? %>
-  <%= render @result %>
 <% end %>
-
-<% if @result.nil? %>
-  <ul class="users">
-    <%= render @users %>
-  </ul>
-<% end %>
+  
 <table class="table table-striped">
 <tr>
     <th>名前</th>
@@ -24,7 +16,7 @@
 </tr>
 <% @users.each do |user| %>
 <tr>
-   <td><%= user.name %></td>
+   <td><%= user.user_name %></td>
    <td><%= user.email %></td>
    <td><%= link_to "詳細", user_path(user)%></td>
  </tr>

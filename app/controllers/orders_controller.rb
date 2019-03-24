@@ -1,4 +1,6 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_admin, only: [:edit,:update,:index]
+  before_action :authenticate_adm_or_correct, only: [:show]
   def index
     @orders = Order.page(params[:page]).reverse_order
   end

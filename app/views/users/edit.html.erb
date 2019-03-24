@@ -1,8 +1,16 @@
 <h1>ユーザー編集</h1>
-<%= @user.user_name%>
-<%= @user.user_name_kana%>
-<%= @user.postcode%>
-<%= @user.address%>
-<%= @user.phonenumber%>
-<%= link_to "戻る" , user_path(user)%>
-<%= link_to "更新", user_path(user)%>
+
+<%= form_for(@user) do |f| %>
+	<h4>ユーザー名</h4>
+	<%= f.text_field :user_name %>
+    <h4>かな</h4>
+	<%= f.text_field :user_name_kana%>
+    <h4>郵便番号</h4>
+	<%= f.text_field :postcode %>
+    <h4>住所</h4>
+	<%= f.text_field :address %>
+	<h4>電話番号</h4>
+	<%= f.text_area :phone_number %>
+    <%= link_to "戻る" , user_path(@user)%>
+	<%= f.submit "Update User" %>
+<% end %>

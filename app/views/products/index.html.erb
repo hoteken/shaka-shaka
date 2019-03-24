@@ -29,8 +29,10 @@
   <div class="col-xs-9">
     <h2>
       Items
-      <% if current_user.admin? %>
-        <%= link_to "新規登録", new_product_path, class: "btn btn-primary", id:"new_product_button" %>
+      <% if user_signed_in? %>
+        <% if current_user.admin? %>
+          <%= link_to "新規登録", new_product_path, class: "btn btn-primary", id:"new_product_button" %>
+        <% end %>
       <% end %>
     </h2>
 

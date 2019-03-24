@@ -39,7 +39,11 @@
 				¥<%= @order.total_price %>
 			</div>
 			<div>
-				<%= link_to "戻る", orders_path, class: "btn btn-primary" %>
+				<% if current_user.admin? %>
+					<%= link_to "戻る", orders_path, class: "btn btn-primary" %>
+				<% else %>
+					<%= link_to "戻る", user_path(current_user), class: "btn btn-primary" %>
+				<% end %>
 				<%= link_to "編集", edit_order_path(@order), class: "btn btn-primary" if current_user.admin? %>
 			</div>
 		</div>

@@ -1,4 +1,5 @@
 class ProductsController < ApplicationController
+  before_action :authenticate_admin, only: [:new, :create, :edit, :update]
 
   def index(genre_id = nil)
     genre_id = params[:format]

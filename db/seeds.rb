@@ -7,12 +7,10 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-5.times do |i|
-  User.create(user_name:"ユーザー #{i}", user_name_kana:"ゆーざー", 
-              email:"test#{i}@gmail.com", postcode:"1112222", 
-              address:"東京都江戸川区", phone_number:"0377778888", password:"password")
-  Cart.create(user_id:i)
-end
+User.create(user_name:"ユーザー1", user_name_kana:"ゆーざー", 
+            email:"test1@gmail.com", postcode:"1112222", 
+            address:"東京都江戸川区", phone_number:"0377778888", password:"password")
+Cart.create(user_id:1)
 
 Genre.create(genre_name:"Rock")
 Genre.create(genre_name:"Pop")

@@ -1,43 +1,13 @@
-<% if user_signed_in? %>
-<h1>マイページ</h1>
+<% if current_user.admin? %>
+ <h1>ユーザー詳細</h1>
 <%= @user.user_name%>
 <%= @user.user_name_kana%>
 <%= @user.postcode%>
 <%= @user.address%>
 <%= @user.phone_number%>
 <%= @user.email%>
-<%= link_to "送付先リスト", user_destinations_path %>
-<%= link_to "編集", edit_user_path(user) %>
-<%= link_to "退会", products_path %>
-<h1>直近の購入履歴</h1>
-<table class="table table-striped">
-<tr>
-    <th>受注日</th>
-    <th>ステータス</th>
-    <th>ユーザー名</th>
-    <th>注文金額</th>
-    <th colspan="4"></th>
-</tr>
-<% @users.each do |user| %>
-<tr>
-   <td><%= user.created_at %></td>
-   <td><%= user.status %></td>
-   <td><%= user.user_name %></td>
-   <td><%= user.total_price %></td>
-   <td><%= link_to "詳細", user_path(user)%></td>
- </tr>
-<% end %>
-</table>
- <% else %>
- <h1>ユーザー編集</h1>
-<%= @user.user_name%>
-<%= @user.user_name_kana%>
-<%= @user.postcode%>
-<%= @user.address%>
-<%= @user.phonenumber%>
-<%= @user.email%>
-<%= link_to "編集", edit_user_path(user) %>
-<%= link_to "送付先リスト", user_destinations_path %>
+<%= link_to "編集", edit_user_path(current_user) %>
+<%= link_to "送付先リスト", user_destinations_path(current_user) %>
 <%= link_to "削除", users_path %>
 <%= link_to "戻る", users_path %>
 <h1>直近の購入履歴</h1>
@@ -50,14 +20,46 @@
     <th colspan="4"></th>
 </tr>
 <% @users.each do |user| %>
+<% user.orders.each do |order| %>
 <tr>
-   <td><%= user.created_at %></td>
-   <td><%= user.status %></td>
-   <td><%= user.user_name %></td>
-   <td><%= user.total_price %></td>
+   <td><%= order.created_at %></td>
+   <td><%= order.status %></td>
+   <td><%= order.user.user_name %></td>
+   <td><%= order.total_price %></td>
    <td><%= link_to "詳細", user_path(user)%></td>
+ </tr>
+ <% end %>
+<% end %>
+</table>
+<% else %>
+<h1>マイページ</h1>
+<%= @user.user_name%>
+<%= @user.user_name_kana%>
+<%= @user.postcode%>
+<%= @user.address%>
+<%= @user.phone_number%>
+<%= @user.email%>
+<%= link_to "送付先リスト", user_destinations_path(current_user) %>
+<%= link_to "編集", edit_user_path(current_user) %>
+<%= link_to "退会", user_registration_path ,method: :delete %>
+<h1>直近の購入履歴</h1>
+<table class="table table-striped">
+<tr>
+    <th>受注日</th>
+    <th>ステータス</th>
+    <th>ユーザー名</th>
+    <th>注文金額</th>
+    <th colspan="4"></th>
+</tr>
+
+<% @user.orders.each do |order| %>
+<tr>
+   <td><%= order.created_at %></td>
+   <td><%= order.status %></td>
+   <td><%= order.user.user_name %></td>
+   <td><%= order.total_price %></td> 
+   <td><%= link_to "詳細", user_path(current_user)%></td>
  </tr>
 <% end %>
 </table>
-<% end %>
-
+<% end %> 
