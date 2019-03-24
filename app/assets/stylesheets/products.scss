@@ -10,6 +10,7 @@
 
 .genre {
   margin: 10px;
+  font-size: 18px;
 }
 
 .genre_name {
@@ -21,8 +22,14 @@
   margin: 10px;
 }
 
-.product p {
+.product div {
   text-align: center;
+}
+.product .cart-icon {
+  display: inline;
+}
+.product .new_cart_product {
+  float: right;
 }
 
 #new_product_button {
@@ -43,7 +50,7 @@
 }
 
 .category-bar {
-  padding: 20px;
+  padding: 0 20px 20px 20px;
 }
 
 .search-bar input {

@@ -6,17 +6,23 @@
 <%
 =end%>
 
-  <div class="col-xs-2">
+  <div class="col-xs-3">
     <div class="category-bar">
       <h2>Genre</h2>
       <div class="genre">
-        <%= image_tag("img/Rock.jpg", alt:"アイコン", size:'50x50') %><%= link_to "Rock", products_path(1), class:"genre_name" %>
+        <%= link_to products_path(1) do %>
+          <%= image_tag("img/Rock.jpg", alt:"アイコン", size:'50x50') %><%= link_to "Rock", products_path(1), class:"genre_name" %>
+        <% end %>
       </div>
       <div class="genre">
-        <%= image_tag("img/Pop.png", alt:"アイコン", size:'50x50') %><%= link_to "Pop", products_path(2), class:"genre_name" %>
+        <%= link_to products_path(2) do %>
+          <%= image_tag("img/Pop.png", alt:"アイコン", size:'50x50') %><%= link_to "Pop", products_path(2), class:"genre_name" %>
+        <% end %>
       </div>
       <div class="genre">
-        <%= image_tag("img/Punk.jpg", alt:"アイコン", size:'50x50') %><%= link_to "Punk", products_path(3), class:"genre_name" %>
+        <%= link_to products_path(3) do %>
+          <%= image_tag("img/Punk.jpg", alt:"アイコン", size:'50x50') %><%= link_to "Punk", products_path(3), class:"genre_name" %>
+        <% end %>
       </div>
     </div>
   </div>
@@ -50,11 +56,25 @@
       <div class="products clearfix">
         <% @result.each do |random_product| %>
           <div class="product">
-            <%= attachment_image_tag random_product, :image, :fill, 100, 100, format: 'jpeg', class:"jacket-image", fallback:"img/no_image.png", :size => '200x200' %>
-            <p>
-              <%= link_to random_product.product_title, random_product %>
-              <%= "¥"+random_product.product_price.to_s %>
-            </p>
+            <%= link_to random_product do %>
+              <%= attachment_image_tag random_product, :image, :fill, 100, 100, format: 'jpeg', class:"jacket-image", fallback:"img/no_image.png", :size => '200x200' %>
+              <br>
+              <div>
+                <%= random_product.product_title %>
+                <%= "¥"+random_product.product_price.to_s %>
+                <div class="cart-icon">
+                  <% if user_signed_in? %>
+                    <%= form_for([@cart, @cart_product]) do |f| %>
+                      <%= f.hidden_field :product_id, value: random_product.id %>
+                      <%= f.hidden_field :quantity, value: 1 %>
+                      <%= button_tag type: "submit", class: "btn btn-success" do %>
+                        <i class="fa fa-cart-plus"></i>
+                      <% end %>
+                    <% end %>
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
           </div>
         <% end %>
       </div>

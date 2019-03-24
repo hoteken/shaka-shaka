@@ -27,14 +27,19 @@
 	display:block;
 	clear:both;
 }
+body a {
+	text-decoration: none;
+	color: gray;
+}
 header{
 	color:gray;
 	background-color: rgb(220, 255, 231);
 }
 body{
 	margin-top:105px;
+	font-family: 'Noto Sans JP', sans-serif;
 }
-span{
+.header-icon{
 	font-size:25px;
 }
 .notice{

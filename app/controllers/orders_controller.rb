@@ -76,7 +76,7 @@ class OrdersController < ApplicationController
     @user = User.find_by(id: @order.user_id)
     @order_item = Product.find(@order.product_id)
     if @order.update(order_params)
-      flash.now[:notice] = "ステータスを更新しました"
+      flash[:notice] = "ステータスを更新しました"
       redirect_to order_path(@order.id)
     else
       flash.now[:danger] = "ステータス更新に失敗しました。退会済みユーザーの可能性があります。"

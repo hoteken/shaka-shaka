@@ -6,6 +6,7 @@
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP&amp;subset=japanese" rel="stylesheet">
   </head>
 
   <body>
@@ -46,7 +47,7 @@
               <li>
                 <%= link_to products_path do %>
                   <div class="header-item">
-                    <span><i class="fa fa-music"></i></span>
+                    <span class="header-icon"><i class="fa fa-music"></i></span>
                     <p>商品一覧</p>
                   </div>
                 <% end %>
@@ -54,7 +55,7 @@
               <li>
                 <%= link_to cart_path(current_user.cart) do %>
                   <div class="header-item">
-                    <span><i class="fa fa-shopping-cart"></i></span>
+                    <span class="header-icon"><i class="fa fa-shopping-cart"></i></span>
                     <p>カート</p>
                   </div>
                 <% end %>
@@ -62,7 +63,7 @@
               <li>
                 <%= link_to user_path(current_user.id) do %>
                   <div class="header-item">
-                    <span><i class="fa fa-user"></i></span>
+                    <span class="header-icon"><i class="fa fa-user"></i></span>
                     <p>マイページ</p>
                   </div>
                 <% end %>
@@ -70,7 +71,7 @@
               <li>
                 <%= link_to destroy_user_session_path, method: :delete do %>
                   <div class="header-item">
-                    <span><i class="fa fa-sign-out"></i></span>
+                    <span class="header-icon"><i class="fa fa-sign-out"></i></span>
                     <p>ログアウト</p>
                   </div>
                 <% end %>
@@ -78,7 +79,7 @@
               <li>
                 <%= link_to inquiries_new_path do %>
                   <div class="header-item">
-                    <span><i class="fa fa-envelope-o"></i></span>
+                    <span class="header-icon"><i class="fa fa-envelope-o"></i></span>
                     <p>お問い合わせ</p>
                   </div>
                 <% end %>
@@ -88,7 +89,7 @@
             <li>
               <%= link_to products_path do %>
                 <div class="header-item">
-                  <span><i class="fa fa-music"></i></span>
+                  <span class="header-icon"><i class="fa fa-music"></i></span>
                   <p>商品一覧</p>
                 </div>
               <% end %>
@@ -96,7 +97,7 @@
             <li>
               <%= link_to about_path do %>
                 <div class="header-item">
-                  <span><i class="fa fa-sticky-note-o"></i></span>
+                  <span class="header-icon"><i class="fa fa-sticky-note-o"></i></span>
                   <p>About</p>
                 </div>
               <% end %>
@@ -104,7 +105,7 @@
             <li>
               <%= link_to new_user_registration_path do %>
                 <div class="header-item">
-                  <span><i class="fa fa-user-plus"></i></span>
+                  <span class="header-icon"><i class="fa fa-user-plus"></i></span>
                   <p>会員登録</p>
                 </div>
               <% end %>
@@ -112,7 +113,7 @@
             <li>
               <%= link_to new_user_session_path do %>
                 <div class="header-item">
-                  <span><i class="fa fa-sign-in"></i></span>
+                  <span class="header-icon"><i class="fa fa-sign-in"></i></span>
                   <p>ログイン</p>
                 </div>
               <% end %>
@@ -120,7 +121,7 @@
             <li>
               <%= link_to inquiries_new_path do %>
                 <div class="header-item">
-                  <span><i class="fa fa-envelope-o"></i></span>
+                  <span class="header-icon"><i class="fa fa-envelope-o"></i></span>
                   <p>お問い合わせ</p>
                 </div>
               <% end %>
