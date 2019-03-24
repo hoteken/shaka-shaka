@@ -13,7 +13,8 @@
 	display:none;
 	z-index:1
 }
-#result{
+#shaka-result{
+	text-align:center;
 	width:700px;
 	height:600px;
 	position:absolute;
@@ -25,14 +26,6 @@
 	background-color:#fff;
 	display:none;
 	z-index:2
-}
-#content-title{
-	width:300px;
-	heght:100px;
-}
-#content-image{
-	width:300px;
-	heght:300px;
 }
 #close-result{
 	font-size:12px;
@@ -50,4 +43,18 @@
 #close-result:hover{
 	background:black;
 	color:#fff;
+}
+.headline{
+	text-align:center;
+}
+.headline strong{
+	font-size:60px;
+}
+.genre-select{
+	color:black;
+	display:inline-block;
+	text-decoration:none;
+}
+.request_ajax_shaka{
+	text-align:center;
 }
