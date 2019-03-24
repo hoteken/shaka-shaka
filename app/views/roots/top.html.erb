@@ -46,9 +46,9 @@
 $(function(){
 	$('#close-result,#overlay').on('click', function(){
 		$('#overlay,#shaka-result').fadeOut();
-		$('#shaka-result').on('click', function(e){
-			e.stopPropagation();
-		});
+	});
+	$('#shaka-result').on('click', function(e){
+		e.stopPropagation();
 	});
 
   $('.request_ajax_shaka').on('ajax:complete', function(event) {
