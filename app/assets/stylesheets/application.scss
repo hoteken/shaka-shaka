@@ -29,16 +29,21 @@
 }
 header{
 	color:white;
+	background-color: rgb(255, 220, 230);
 }
 body{
-	margin-top:60px;
+	margin-top:80px;
 }
 span{
-	font-size:37px;
+	font-size:25px;
 }
 .notice{
-	font-color:green;
+	color:green;
 }
 #error-explanation{
-	font-color:red;
+	color:red;
+}
+
+.header-item {
+	text-align: center;
 }

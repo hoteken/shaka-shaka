@@ -9,11 +9,15 @@
   </head>
 
   <body>
-    <header class="navbar navbar-fixed-top navbar-inverse">
+    <header class="navbar navbar-fixed-top">
       <div class="container">
 
         <nav class="nav navbar-nav navbar-left">
-          <span><%= link_to "Shaka-Shaka", root_path %></span>
+          <div>
+            <%= link_to root_path do %>
+              <%= image_tag("img/logo_shakashaka.png", :size => "150x80", :alt => "ロゴ") %>
+            <% end %>
+          </div>
         </nav>
 
         <nav>
@@ -24,21 +28,58 @@
               <li><%= link_to " ユーザー管理", users_path %></li>
               <li><%= link_to " 商品管理", products_path %></li>
               <li><%= link_to " 楽曲管理", songs_path %></li>
+              <li><%= link_to " アーティスト管理", artists_path %></li>
+              <li><%= link_to " レーベル管理", labels_path %></li>
               <li><%= link_to " 受注管理", orders_path %></li>
               <li><%= link_to " ログアウト", destroy_user_session_path, method: :delete %></li>
             <% else %>
-              <li><%= link_to " 商品一覧", products_path %></li>
-              <li><%= link_to " カート", cart_path(current_user.cart) %></li>
-              <li><%= link_to " マイページ", user_path(current_user.id) %></li>
-              <li><%= link_to " ログアウト", destroy_user_session_path, method: :delete %></li>
-              <li><%= link_to " お問い合わせ", inquiries_new_path %></li>
+              <li>
+                <%= link_to products_path do %>
+                  <div class="header-item">
+                    <span><i class="fa fa-music"></i></span>
+                    <p>商品一覧</p>
+                  </div>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to cart_path(current_user.cart) do %>
+                  <div class="header-item">
+                    <span><i class="fa fa-shopping-cart"></i></span>
+                    <p>カート</p>
+                  </div>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to user_path(current_user.id) do %>
+                  <div class="header-item">
+                    <span><i class="fa fa-user"></i></span>
+                    <p>マイページ</p>
+                  </div>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to destroy_user_session_path, method: :delete do %>
+                  <div class="header-item">
+                    <span><i class="fa fa-sign-out"></i></span>
+                    <p>ログアウト</p>
+                  </div>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to inquiries_new_path do %>
+                  <div class="header-item">
+                    <span><i class="fa fa-envelope-o"></i></span>
+                    <p>お問い合わせ</p>
+                  </div>
+                <% end %>
+              </li>
             <% end %>
            <% else %>
-            <li><%= link_to " 商品一覧", products_path %></li>
-            <li><%= link_to " About", about_path %></li>
-            <li><%= link_to " 会員登録", new_user_registration_path %></li>
-            <li><%= link_to " ログイン", new_user_session_path %></li>
-            <li><%= link_to " お問い合わせ", inquiries_new_path %></li>
+            <li><%= link_to " 商品一覧", products_path %><i class="fa fa-music"></i></i></li>
+            <li><%= link_to " About", about_path %><i class="fa fa-sticky-note-o"></i></li>
+            <li><%= link_to " 会員登録", new_user_registration_path %><i class="fa fa-user-plus"></i></li>
+            <li><%= link_to " ログイン", new_user_session_path %><i class="fa fa-sign-in"></i></li>
+            <li><%= link_to " お問い合わせ", inquiries_new_path %><i class="fa fa-envelope-o"></i></li>
            <% end %>
           </ul>
         </nav>
