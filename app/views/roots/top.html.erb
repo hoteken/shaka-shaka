@@ -1,2 +1,61 @@
-<h1>Roots#top</h1>
-<p>Find me in app/views/roots/top.html.erb</p>
+<section class="body">
+	<div container>
+		<div class="row">
+			<div class="col-xs-offset-4">
+				<h1>Let's <strong>ShakaShaka</strong> !</h1>
+				<h4>ジャンルを選択してください</h4>
+			</div>
+			<div class="col-xs-3 col-xs-offset-2">
+				<div class="request_ajax_shaka">
+				  <%= link_to ajax_shakashaka_path(:genre_id => 1 ),  method: :post , :remote => true  do %>
+					<%= image_tag 'img/Rock.jpg', size: "300x300" %>
+					<h3 class="genre-select"><strong>ROCK</strong></h3>
+				  <% end %>
+				</div>
+			</div>
+			<div class="col-xs-3">
+				<div class="request_ajax_shaka">
+				  <%= link_to ajax_shakashaka_path(:genre_id => 2 ),  method: :post , :remote => true  do %>
+					<%= image_tag 'img/Pop.png', size: "300x300" %>
+					<h3 class="genre-select"><strong>POP</strong></h3>
+				  <% end %>
+				</div>
+			</div>
+			<div class="col-xs-3">
+				<div class="request_ajax_shaka">
+				  <%= link_to ajax_shakashaka_path(:genre_id => 3 ),  method: :post , :remote => true  do %>
+					<%= image_tag 'img/Punk.jpg', size: "300x300" %>
+					<h3 class="genre-select"><strong>PUNK</strong></h3>
+				  <% end %>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<div id="overlay">
+	<div id="result">
+		<h2>discover new music</h2>
+		  <div id="shaka-content"></div>
+		<button id="close">X</button>
+	</div>
+</div>
+
+<script>
+
+$(function(){
+	$('#close,#overlay').on('click', function(){
+		$('#overlay,#result').fadeOut();
+		$('#result').on('click', function(e){
+			e.stopPropagation();
+		});
+	});
+
+  $('.request_ajax_shaka').on('ajax:complete', function(event) {
+    var response;
+    response = event.detail[0].response;
+    $('#shaka-content').html(response);
+    $('#overlay,#result').fadeIn();
+  });
+});
+</script>
