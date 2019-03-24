@@ -10,11 +10,12 @@ class LabelsController < ApplicationController
   end
 
   def create
-    label = Label.new(label_params)
-    if label.save
-       redirect_to labels_path
+    @label = Label.new(label_params)
+    if @label.save
+    flash[:notice] = "送付先の追加に成功しました"
+    redirect_to labels_path
     else
-       redirect_to new_label_path
+    render :new
     end
   end
 
@@ -23,11 +24,12 @@ class LabelsController < ApplicationController
   end
 
   def update
-    label = Label.find(params[:id])
-    if label.update(label_params)
+    @label = Label.find(params[:id])
+    if @label.update(label_params)
+       flash[:notice] = "送付先情報を変更しました"
        redirect_to labels_path
     else
-       redirect_to edit_label_path
+       render :edit
     end
   end
 
