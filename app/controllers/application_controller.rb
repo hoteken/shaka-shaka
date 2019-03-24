@@ -1,11 +1,12 @@
 class ApplicationController < ActionController::Base
+    before_action :authenticate_user!
     before_action :configure_permitted_parameters, if: :devise_controller?
     
     def after_sign_in_path_for(resource)
         if current_user.admin?
             admin_top_path
         else
-            user_session_path
+            products_path
         end
     end
   
@@ -20,8 +21,5 @@ class ApplicationController < ActionController::Base
         devise_parameter_sanitizer.permit(:sign_up, keys: [:postcode])
         devise_parameter_sanitizer.permit(:sign_up, keys: [:address])
         devise_parameter_sanitizer.permit(:sign_up, keys: [:phone_number])
-    end
-    def admin_user
-        redirect_to(products_path) unless current_user.admin?
     end
 end
