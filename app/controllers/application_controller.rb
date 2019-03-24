@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
         if current_user.admin?
             admin_top_path
         else
-            products_path
+            user_session_path
         end
     end
   
