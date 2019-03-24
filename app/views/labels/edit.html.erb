@@ -1,20 +1,29 @@
 
 <div class = "container">
-    <p class="text">レーベル名　編集</p>
-      <div class="row">
-        <div class = "main">
-          <%= form_for(@label) do |f| %>
-          <p class = "text1">
-            <span class = "name"><%= f.label :レーベル名 %></span>
-            <%= f.text_field :label_name %>
-          </p>
-        <div class = "main-bottom">
-          <span class = "botan">
-            <%= link_to "戻る", labels_path, class:"btn btn-primary", :style=>"margin: 0 100px -39px 0;;height:36px;width:96px;"%>
-          </span>
-            <%= f.submit "更新", class:"btn btn-primary", :style=>"height:36px;width:96px;" %>
-          </div>
-            <% end %>
-        </div>
-      </div>
+  <div class="row">
+    <p class="col-xs-2 label_titile">レーベル編集</p>
+    <div class="col-xs-10"></div>
   </div>
+    <div class="border"></div>
+    <div class="box"></div>
+  <div class="row">
+    <div class="col-xs-2"></div>
+    <div class="col-xs-7">
+      <%= form_for(@label) do |f| %>
+        <span><%= f.label :レーベル名, :style=>"margin-right: 67px;" %></span>
+          <%= f.text_field :label_name, class: "text_box" %>
+    </div>
+      <div class="col-xs-3"></div>
+  </div>
+    <div class="box"></div>
+  <div class="row">
+    <div class="col-xs-4"></div>
+    <div class="col-xs-4">
+      <%= link_to "戻る", labels_path, class:"btn btn-primary", :style=>"margin-bottom: -12px;padding: 7px 33px; margin-right: 67px; "%>
+      <%= f.submit "更新", class:"btn btn-primary", :style=>"height:36px;width:96px; margin-bottom: -12px;" %>
+      <% end %>
+    </div>
+    <div class="col-xs-4"></div>
+  </div>
+</div>
+<div class="box"></div>
