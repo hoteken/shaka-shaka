@@ -2,7 +2,7 @@ class User < ApplicationRecord
   has_many :orders
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  acts_as_paranoid without_default_scope: true
+  acts_as_paranoid
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   validates :user_name, presence: true, uniqueness: true, length: {maximum: 20}

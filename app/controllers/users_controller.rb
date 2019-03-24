@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!,only: [:index,:show]
+  before_action :authenticate_admin,only: [:index]
+  before_action :authenticate_adm_or_correct_user, only: [:show, :edit, :update]
   PER = 8
   def index
     @user = current_user
