@@ -64,11 +64,13 @@
                 <%= "¥"+random_product.product_price.to_s %>
                 <div class="cart-icon">
                   <% if user_signed_in? %>
-                    <%= form_for([@cart, @cart_product]) do |f| %>
-                      <%= f.hidden_field :product_id, value: random_product.id %>
-                      <%= f.hidden_field :quantity, value: 1 %>
-                      <%= button_tag type: "submit", class: "btn btn-success" do %>
-                        <i class="fa fa-cart-plus"></i>
+                    <% unless current_user.admin? %>
+                      <%= form_for([@cart, @cart_product]) do |f| %>
+                        <%= f.hidden_field :product_id, value: random_product.id %>
+                        <%= f.hidden_field :quantity, value: 1 %>
+                        <%= button_tag type: "submit", class: "btn btn-success" do %>
+                          <i class="fa fa-cart-plus"></i>
+                        <% end %>
                       <% end %>
                     <% end %>
                   <% end %>
