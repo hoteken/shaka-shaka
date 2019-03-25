@@ -1,5 +1,5 @@
-<div class="">
-<%= results[:title] %>
-<%= attachment_image_tag selected_item, :image, :fill, 300, 300, format: 'jpeg', class:"jacket-image", fallback:"img/no_image.png", :size => '300x300', class: 'result-image' %>
-<%= link_to "詳細", product_path(results[:product_id]), class: 'result-path' %>
+<div>
+	<h2><%= link_to results[:title], product_path(results[:product_id]), class: "result-title" %></h2>
+	<div><%= attachment_image_tag selected_item, :image, :fill, 300, 300, format: 'jpeg', class:"jacket-image", fallback:"img/no_image.png", :size => '300x300' %></div>
+	<h3><%= link_to "item detail", product_path(results[:product_id]), class: "result-title" %></h3>
 </div>
