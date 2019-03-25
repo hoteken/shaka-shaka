@@ -1,4 +1,13 @@
-
+<% if @label.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= @label.errors.count %>件のエラーがあります。</h2>
+    <ul>
+    <% @label.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
 <div class = "container">
   <div class="row">
     <p class="col-xs-2 label_titile">レーベル編集</p>
