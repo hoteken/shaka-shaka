@@ -8,17 +8,17 @@
       <%= form_for(@inquiry, url: { action: :confirm }) do |f| %>
         <div class="form-group center-block">
           <%= f.label :name, "お名前" %>
-          <%= f.text_field :name, class: "form-control " %>
+          <%= f.text_field :name, class: "form-control ", placeholder:"例：山田太郎" %>
         </div>
 
         <div class="form-group center-block">
           <%= f.label :email, "メールアドレス" %>
-          <%= f.text_field :email, class: "form-control" %>
+          <%= f.text_field :email, class: "form-control", placeholder:"例：example@aaa.com" %>
         </div>
 
         <div class="form-group center-block">
           <%= f.label :message, "お問い合わせ内容" %>
-          <%= f.text_area :message, class: "form-control" %>
+          <%= f.text_area :message, class: "form-control", placeholder:"お問い合わせ内容" %>
         </div>
         <div class="form-group center-block">
           <%= f.submit "確認", class:"btn btn-primary center-block" %>
