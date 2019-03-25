@@ -6,16 +6,20 @@
 			</div>
 			<div class="col">
 				<h3>受注日</h3>
-				<%= @order.created_at.strftime('%Y/%m/%d') %>
+				<%= @order.created_at.strftime('%Y/%m/%d %H:%M') %>
 			</div>
 			<div class="col">
 				<h3>ユーザー名</h3>
-				<%= @user.user_name %>
+				<% if @user != nil %>
+					<%= @user.user_name %>
+				<% else %>
+					退会済みユーザー
+				<% end %>
 			</div>
 			<div class="col">
-				<h3>受注商品</h3>
-				<%= @order_item.product_title %>
-				<%= @quantity %>
+				<h3>受注商品/枚数/単価</h3>
+				<%= @order_item.product_title %>/
+				<%= @order.quantity %>枚/
 				¥<%= @order_item.product_price %>
 			</div>
 			<div class="col">
@@ -35,7 +39,7 @@
 				<%= @order.destination_address %>
 			</div>
 			<div class="col">
-				<h3>総計</h3>
+				<h3>注文金額</h3>
 				¥<%= @order.total_price %>
 			</div>
 			<div>
