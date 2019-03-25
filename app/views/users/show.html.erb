@@ -24,14 +24,14 @@
    <td><%= order.created_at %></td>
    <td>
    <% if order.status.to_i == 10 %>
-								受付済み
-							<% elsif order.status.to_i == 20 %>
-								発送準備中
-							<% elsif order.status.to_i == 30 %>
-								発送済み
-							<% else %>
-								確認中
-							<% end %>
+      受付済み
+    <% elsif order.status.to_i == 20 %>
+      発送準備中
+    <% elsif order.status.to_i == 30 %>
+      発送済み
+    <% else %>
+      確認中
+    <% end %>
    </td>
    <td><%= order.user.user_name %></td>
    <td><%= order.total_price %></td> 
@@ -65,14 +65,14 @@
    <td><%= order.created_at %></td>
    <td>
    <% if order.status.to_i == 10 %>
-								受付済み
-							<% elsif order.status.to_i == 20 %>
-								発送準備中
-							<% elsif order.status.to_i == 30 %>
-								発送済み
-							<% else %>
-								確認中
-							<% end %>
+      受付済み
+    <% elsif order.status.to_i == 20 %>
+      発送準備中
+    <% elsif order.status.to_i == 30 %>
+      発送済み
+    <% else %>
+      確認中
+    <% end %>
    </td>
    <td><%= order.user.user_name %></td>
    <td><%= order.total_price %></td> 
