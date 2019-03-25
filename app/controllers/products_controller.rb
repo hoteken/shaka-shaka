@@ -60,7 +60,7 @@ class ProductsController < ApplicationController
   def update
     @product = Product.find(params[:id])
     if @product.update(product_params)
-      flash.now[:notice] = "商品情報の編集に成功しました"
+      flash[:notice] = "商品情報の編集に成功しました"
       redirect_to @product
     else
       render 'edit'

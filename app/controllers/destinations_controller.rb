@@ -43,6 +43,7 @@ class DestinationsController < ApplicationController
     @user = User.find(current_user.id)
     @destination = Destination.find(params[:id])
     @destination.destroy
+    flash[:notice] = "送付先情報を削除しました"
     redirect_to user_destinations_path(@user)
   end
 
