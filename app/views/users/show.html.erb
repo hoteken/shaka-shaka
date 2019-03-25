@@ -6,9 +6,9 @@
 <%= @user.address%>
 <%= @user.phone_number%>
 <%= @user.email%>
-<%= link_to "編集", edit_user_path(current_user) %>
-<%= link_to "送付先リスト", user_destinations_path(current_user) %>
-<%= link_to "削除", users_path %>
+<%= link_to "編集", edit_user_path(@user) %>
+<%= link_to "送付先リスト", user_destinations_path(@user) %>
+<%= link_to "削除", user_registration_path(@user) ,method: :delete, data: {confirm: "本当に削除しますか？"} unless @user.admin?%>
 <%= link_to "戻る", users_path %>
 <h1>直近の購入履歴</h1>
 <table class="table table-striped">
@@ -19,16 +19,24 @@
     <th>注文金額</th>
     <th colspan="4"></th>
 </tr>
-<% @users.each do |user| %>
-<% user.orders.each do |order| %>
+<% @user.orders.each do |order| %>
 <tr>
    <td><%= order.created_at %></td>
-   <td><%= order.status %></td>
+   <td>
+   <% if order.status.to_i == 10 %>
+								受付済み
+							<% elsif order.status.to_i == 20 %>
+								発送準備中
+							<% elsif order.status.to_i == 30 %>
+								発送済み
+							<% else %>
+								確認中
+							<% end %>
+   </td>
    <td><%= order.user.user_name %></td>
-   <td><%= order.total_price %></td>
+   <td><%= order.total_price %></td> 
    <td><%= link_to "詳細", order_path(order)%></td>
  </tr>
- <% end %>
 <% end %>
 </table>
 <% else %>
@@ -55,7 +63,17 @@
 <% @user.orders.each do |order| %>
 <tr>
    <td><%= order.created_at %></td>
-   <td><%= order.status %></td>
+   <td>
+   <% if order.status.to_i == 10 %>
+								受付済み
+							<% elsif order.status.to_i == 20 %>
+								発送準備中
+							<% elsif order.status.to_i == 30 %>
+								発送済み
+							<% else %>
+								確認中
+							<% end %>
+   </td>
    <td><%= order.user.user_name %></td>
    <td><%= order.total_price %></td> 
    <td><%= link_to "詳細", order_path(order)%></td>
