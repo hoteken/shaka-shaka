@@ -16,7 +16,7 @@
 				<% @orders.each do |order| %>
 				<tbody>
 					<tr>
-						<td><%= order.created_at.strftime('%Y/%m/%d') %></td>
+						<td><%= order.created_at.strftime('%Y/%m/%d %H:%M') %></td>
 						<td>
 							<% if order.status.to_i == 10 %>
 								受付済み
@@ -28,7 +28,13 @@
 								確認中
 							<% end %>
 						</td>
-						<td><%= link_to order.user.user_name, user_path(order.user) %></td>
+						<td>
+							<% if order.user != nil %>
+								<%= link_to order.user.user_name, user_path(order.user) %>
+							<% else %>
+								<p>退会済みユーザー</p>
+							<% end %>
+						</td>
 						<td>¥<%= order.total_price %></td>
 						<td><%= link_to "詳細", order_path(order), class: "btn btn-primary" %></td>
 					</tr>

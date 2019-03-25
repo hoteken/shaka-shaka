@@ -1,4 +1,5 @@
 class LabelsController < ApplicationController
+  before_action :authenticate_admin
   def index
     @labels = Label.page(params[:page]).reverse_order
     @search = Label.ransack(params[:q])

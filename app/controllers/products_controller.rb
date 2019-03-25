@@ -10,6 +10,12 @@ class ProductsController < ApplicationController
     end
     @search = @random_products.ransack(params[:q])
     @result = @search.result.page(params[:page])
+
+    # カート追加用
+    if user_signed_in?
+      @cart = Cart.find_by(user_id:current_user.id)
+      @cart_product = CartProduct.new
+    end
   end
 
   def show
@@ -17,8 +23,10 @@ class ProductsController < ApplicationController
     @songs = @product.songs
 
     # カート追加用
-    @cart = Cart.find_by(user_id:current_user.id)
-    @cart_product = CartProduct.new
+    if user_signed_in?
+      @cart = Cart.find_by(user_id:current_user.id)
+      @cart_product = CartProduct.new
+    end
     
     #ディスクごとの曲名表示用
     if @songs.count > 0

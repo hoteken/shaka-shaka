@@ -1,4 +1,5 @@
 class ArtistsController < ApplicationController
+  before_action :authenticate_admin
   def index
     @artists = Artist.page(params[:page]).reverse_order
     @search = Artist.ransack(params[:q])
@@ -10,11 +11,12 @@ class ArtistsController < ApplicationController
   end
 
   def create
-    artist = Artist.new(artist_params)
-    if artist.save
-       redirect_to artists_path
+    @artist = Artist.new(artist_params)
+    if @artist.save
+      flash[:notice] = "送付先の追加に成功しました"
+      redirect_to artists_path
     else
-       redirect_to new_artist_path
+      render :new
     end
   end
 
@@ -23,11 +25,12 @@ class ArtistsController < ApplicationController
   end
 
   def update
-    artist = Artist.find(params[:id])
-    if artist.update(artist_params)
-       redirect_to artists_path
+    @artist = Artist.find(params[:id])
+    if @artist.update(artist_params)
+      flash[:notice] = "送付先情報を変更しました"
+      redirect_to artists_path
     else
-       redirect_to edit_artist_path
+      render :edit
     end
   end
 
