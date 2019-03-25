@@ -26,7 +26,7 @@
    <td><%= order.status %></td>
    <td><%= order.user.user_name %></td>
    <td><%= order.total_price %></td>
-   <td><%= link_to "詳細", user_path(user)%></td>
+   <td><%= link_to "詳細", order_path(order)%></td>
  </tr>
  <% end %>
 <% end %>
@@ -41,7 +41,7 @@
 <%= @user.email%>
 <%= link_to "送付先リスト", user_destinations_path(current_user) %>
 <%= link_to "編集", edit_user_path(current_user) %>
-<%= link_to "退会", user_registration_path ,method: :delete %>
+<%= link_to "退会", user_registration_path ,method: :delete, data: {confirm: "本当に退会しますか？"} %>
 <h1>直近の購入履歴</h1>
 <table class="table table-striped">
 <tr>
@@ -58,7 +58,7 @@
    <td><%= order.status %></td>
    <td><%= order.user.user_name %></td>
    <td><%= order.total_price %></td> 
-   <td><%= link_to "詳細", user_path(current_user)%></td>
+   <td><%= link_to "詳細", order_path(order)%></td>
  </tr>
 <% end %>
 </table>
