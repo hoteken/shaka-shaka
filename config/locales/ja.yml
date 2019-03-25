@@ -1,0 +1,37 @@
+ja:
+  activerecord:
+    attributes:
+      user:
+        user_name: 名前
+        user_name_kana: ふりがな
+        email: メールアドレス
+        postcode: 郵便番号
+        address: 住所
+        phone_number: 電話番号
+        password: パスワード
+      artist:
+        artist_name: アーティスト名
+      label:
+        label_name: レーベル名
+      destination:
+        destination_name: 送付先名
+        destination_postcode: 送付先郵便番号
+        destination_address: 送付先住所
+      inquiry:
+        name: お名前
+        email: メールアドレス
+        message: お問い合わせ内容
+      product:
+        product_title: 商品名
+        product_price: 単価
+        label_id: レーベル名
+        genre_id: ジャンル名
+        explanation: 商品説明
+        image_id: 商品画像
+        stock: 在庫数
+      song:
+        song_title: 楽曲名
+        artist_id: アーティスト名
+        track_order: 曲順
+        product_id: 収録商品名
+        disk_number: 収録CDナンバー

@@ -1,4 +1,14 @@
 <div class="container">
+  <% if @product.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= @product.errors.count %>件のエラーがあります。</h2>
+      <ul>
+      <% @product.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
   <div class="col-xs-8">
     <h3>商品新規追加</h3>
     <%= form_for(@product) do |f| %>

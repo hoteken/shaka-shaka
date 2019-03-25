@@ -2,15 +2,13 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.clearfix::after{
-  content: "";
-  display: block;
-  clear: both;
+.products-container {
+  padding: 0 50px;
 }
 
 .genre {
-  margin: 10px;
-  font-size: 18px;
+  margin: 15px;
+  font-size: 22px;
 }
 
 .genre_name {
@@ -19,7 +17,9 @@
 
 .product {
   float: left;
-  margin: 10px;
+  margin: 12px;
+  background-color: rgb(220, 255, 231);
+  border-radius: 5px;
 }
 
 .product div {
@@ -46,11 +46,12 @@
 
 .add_item_form, .link_buttons {
   float: left;
+  padding: 5px;
   margin: 5px;
 }
 
 .category-bar {
-  padding: 0 20px 20px 20px;
+  padding: 0 0 20px 20px;
 }
 
 .search-bar input {
@@ -65,4 +66,8 @@
 
 .song-list, .detail-information {
   padding-left: 20px;
+}
+
+.product-list {
+  padding-left: 30px;
 }
