@@ -2,18 +2,18 @@ class UsersController < ApplicationController
   before_action :authenticate_user!,only: [:index,:show]
   before_action :authenticate_admin,only: [:index]
   before_action :authenticate_adm_or_correct_user, only: [:show, :edit, :update]
-  PER = 8
+  
   def index
     @user = current_user
-    @users = User.page(params[:page]).per(PER)
-    @search = @users.ransack(params[:q])  
-    @result = @search.result     
+    @users = User.page(params[:page]).reverse_order
+    @search = User.ransack(params[:q])  
+    @result = @search.result.page(params[:page])     
   
   end
 
   def show
     @user = User.find(params[:id])
-    @users = User.all
+    
   end
 
   def edit
@@ -24,7 +24,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user.update(user_params)
       flash[:notice] = "ユーザーの更新に成功しました"
-      redirect_to users_path
+      redirect_to user_path(@user)
     else
       render 'edit'
     end
