@@ -96,9 +96,9 @@
     });
 		$('#close,#overlay').on('click', function(){
       $('#overlay,#result').fadeOut();
-      $('#result').on('click', function(e){
+    });
+    $('#result').on('click', function(e){
         e.stopPropagation();
-      });
     });
 
     // 確定ボタン
