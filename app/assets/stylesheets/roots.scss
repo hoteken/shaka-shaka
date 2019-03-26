@@ -7,38 +7,6 @@ a{
 }
 
 /*モーダル関係*/
-
-/*#shaka-result{
-	text-align:center;
-	width:500px;
-	height:500px;
-	position:absolute;
-	top:50%;
-	left:50%;
-	transform:translate(-50%,-50%);
-	border:2px solid black;
-	border-radius:6px;
-	background-color:white;
-	display:none;
-	z-index:2
-}
-#close-result{
-	font-size:12px;
-	position:fixed;
-	top:10px;
-	right:10px;
-	width:20px;
-	height:20px;
-	color:black;
-	background-color:#fff;
-	border:2px solid black;
-	border-radius:3px;
-	transition:.4s;
-}
-#close-result:hover{
-	background:black;
-	color:#fff;
-}*/
 .shaka-headline,.close-modal-01{
 	font-family: 'HanziPen TC',sans-serif;
 	color:black;
@@ -55,7 +23,6 @@ a{
 }
 .result-title{
 	font-size:20px;
-	font-family:sans-serif;
 	color:black;
 }
 .close-modal-01{
@@ -65,9 +32,7 @@ a{
 
 /*トップページ*/
 .toppage{
-/*	background-image:url("");
-	background-size:cover;
-*/	height:645px;
+	height:645px;
 }
 .headline{
 	font-family: 'HanziPen TC',sans-serif;
@@ -76,9 +41,10 @@ a{
 	padding:30px 0 20px;
 	margin-bottom:20px;
 }
-.explanation{
+.top-explanation{
 	font-size:16px;
 	padding-bottom:20px;
+	text-align: center;
 }
 .request_ajax_shaka{
 	text-align:center;
