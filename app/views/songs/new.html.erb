@@ -1,5 +1,14 @@
 <div class="container">
   <h3>収録曲新規追加</h3>
+  <% if @song.errors.any? %>
+    <div class="error_explanation">
+      <ul>
+        <% @song.errors.full_messages.each do |message| %>
+         <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
   <%= form_for(@song) do |f| %>
     <div class="form-group">
       <table class="table table-hover table-inverse">
