@@ -2,51 +2,117 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+a{
+	text-decoration:none;
+}
 
-#overlay{
-	width:100%;
-	height:100%;
-	position:fixed;
-	top:0;
-	left:0;
-	background:rgba(0,0,0,0.3);
-	display:none;
-	z-index:1
-}
-#result{
-	width:700px;
-	height:600px;
-	position:absolute;
-	top:50%;
-	left:50%;
-	transform:translate(-50%,-50%);
-	border:2px solid black;
-	border-radius:6px;
-	background-color:#fff;
-	display:none;
-	z-index:2
-}
-#content-title{
-	width:300px;
-	heght:100px;
-}
-#content-image{
-	width:300px;
-	heght:300px;
-}
-#close{
-	position:fixed;
-	top:10px;
-	right:10px;
-	width:20px;
-	height:20px;
+/*モーダル関係*/
+.shaka-headline,.close-modal-01{
+	font-family: 'HanziPen TC',sans-serif;
 	color:black;
-	background-color:#fff;
-	border:2px solid black;
-	border-radius:3px;
-	transition:.4s;
+	text-align:center;
 }
-#close:hover{
-	background:black;
-	color:#fff;
+#shaka-content{
+	text-align:center;
+	text-decoration:none;
+	display:inline-block;
+}
+.result-content{
+	text-align: center;
+	display: inline-block;
+}
+.result-title{
+	font-size:20px;
+	color:black;
+}
+.close-modal-01{
+	font-size: 28px;
+}
+
+
+/*トップページ*/
+.toppage{
+	height:645px;
+}
+.headline{
+	font-family: 'HanziPen TC',sans-serif;
+	color:black;
+	text-align:center;
+	padding:30px 0 20px;
+	margin-bottom:20px;
+}
+.top-explanation{
+	font-size:16px;
+	padding-bottom:20px;
+	text-align: center;
+}
+.request_ajax_shaka{
+	text-align:center;
+}
+.shake {
+	color:deeppink;
+	display:inline-block;
+    animation: shake_6422 3.875s ease infinite;
+    transform-origin: 50% 50%;
+}
+@keyframes shake_6422 {
+    0% { transform:rotate(-12deg) }
+    5.16129% { transform:rotate(12deg) }
+    6.45161% { transform:rotate(24deg) }
+    11.6129% { transform:rotate(-24deg) }
+    12.90323% { transform:rotate(-24deg) }
+    18.06451% { transform:rotate(24deg) }
+    19.35484% { transform:rotate(24deg) }
+    24.51613% { transform:rotate(-24deg) }
+    25.80645% { transform:rotate(-24deg) }
+    30.96774% { transform:rotate(24deg) }
+    32.25807% { transform:rotate(24deg) }
+    37.41935% { transform:rotate(-24deg) }
+    38.70968% { transform:rotate(-24deg) }
+    43.87097% { transform:rotate(24deg) }
+    48.3871% { transform:rotate(0deg) }
+    100% { transform:rotate(0deg) }
+}
+.rock{
+	font-family: 'Zapfino',sans-serif;
+}
+.pop{
+	font-family: 'Skia-Regular_Black',sans-serif;
+	font-size:40px;
+}
+.punk{
+	font-family: 'SignPainter',sans-serif;
+	font-size:40px;
+}
+.genre-select{
+	text-decoration: none;
+	color:black;
+	display:inline-block;
+}
+
+
+/* 管理者とっぷ　*/
+.adminheader{
+	text-align: center;
+}
+.adminmenu{
+	height: 400px;
+	width: 300px;
+	margin: 0 auto;
+}
+
+
+/* about */
+.nojiri_poem{
+	font-family:'HanziPen SC',sans-serif ;
+	text-align: right;
+	padding-right: 20px;
+}
+.about_explanation{
+	padding-left: 180px;
+	height: 200px;
+}
+.toppath{
+	font-size: 28px;
+	font-family: 'HanziPen TC',sans-serif;
 }

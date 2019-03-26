@@ -18,7 +18,7 @@
 	transform:translate(-50%,-50%);
 	border:2px solid black;
 	border-radius:6px;
-	background-color: lightgoldenrodyellow;
+	background-color: rgb(220, 255, 231);
 	display:none;
 	padding:30px;
 	z-index:2
@@ -76,12 +76,40 @@
 	margin-top: 15px;
 }
 
+.cart_products {
+	background-color: rgb(255, 255, 239);
+	margin: 15px;
+	border-radius: 5px;
+}
+
+.cart_show_body {
+	background-color: rgb(250, 244, 210);
+}
+
+.cart_buttons {
+	display: inline-block;
+	text-align: right;
+}
+
+.forms {
+	margin: 55px 0 0 330px;
+}
+
 // 注文確認画面
+.destination-row{
+	background-color: rgb(255, 255, 239);
+	border-radius: 5px;
+}
+.confirm_body {
+	background-color: rgb(250, 244, 210);
+}
+
 .order_price {
-	margin: 0 auto;
+	padding: 20px;
 	text-align: center;
-	padding-bottom: 10px;
-	padding-left: 20px;
+	// padding-bottom: 10px;
+	// padding-left: 20px;
+	border-radius: 5px;
 }
 
 .purchase-products {
@@ -91,8 +119,8 @@
 .purchase-product {
 	padding-left: 20px;
 	padding: 20px 0;
-	border-bottom: solid 5px white;
-	background-color: aliceblue;
+	margin-bottom: 10px;
+	background-color: rgb(255, 255, 239);
 	border-radius: 10px;
 }
 
@@ -107,6 +135,8 @@
 .destination {
 	text-align: center;
 	margin: 20px 0;
+	border-radius: 5px;
+	padding: 20px;
 }
 
 #updated_by_ajax, #dest-select{
@@ -123,4 +153,5 @@
 
 #thanks-body {
 	margin: 0 auto;
+	text-align: center;
 }

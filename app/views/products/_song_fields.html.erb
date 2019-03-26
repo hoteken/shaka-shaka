@@ -1,0 +1,24 @@
+<div class='nested-fields'>
+    <div class="form-group">
+      <table class="table table-hover table-inverse">
+        <thead>
+          <tr>
+            <th>ディスクNo</th>
+            <th>曲順</th>
+            <th>曲名</th>
+            <th>アーティスト</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= f.text_field :disk_number %></td>
+            <td><%= f.text_field :track_order %>
+            <td><%= f.text_field :song_title %></td>
+            <td><%= f.collection_select :artist_id, Artist.all, :id, :artist_name %></td>
+            <td><%= link_to_remove_association "削除", f, class:"btn btn-danger", data: { confirm: "楽曲入力欄を削除しますか？" } %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+</div>

@@ -12,7 +12,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     super
-    @cart = Cart.create(user_id: current_user.id)
+     Cart.create(user_id: current_user.id) if current_user.present?
   end
 
   # GET /resource/edit

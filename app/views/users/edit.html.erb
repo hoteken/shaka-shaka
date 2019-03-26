@@ -1,5 +1,15 @@
 <h1>ユーザー編集</h1>
-
+<% if @user.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= @user.errors.count %>件のエラーがあります。</h2>
+ 
+    <ul>
+    <% @user.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
 <%= form_for(@user) do |f| %>
 	<h4>ユーザー名</h4>
 	<%= f.text_field :user_name %>
@@ -12,5 +22,5 @@
 	<h4>電話番号</h4>
 	<%= f.text_area :phone_number %>
     <%= link_to "戻る" , user_path(@user)%>
-	<%= f.submit "Update User" %>
+	<%= f.submit "更新" %>
 <% end %>
