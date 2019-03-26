@@ -1,43 +1,20 @@
 <section class="body">
 	<div class="container">
 		<div class="row">
-			<div class="col">
+			<div class="col-xs-offset-2">
 				<h2>受注編集</h2>
-			</div>
-			<div class="col">
-				<h3>受注日</h3>
-				<%= @order.created_at.strftime('%Y/%m/%d %H:%M') %>
-			</div>
-			<div class="col">
-				<h3>ユーザー名</h3>
-				<% if @user != nil %>
-					<%= @user.user_name %>
-				<% else %>
-					退会済みユーザー
-				<% end %>
-			</div>
-			<div class="col">
-				<h3>受注商品/枚数/単価</h3>
-				<%= @order_item.product_title %>/
-				<%= @order.quantity %>枚/
-				¥<%= @order_item.product_price %>
-			</div>
-			<div class="col">
-				<h3>ステータス</h3>
-				<%= form_for(@order) do |f| %>
+				<p>受注日:<%= @order.created_at.strftime('%Y/%m/%d %H:%M') %></p>
+				<p>ユーザー名:<% if @user != nil %><%= @user.user_name %><% else %>退会済みユーザー<% end %></p>
+				<p>受注商品:<%= @order_item.product_title %></p>
+				<p>枚数:<%= @order.quantity %>枚</p>
+				<p>単価:¥<%= @order_item.product_price %></p>
+				<p>配送ステータス:
+					<%= form_for(@order) do |f| %>
 					<%= f.select :status, [["受付済み", 10], ["発送準備中", 20], ["発送済み", 30], ["確認中", 90]] ,class:"form-control" %>
-          <%= f.submit "ステータス更新", class:"btn btn-primary" %>
-				<% end %>
-			</div>
-			<div class="col">
-				<h3>送付先</h3>
-				<%= @order.destination_address %>
-			</div>
-			<div class="col">
-				<h3>総計</h3>
-				¥<%= @order.total_price %>
-			</div>
-			<div>
+         			<%= f.submit "ステータス更新", class:"btn btn-primary" %>
+					<% end %></p>
+				<p>送付先:<%= @order.destination_address %></p>
+				<p>総計:¥<%= @order.total_price %></p>
 				<%= link_to "戻る", order_path(@order), class: "btn btn-primary" %>
 			</div>
 		</div>
