@@ -1,55 +1,42 @@
-<section class="body">
+<body class="ordersbody">
 	<div class="container">
 		<div class="row">
 			<div class="col">
-				<h2>受注詳細</h2>
-			</div>
-			<div class="col">
-				<h3>受注日</h3>
-				<%= @order.created_at.strftime('%Y/%m/%d %H:%M') %>
-			</div>
-			<div class="col">
-				<h3>ユーザー名</h3>
-				<% if @user != nil %>
-					<%= @user.user_name %>
-				<% else %>
-					退会済みユーザー
-				<% end %>
-			</div>
-			<div class="col">
-				<h3>受注商品/枚数/単価</h3>
-				<%= @order_item.product_title %>/
-				<%= @order.quantity %>枚/
-				¥<%= @order_item.product_price %>
-			</div>
-			<div class="col">
-				<h3>ステータス</h3>
-				<% if @order.status.to_i == 10 %>
-					受付済み
-				<% elsif @order.status.to_i == 20 %>
-					発送準備中
-				<% elsif @order.status.to_i == 30 %>
-					発送済み
-				<% else %>
-					確認中
-				<% end %>
-			</div>
-			<div class="col">
-				<h3>送付先</h3>
-				<%= @order.destination_address %>
-			</div>
-			<div class="col">
-				<h3>注文金額</h3>
-				¥<%= @order.total_price %>
-			</div>
-			<div>
-				<% if current_user.admin? %>
-					<%= link_to "戻る", orders_path, class: "btn btn-primary" %>
-				<% else %>
-					<%= link_to "戻る", user_path(current_user), class: "btn btn-primary" %>
-				<% end %>
-				<%= link_to "編集", edit_order_path(@order), class: "btn btn-primary" if current_user.admin? %>
+				<h2>注文の詳細</h2>
+				<p>注文日：<%= @order.created_at.strftime('%Y/%m/%d %H:%M') %></p>
+				<p>配送ステータス：
+					<% if @order.status.to_i == 10 %>受付済み
+					<% elsif @order.status.to_i == 20 %>発送準備中
+					<% elsif @order.status.to_i == 30 %>発送済み
+					<% else %>確認中
+					<% end %>
+				</p>
+				<p>お届け先</p>
+				<ul>
+					<li><% if @user != nil %><%= @user.user_name %><% else %>退会済みユーザー<% end %></li>
+					<li><%= @order.destination_address %></li>
+				</ul>
+				<div class="order-product-image">
+					<h5>受注商品詳細</h5>
+					<%= attachment_image_tag @order_item, :image ,:fill, 300, 300, format: 'jpeg', class: "jacket-image", fallback: "img/no_image.png", :size => "200x200" %>
+				</div>
+				<div class="order-product-show">
+					<ul>
+						<li><%= @order_item.product_title %></li>
+						<li>¥<%= @order_item.product_price %></li>
+						<li><%= @order.quantity %>枚</li>
+					</ul>
+				</div>
+				<p>ご注文金額合計：¥<%= @order.total_price %></p>
+				<div>
+					<% if current_user.admin? %>
+						<%= link_to "戻る", orders_path, class: "btn btn-primary" %>
+					<% else %>
+						<%= link_to "戻る", user_path(current_user), class: "btn btn-primary" %>
+					<% end %>
+					<%= link_to "編集", edit_order_path(@order), class: "btn btn-primary" if current_user.admin? %>
+				</div>
 			</div>
 		</div>
 	</div>
-</section>
+</body>
