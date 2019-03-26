@@ -8,6 +8,7 @@ a{
 
 /*モーダル関係*/
 
+
 /*#shaka-result{
 	text-align:center;
 	width:500px;
@@ -38,10 +39,9 @@ a{
 #close-result:hover{
 	background:black;
 	color:#fff;
-<<<<<<< HEAD
 }
-=======
 }*/
+
 .shaka-headline,.close-modal-01{
 	font-family: 'HanziPen TC',sans-serif;
 	color:black;
@@ -58,7 +58,6 @@ a{
 }
 .result-title{
 	font-size:20px;
-	font-family:sans-serif;
 	color:black;
 }
 .close-modal-01{
@@ -68,9 +67,7 @@ a{
 
 /*トップページ*/
 .toppage{
-/*	background-image:url("");
-	background-size:cover;
-*/	height:645px;
+	height:645px;
 }
 .headline{
 	font-family: 'HanziPen TC',sans-serif;
@@ -79,9 +76,10 @@ a{
 	padding:30px 0 20px;
 	margin-bottom:20px;
 }
-.explanation{
+.top-explanation{
 	font-size:16px;
 	padding-bottom:20px;
+	text-align: center;
 }
 .request_ajax_shaka{
 	text-align:center;
