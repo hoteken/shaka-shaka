@@ -26,8 +26,8 @@
               <td><%= f.text_field :disk_number %></td>
               <td><%= f.text_field :track_order %>
               <td><%= f.text_field :song_title %></td>
-              <td><%= f.collection_select :artist_id, Artist.all, :id, :artist_name %></td>
-              <td><%= f.collection_select :product_id, Product.all, :id, :product_title %></td>
+              <td><%= f.select :artist_id, options_from_collection_for_select(Artist.all, :id, :artist_name), {}, { class: 'searchable'} %></td>
+              <td><%= f.select :product_id, options_from_collection_for_select(Product.all, :id, :product_title), {}, { class: 'searchable'} %></td>
             </tr>
         </tbody>
       </table>
@@ -36,3 +36,12 @@
     </div>
   <% end %>
 </div>
+
+<script>
+  $(function() {
+    return $(".searchable").select2({
+      width: 200,
+      allowClear: true
+    });
+  });
+</script>

@@ -25,8 +25,8 @@
         </div>
 
         <div class="form">
-          <%= f.label :label %>
-          <%= f.collection_select :label_id, Label.all, :id, :label_name %>
+          <%= f.label :label_id %>
+          <%= f.select :label_id, options_from_collection_for_select(Label.all, :id, :label_name), {}, { class: 'searchable'} %>
         </div>
 
         <div class="form">
@@ -67,3 +67,13 @@
     </div>
   </div>
 </div>
+
+
+<script>
+  $(function() {
+    return $(".searchable").select2({
+      width: 200,
+      allowClear: true
+    });
+  });
+</script>
