@@ -1,108 +1,111 @@
-
-<div class="haikei">
-<% if current_user.admin? %>
- <h1>ユーザー詳細</h1>
- <table class="table">
- <tr>
-    <th>ユーザー名</th>
-    <th>ユーザーかな</th>
-    <th>郵便番号</th>
-    <th>住所</th>
-    <th>電話番号</th>
-    <th>メールアドレス</th>
-    <th colspan="6"></th>
-</tr>
-<td><%= @user.user_name%></td>
-<td><%= @user.user_name_kana%></td>
-<td><%= @user.postcode%></td>
-<td><%= @user.address%></td>
-<td><%= @user.phone_number%></td>
-<td><%= @user.email%></td>
-<%= link_to "編集", edit_user_path(@user),class: "btn btn-default" %>
-<%= link_to "送付先リスト", user_destinations_path(@user),class: "btn btn-default" %>
-<%= link_to "削除", user_registration_path(@user) ,class: "btn btn-default",method: :delete, data: {confirm: "本当に削除しますか？"} unless @user.admin? %>
-<%= link_to "戻る", users_path ,class: "btn btn-default" %>
-</table>
-<h1>直近の購入履歴</h1>
-<table>
-<tr>
-    <th>受注日</th>
-    <th>ステータス</th>
-    <th>ユーザー名</th>
-    <th>注文金額</th>
-    <th colspan="4"></th>
-</tr>
-<% @orders.each do |order| %>
-<tr>
-   <td><%= order.created_at.strftime('%Y/%m/%d %H:%M') %></td>
-   <td>
-   <% if order.status.to_i == 10 %>
-      受付済み
-    <% elsif order.status.to_i == 20 %>
-      発送準備中
-    <% elsif order.status.to_i == 30 %>
-      発送済み
-    <% else %>
-      確認中
+<body class="cart_show_body">
+  <div class="container">
+    <div class="haikei">
+    <% if current_user.admin? %>
+    <h1>ユーザー詳細</h1>
+    <table class="table">
+    <tr>
+        <th>ユーザー名</th>
+        <th>ユーザーかな</th>
+        <th>郵便番号</th>
+        <th>住所</th>
+        <th>電話番号</th>
+        <th>メールアドレス</th>
+        <th colspan="6"></th>
+    </tr>
+    <td><%= @user.user_name%></td>
+    <td><%= @user.user_name_kana%></td>
+    <td><%= @user.postcode%></td>
+    <td><%= @user.address%></td>
+    <td><%= @user.phone_number%></td>
+    <td><%= @user.email%></td>
+    <%= link_to "編集", edit_user_path(@user),class: "btn btn-default" %>
+    <%= link_to "送付先リスト", user_destinations_path(@user),class: "btn btn-default" %>
+    <%= link_to "削除", user_registration_path(@user) ,class: "btn btn-default",method: :delete, data: {confirm: "本当に削除しますか？"} unless @user.admin? %>
+    <%= link_to "戻る", users_path ,class: "btn btn-default" %>
+    </table>
+    <h1>直近の購入履歴</h1>
+    <table>
+    <tr>
+        <th>受注日</th>
+        <th>ステータス</th>
+        <th>ユーザー名</th>
+        <th>注文金額</th>
+        <th colspan="4"></th>
+    </tr>
+    <% @orders.each do |order| %>
+    <tr>
+      <td><%= order.created_at.strftime('%Y/%m/%d %H:%M') %></td>
+      <td>
+      <% if order.status.to_i == 10 %>
+          受付済み
+        <% elsif order.status.to_i == 20 %>
+          発送準備中
+        <% elsif order.status.to_i == 30 %>
+          発送済み
+        <% else %>
+          確認中
+        <% end %>
+      </td>
+      <td><%= order.user.user_name %></td>
+      <td><%= order.total_price %></td> 
+      <td><%= link_to "詳細", order_path(order) ,class: "btn btn-default"%></td>
+    </tr>
     <% end %>
-   </td>
-   <td><%= order.user.user_name %></td>
-   <td><%= order.total_price %></td> 
-   <td><%= link_to "詳細", order_path(order) ,class: "btn btn-default"%></td>
- </tr>
-<% end %>
-</table>
-<% else %>
-<h1>マイページ</h1>
-<table class="table">
- <tr>
-    <th>ユーザー名</th>
-    <th>ユーザーかな</th>
-    <th>郵便番号</th>
-    <th>住所</th>
-    <th>電話番号</th>
-    <th>メールアドレス</th>
-    <th colspan="6"></th>
-</tr>
-<td><%= @user.user_name%></td>
-<td><%= @user.user_name_kana%></td>
-<td><%= @user.postcode%></td>
-<td><%= @user.address%></td>
-<td><%= @user.phone_number%></td>
-<td><%= @user.email%></td>
-<td><%= link_to "送付先リスト", user_destinations_path(current_user),class: "btn btn-default"%></td>
-<td><%= link_to "編集", edit_user_path(current_user),class: "btn btn-default" %></td>
-<td><%= link_to "退会", user_registration_path ,method: :delete, data: {confirm: "本当に退会しますか？"} ,class: "btn btn-default"%></td>
-</table>
-<h1>直近の購入履歴</h1>
-<table class="table">
-<tr>
-    <th>受注日</th>
-    <th>ステータス</th>
-    <th>ユーザー名</th>
-    <th>注文金額</th>
-    <th colspan="4"></th>
-</tr>
-
-<% @orders.each do |order| %>
-<tr>
-   <td><%= order.created_at.strftime('%Y/%m/%d %H:%M') %></td>
-   <td>
-   <% if order.status.to_i == 10 %>
-      受付済み
-    <% elsif order.status.to_i == 20 %>
-      発送準備中
-    <% elsif order.status.to_i == 30 %>
-      発送済み
+    </table>
     <% else %>
-      確認中
+    <h1>マイページ</h1>
+    <table class="table">
+    <tr>
+        <th>ユーザー名</th>
+        <th>ユーザーかな</th>
+        <th>郵便番号</th>
+        <th>住所</th>
+        <th>電話番号</th>
+        <th>メールアドレス</th>
+        <th colspan="6"></th>
+    </tr>
+    <td><%= @user.user_name%></td>
+    <td><%= @user.user_name_kana%></td>
+    <td><%= @user.postcode%></td>
+    <td><%= @user.address%></td>
+    <td><%= @user.phone_number%></td>
+    <td><%= @user.email%></td>
+    <td><%= link_to "送付先リスト", user_destinations_path(current_user),class: "btn btn-default"%></td>
+    <td><%= link_to "編集", edit_user_path(current_user),class: "btn btn-default" %></td>
+    <td><%= link_to "退会", user_registration_path ,method: :delete, data: {confirm: "本当に退会しますか？"} ,class: "btn btn-default"%></td>
+    </table>
+    <h1>直近の購入履歴</h1>
+    <table class="table">
+    <tr>
+        <th>受注日</th>
+        <th>ステータス</th>
+        <th>ユーザー名</th>
+        <th>注文金額</th>
+        <th colspan="4"></th>
+    </tr>
+
+    <% @orders.each do |order| %>
+    <tr>
+      <td><%= order.created_at.strftime('%Y/%m/%d %H:%M') %></td>
+      <td>
+      <% if order.status.to_i == 10 %>
+          受付済み
+        <% elsif order.status.to_i == 20 %>
+          発送準備中
+        <% elsif order.status.to_i == 30 %>
+          発送済み
+        <% else %>
+          確認中
+        <% end %>
+      </td>
+      <td><%= order.user.user_name %></td>
+      <td><%= order.total_price %></td> 
+      <td><%= link_to "詳細", order_path(order),class: "btn btn-default" %></td>
+    </tr>
     <% end %>
-   </td>
-   <td><%= order.user.user_name %></td>
-   <td><%= order.total_price %></td> 
-   <td><%= link_to "詳細", order_path(order),class: "btn btn-default" %></td>
- </tr>
-<% end %>
-</table>
-<% end %> 
-</div>
+    </table>
+    <% end %> 
+    </div>
+  </div>
+</body>
