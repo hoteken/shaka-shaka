@@ -1,3 +1,4 @@
+<div class="col-xs-offset-5">
 <h1>ユーザー編集</h1>
 <% if @user.errors.any? %>
   <div id="error_explanation">
@@ -21,6 +22,7 @@
 	<%= f.text_field :address %>
 	<h4>電話番号</h4>
 	<%= f.text_area :phone_number %>
-    <%= link_to "戻る" , user_path(@user)%>
-	<%= f.submit "更新" %>
+    <div>
+    <%= link_to "戻る" , user_path(@user) ,class: "btn btn-default"%>
+	<%= f.submit "更新",class: "btn btn-default" %>
 <% end %>
