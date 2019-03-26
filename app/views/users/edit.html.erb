@@ -1,3 +1,4 @@
+<div class="haikei">
 <div class="col-xs-offset-5">
 <h1>ユーザー編集</h1>
 <% if @user.errors.any? %>
@@ -26,3 +27,4 @@
     <%= link_to "戻る" , user_path(@user) ,class: "btn btn-default"%>
 	<%= f.submit "更新",class: "btn btn-default" %>
 <% end %>
+</div>

@@ -3,10 +3,29 @@ class ProductsController < ApplicationController
 
   def index(genre_id = nil)
     genre_id = params[:format]
-    if genre_id.nil?
-      @random_products = Product.page(params[:page]).per(9).order("RANDOM()")
+
+    # 管理者ユーザーは追加順、一般はランダム表示
+    # ジャンルを絞った場合も判定
+    if user_signed_in?
+      if current_user.admin?
+        if genre_id.nil?
+          @random_products = Product.page(params[:page]).per(9).reverse_order
+        else
+          @random_products = Product.where(genre_id:genre_id).page(params[:page]).per(9).reverse_order
+        end
+      else
+        if genre_id.nil?
+          @random_products = Product.page(params[:page]).per(9).order("RANDOM()")
+        else
+          @random_products = Product.where(genre_id:genre_id).page(params[:page]).per(9).order("RANDOM()")
+        end
+      end
     else
-      @random_products = Product.where(genre_id:genre_id).page(params[:page]).per(9).order("RANDOM()")
+      if genre_id.nil?
+        @random_products = Product.page(params[:page]).per(9).order("RANDOM()")
+      else
+        @random_products = Product.where(genre_id:genre_id).page(params[:page]).per(9).order("RANDOM()")
+      end
     end
     @search = @random_products.ransack(params[:q])
     @result = @search.result.page(params[:page])
@@ -60,7 +79,7 @@ class ProductsController < ApplicationController
   def update
     @product = Product.find(params[:id])
     if @product.update(product_params)
-      flash.now[:notice] = "商品情報の編集に成功しました"
+      flash[:notice] = "商品情報の編集に成功しました"
       redirect_to @product
     else
       render 'edit'
@@ -69,6 +88,6 @@ class ProductsController < ApplicationController
 
   private
     def product_params
-      params.require(:product).permit(:product_title, :product_price, :label_id, :genre_id, :explanation,:image, :stock)
+      params.require(:product).permit(:product_title, :product_price, :label_id, :genre_id, :explanation,:image, :stock, songs_attributes:[:id, :song_title, :artist_id, :track_order, :disk_number, :product_id, :_destroy ])
     end
 end

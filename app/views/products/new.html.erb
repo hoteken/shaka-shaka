@@ -1,44 +1,69 @@
 <div class="container">
-  <div class="col-xs-8">
-    <h3>商品新規追加</h3>
-    <%= form_for(@product) do |f| %>
-      <div class="form-group">
-        <%= f.label :product_title %>
-        <%= f.text_field :product_title, class: "form-control" %>
-      </div>
+  <% if @product.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= @product.errors.count %>件のエラーがあります。</h2>
+      <ul>
+      <% @product.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
 
-      <div class="form-group">
-        <%= f.label :product_price %>
-        <%= f.text_field :product_price, class: "form-control" %>
-      </div>
+  <div class="row">
+    <div class="add_product_container">
+      <h3>商品新規追加</h3>
+      <%= form_for(@product) do |f| %>
+        <div class="form">
+          <%= f.label :product_title %>
+          <%= f.text_field :product_title, class: "form-control" %>
+        </div>
 
-      <div class="form-group">
-        <%= f.label :label %>
-        <%= f.collection_select :label_id, Label.all, :id, :label_name %>
-      </div>
+        <div class="form">
+          <%= f.label :product_price %>
+          <%= f.text_field :product_price, class: "form-control" %>
+        </div>
 
-      <div class="form-group">
-        <%= f.label :genre %>
-        <%= f.collection_select :genre_id, Genre.all, :id, :genre_name %>
-      </div>
+        <div class="form">
+          <%= f.label :label %>
+          <%= f.collection_select :label_id, Label.all, :id, :label_name %>
+        </div>
 
-      <div class="form-group">
-        <%= f.label :explanation %>
-        <%= f.text_area :explanation, class: "form-control" %>
-      </div>
+        <div class="form">
+          <%= f.label :genre %>
+          <%= f.collection_select :genre_id, Genre.all, :id, :genre_name %>
+        </div>
 
-      <div class="form-group">
-        <%= f.label :image %>
-        <%= f.attachment_field :image, placeholder:"ファイルを選択", class:"product_image" %> 
-      </div>
+        <div class="form">
+          <%= f.label :explanation %>
+          <%= f.text_area :explanation, class: "form-control" %>
+        </div>
 
-      <div class="form-group">
-        <%= f.label :stock %>
-        <%= f.text_field :stock %>
-      </div>
+        <div class="form">
+          <%= f.label :image %>
+          <%= f.attachment_field :image, placeholder:"ファイルを選択", class:"product_image" %> 
+        </div>
 
-      <%= link_to "戻る", products_path, class:"btn btn-default" %>
-      <%= f.submit "追加", class:"btn btn-primary" %>
-    <% end %>
+        <div class="form">
+          <%= f.label :stock %>
+          <%= f.text_field :stock %>
+        </div>
+
+        <div class="songs_input">
+          <h4>収録曲入力欄</h4>
+          <div class="ad_items_new_songs">
+            <div class="links">
+              <%= link_to_add_association '楽曲入力欄を追加', f, :songs, class:"btn btn-info" %>
+            </div>
+            <%= f.fields_for :songs do |song| %>
+              <%= render 'song_fields', f: song %>
+            <% end %>
+          </div>
+        </div>
+
+        <%= link_to "戻る", products_path, class:"btn btn-default" %>
+        <%= f.submit "決定", class:"btn btn-primary" %>
+      <% end %>
+    </div>
   </div>
 </div>

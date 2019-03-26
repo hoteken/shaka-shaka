@@ -1,14 +1,17 @@
+<div class="haikei">
 <div class="page-holder">
 <h1>ユーザー管理</h1>
 <% provide(:user_name, 'All users') %>
 <%= search_form_for @search  do |f| %>
   <div class="form-group">
     <%= f.text_field :user_name_cont, class: "form-control" %>
+   </div>
+  <div class="form">
   <%= f.submit "検索", class: "btn btn-primary" %>
   </div>
 <% end %>
  
-<table class="table table-striped">
+<table class="table">
 <tr>
     <th>名前</th>
     <th>メールアドレス</th>
@@ -24,4 +27,4 @@
 </table>
 <%= paginate @users %>
 </div>
-
+</div>

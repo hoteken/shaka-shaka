@@ -4,6 +4,16 @@
     <div class="col-xs-10"></div>
   </div>
     <div class="border"></div>
+    <% if @label.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= @label.errors.count %>件のエラーがあります。</h2>
+        <ul>
+        <% @label.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
     <div class="box"></div>
   <div class="row">
     <div class="col-xs-2"></div>
@@ -19,7 +29,7 @@
     <div class="col-xs-4"></div>
     <div class="col-xs-4">
       <%= link_to "戻る", labels_path, class:"btn btn-primary", :style=>"margin-bottom: -12px;padding: 7px 33px; margin-right: 67px; "%>
-      <%= f.submit "送信ボタン", class:"btn btn-primary", :style=>"height:36px;width:96px; margin-bottom: -12px;" %>
+      <%= f.submit "追加", class:"btn btn-primary", :style=>"height:36px;width:96px; margin-bottom: -12px;" %>
       <% end %>
     </div>
     <div class="col-xs-4"></div>

@@ -1,6 +1,8 @@
+
+<div class="haikei">
 <% if current_user.admin? %>
  <h1>ユーザー詳細</h1>
- <table class="table table-striped">
+ <table class="table">
  <tr>
     <th>ユーザー名</th>
     <th>ユーザーかな</th>
@@ -22,7 +24,7 @@
 <%= link_to "戻る", users_path ,class: "btn btn-default" %>
 </table>
 <h1>直近の購入履歴</h1>
-<table class="table table-striped">
+<table>
 <tr>
     <th>受注日</th>
     <th>ステータス</th>
@@ -30,9 +32,9 @@
     <th>注文金額</th>
     <th colspan="4"></th>
 </tr>
-<% @user.orders.each do |order| %>
+<% @orders.each do |order| %>
 <tr>
-   <td><%= order.created_at %></td>
+   <td><%= order.created_at.strftime('%Y/%m/%d %H:%M') %></td>
    <td>
    <% if order.status.to_i == 10 %>
       受付済み
@@ -52,7 +54,7 @@
 </table>
 <% else %>
 <h1>マイページ</h1>
-<table class="table table-striped">
+<table class="table">
  <tr>
     <th>ユーザー名</th>
     <th>ユーザーかな</th>
@@ -73,7 +75,7 @@
 <td><%= link_to "退会", user_registration_path ,method: :delete, data: {confirm: "本当に退会しますか？"} ,class: "btn btn-default"%></td>
 </table>
 <h1>直近の購入履歴</h1>
-<table class="table table-striped">
+<table class="table">
 <tr>
     <th>受注日</th>
     <th>ステータス</th>
@@ -82,9 +84,9 @@
     <th colspan="4"></th>
 </tr>
 
-<% @user.orders.each do |order| %>
+<% @orders.each do |order| %>
 <tr>
-   <td><%= order.created_at %></td>
+   <td><%= order.created_at.strftime('%Y/%m/%d %H:%M') %></td>
    <td>
    <% if order.status.to_i == 10 %>
       受付済み
@@ -103,3 +105,4 @@
 <% end %>
 </table>
 <% end %> 
+</div>
