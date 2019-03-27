@@ -1,26 +1,26 @@
 <body class="inquiry-background">
   <div class="row">
-    <div class="inquiries">
+    <div class="inquiries col-xs-4 col-xs-offset-4">
       <div class="top-message">
         <h2>お問い合わせフォーム</h2>
         <p>お問い合わせ内容をご入力ください。</p>
       </div>
       <%= form_for(@inquiry, url: { action: :confirm }) do |f| %>
-        <div class="form-group center-block">
+        <div class="form-group">
           <%= f.label :name, "お名前" %>
           <%= f.text_field :name, class: "form-control ", placeholder:"例：山田太郎" %>
         </div>
 
-        <div class="form-group center-block">
+        <div class="form-group">
           <%= f.label :email, "メールアドレス" %>
           <%= f.text_field :email, class: "form-control", placeholder:"例：example@aaa.com" %>
         </div>
 
-        <div class="form-group center-block">
+        <div class="form-group">
           <%= f.label :message, "お問い合わせ内容" %>
           <%= f.text_area :message, class: "form-control", placeholder:"お問い合わせ内容" %>
         </div>
-        <div class="form-group center-block">
+        <div class="form-group">
           <%= f.submit "確認", class:"btn btn-primary center-block" %>
         </div>
       <% end %>
