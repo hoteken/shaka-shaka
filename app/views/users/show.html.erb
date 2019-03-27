@@ -21,7 +21,7 @@
           <td><%= @user.email%></td>
           <%= link_to "編集", edit_user_path(@user),class: "btn btn-default" %>
           <%= link_to "送付先リスト", user_destinations_path(@user),class: "btn btn-default" %>
-          <%= link_to "削除", user_registration_path(@user) ,class: "btn btn-default",method: :delete, data: {confirm: "本当に削除しますか？"} unless @user.admin? %>
+          <%= link_to "削除",user_path(@user) ,class: "btn btn-default",method: :delete, data: {confirm: "本当に削除しますか？"} unless @user.admin? %>
           <%= link_to "戻る", users_path ,class: "btn btn-default" %>
         </table>
         <h1>直近の購入履歴</h1>
