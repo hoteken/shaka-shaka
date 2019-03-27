@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => {
     :registrations => 'users/registrations'
   }
-  resources :users, only: [:index, :show, :edit, :update] do
+  resources :users, only: [:index, :show, :edit, :update, :destroy] do
     resources :destinations, only: [:index, :new, :create, :edit, :update, :destroy]
   end
 
