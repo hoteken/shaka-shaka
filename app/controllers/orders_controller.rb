@@ -18,15 +18,14 @@ class OrdersController < ApplicationController
     @cart = Cart.find_by(user_id:current_user.id)
     @user = @cart.user
     @cart_products = CartProduct.where(cart_id:@cart.id)
-    @destination_id = cookies[:selected_dest_id]
+    @destination_id = session[:selected_dest_id]
 
     if @destination_id == "default"
       @destination = @user
     else
       @destination = Destination.find_by(id: @destination_id, user_id: @user.id)
     end
-    cookies.delete :selected_dest_id
-    # @destination = Destination.find(params[:order][:destination_id])
+    session.delete(:selected_dest_id)
 
     @orders = []
     @cart_products.each do |cart_product|

@@ -1,6 +1,13 @@
 // Place all the styles related to the Artists controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.search-bar input {
+	float: left;
+}
+
+#new_product_button {
+  float: right;
+}
 
 .paginate {
 	width: 100%;
@@ -8,35 +15,16 @@
 	padding-bottom: 50px;
 }
 
+.top-message {
+  text-align: center;
+}
+
 .center-block{
 	width: 100%;
 	padding-top: 20px;
 }
 
-.form-group{
-    width: 25%;
-}
-
-.border {
-    border: 2px solid black;
-    width: 100%;
-}
-
-.box{
-	width:40px;
-	height: 100px;
-}
-
-.text_box{
-	width:100px;
-	height:100px;
-}
-
 .text_box{
 	width:259px;
 	height:52px;
-}
-
-.artist_titile{
-	padding: 22px 0 16px 0
 }

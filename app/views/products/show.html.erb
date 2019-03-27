@@ -23,16 +23,29 @@
                   </h4>
                 </strong>
               </li>
-              <div class="detail-information">
-                <li><h4><%= @product.genre.genre_name %></h4></li>
-                <li><h4>¥<%= @product.product_price %></h4></li>
-                <li><h4><%= @product.label.label_name %></h4></li>
-                <div id="item-detail-exp">
-                  <li><strong>説明文</strong></li>
-                  <li><p><%= @product.explanation %></p></li>
-                </div>
-              </div>
             </ul>
+            <div class="detail-information">
+              <table class="table table-bordered">
+                <tbody>
+                  <tr>
+                    <th class="">ジャンル</th>
+                    <td><h4><%= @product.genre.genre_name %></h4></td>
+                  </tr>
+                  <tr>
+                    <th class="">商品価格</th>
+                    <td><h4>¥<%= @product.product_price %></h4></td>
+                  </tr>
+                  <tr>
+                    <th class="">レーベル</th>
+                    <td><h4><%= @product.label.label_name %></h4></td>
+                  </tr>
+                </tbody>
+              </table>
+              <div id="item-detail-exp">
+                <h4>商品紹介</h4>
+                <p><%= @product.explanation %></p>
+              </div>
+            </div>
           </div>
           <h4 class="stock-status">
             <% if @product.stock > 3 %>
@@ -85,12 +98,14 @@
               <% disk_count = 1 %>
               <% @disked_songs.each do |one_disk_songs| %>
                 <tr>
-                  <td><h4>ディスク<%= disk_count %></h4></td>
+                  <td class=""><h4>ディスク<%= disk_count %></h4></td>
+                  <td class=""></td>
                 </tr>
                 <% one_disk_songs.each do |song| %>
                   <p class="song-list">
                     <tr>
-                      <td><h4>  <%= song.track_order %>.<%= song.song_title %></h4></td>
+                      <td><h4><%= song.track_order %>.<%= song.song_title %></h4></td>
+                      <td><h4><%= song.artist.artist_name %></h4></td>
                     </tr>
                   </p>
                 <% end %>

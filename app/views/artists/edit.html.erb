@@ -1,41 +1,35 @@
-<div class = "container">
+<div class="container">
   <div class="row">
-    <p class="col-xs-2 artist_titile">アーティスト編集</p>
-    <div class="col-xs-10"></div>
-  </div>
-    <div class="border"></div>
-    <% if @artist.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= @artist.errors.count %>件のエラーがあります。</h2>
-        <ul>
-        <% @artist.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
+    <div class="top-message">
+      <h2>アーティスト編集</h2>
+        <% if @artist.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= @artist.errors.count %>件のエラーがあります。</h2>
+          <ul>
+            <% @artist.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
         <% end %>
-        </ul>
-      </div>
-    <% end %>
-    <div class="box"></div>
-  <div class="row">
-    <div class="col-xs-2"></div>
-    <div class="col-xs-7">
-      <%= form_for(@artist) do |f| %>
-        <span><%= f.label :アーティスト名, :style=>"margin-right: 67px;" %></span>
-          <%= f.text_field :artist_name, class: "text_box" %>
     </div>
-      <div class="col-xs-3"></div>
   </div>
-    <div class="box"></div>
-  <div class="row">
-    <div class="col-xs-4"></div>
-    <div class="col-xs-4">
-      <%= link_to "戻る", artists_path, class:"btn btn-primary", :style=>"margin-bottom: -12px;padding: 7px 33px; margin-right: 67px; "%>
-      <%= f.submit "更新", class:"btn btn-primary", :style=>"height:36px;width:96px; margin-bottom: -12px;" %>
-      <% end %>
-    </div>
-    <div class="col-xs-4"></div>
+  <div class ="row">
+    <div class="col-xs-1"></div>
+      <div class="col-xs-10">
+        <%= form_for(@artist) do |f| %>
+          <div class="form-group center-block text-center">
+            <strong><%= f.label :アーティスト名 %></strong>
+            <P><%= f.text_field :artist_name, :placeholder=>"アーティスト名", class: "text_box" %></p>
+              <div class="col-xs-2"></div>
+              <div class="col-xs-8">
+              <%= link_to "戻る", artists_path, class:"btn btn-primary"%>
+              <%= f.submit "追加", class:"btn btn-primary" %>
+              </div>
+              <div class="col-xs-2"></div>
+        <% end %>
+          </div>
+      </div>
+      <div class="col-xs-1"></div>
   </div>
 </div>
-<div class="box"></div>
-
-
-

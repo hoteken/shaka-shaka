@@ -12,7 +12,7 @@ class CartsController < ApplicationController
 
   def confirm
     @cart = Cart.find_by(user_id: current_user.id)
-    cookies[:selected_dest_id] = "default"
+    session[:selected_dest_id] = "default"
     @cart_products = @cart.cart_products
     @sum_price = 0
     @cart_products.each do |cart_product|
@@ -31,7 +31,7 @@ class CartsController < ApplicationController
 
   def update
     destination_id = params[:paramss]
-    cookies[:selected_dest_id] = destination_id
+    session[:selected_dest_id] = destination_id
     selected_dest = Destination.find(destination_id)
     results = { :message => selected_dest.destination_address }
     render partial: 'ajax_partial', locals: { :results => results }

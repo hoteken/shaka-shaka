@@ -1,5 +1,8 @@
 ja:
   activerecord:
+    models:
+      user: ユーザー
+      songs: 楽曲
     attributes:
       user:
         user_name: 名前
