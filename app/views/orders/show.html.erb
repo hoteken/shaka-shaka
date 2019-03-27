@@ -61,7 +61,7 @@
 							<%= link_to "キャンセル", order_path, method: :delete, "data-confirm" => "本当にキャンセルしますか？", class: "btn btn-warning order-container-button-c" %>
 						<% end %>
 					<% end %>
-					<%= link_to "編集", edit_order_path(@order), class: "btn btn-success" if current_user.admin? %>
+					<%= link_to "編集", edit_order_path(@order), class: "btn btn-success order-container-button-e" if current_user.admin? %>
 				</div>
 			  </div>
 			</div>
