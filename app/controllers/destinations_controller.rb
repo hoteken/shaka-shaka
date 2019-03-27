@@ -7,12 +7,12 @@ class DestinationsController < ApplicationController
   end
 
   def new
-    @user = User.find(current_user.id)
+    @user = User.find(params[:user_id])
     @destination = Destination.new
   end
 
   def create
-    @user = User.find(current_user.id)
+    @user = User.find(params[:user_id])
     @destination = Destination.new(destination_params)
     @destination.user_id = params[:user_id]
     if @destination.save
@@ -24,12 +24,12 @@ class DestinationsController < ApplicationController
   end
 
   def edit
-    @user = User.find(current_user.id)
+    @user = User.find(params[:user_id])
     @destination = Destination.find(params[:id])
   end
 
   def update
-    @user = User.find(current_user.id)
+    @user = User.find(params[:user_id])
     @destination = Destination.find(params[:id])
     if @destination.update(destination_params)
       flash[:notice] = "送付先情報を変更しました"
@@ -40,7 +40,7 @@ class DestinationsController < ApplicationController
   end
 
   def destroy
-    @user = User.find(current_user.id)
+    @user = User.find(params[:user_id])
     @destination = Destination.find(params[:id])
     @destination.destroy
     flash[:notice] = "送付先情報を削除しました"

@@ -1,31 +1,35 @@
-<div class = "container">
+<div class="container">
   <div class = "row">
-    <h1>送付先編集</h1>
-  </div>
-
-  <% if @destination.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= @destination.errors.count %>errors prohibited this obj from being saved:</h2>
-      <ul>
-        <% @destination.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
+    <div class="destination_container">
+      <h1>送付先編集</h1>
+        <% if @destination.errors.any? %>
+          <div id="error_explanation">
+          <!-- <h2><%= @destination.errors.count %>errors prohibited this obj from being saved:</h2> -->
+            <ul>
+              <% @destination.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
         <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class = "row">
-    <div class="col-xs-1"></div>
-    <ul class ="col-xs-10 center-block">
-      <li class = "list"><h4>送付先情報</h4></li>
+      <h3>送付先情報</h3>
       <%= form_for([@user, @destination]) do |f| %>
-        <li class = "list">郵便番号<%= f.text_field :destination_postcode,class: "text-main1" %></li>
-        <li class = "list">お宛名<%= f.text_field :destination_name,class: "text-main2" %></li>
-        <li class = "list">住所<%= f.text_area :destination_address,class: "text-main3" %></li>
-        <%= f.hidden_field :user_id, value:@user.id %>
-        <%= link_to "戻る", user_destinations_path(@user), class:"btn btn-default btn-sm text1-bottom"  %>
-        <%= f.submit '更新', class:"btn btn-primary btn-sm" %>
+      <div class="form">
+        <h4>宛名</h4>
+        <%= f.text_field :destination_name, class: "form-control" %>
+      </div>
+      <div class="form">
+        <h4>郵便番号</h4>
+        <%= f.text_field :destination_postcode, class: "form-control" %>
+      </div>
+      <div class="form">
+        <h4>住所</h4>
+        <%= f.text_area :destination_address, class: "form-control" %>
+      </div>
+      <%= f.hidden_field :user_id, value:@user.id %>
+      <%= link_to "戻る", user_destinations_path(@user), class:"btn btn-default btn-sm text1-bottom"  %>
+      <%= f.submit '更新', class:"btn btn-primary btn-sm" %>
       <% end %>
-    </ul>
+    </div>
   </div>
 </div>

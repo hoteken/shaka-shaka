@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
   before_action :authenticate_admin, only: [:edit,:update,:index]
   before_action :authenticate_adm_or_correct, only: [:show]
-  
+
   def index
     @orders = Order.page(params[:page]).reverse_order
   end
@@ -80,6 +80,18 @@ class OrdersController < ApplicationController
     else
       flash.now[:danger] = "ステータス更新に失敗しました。退会済みユーザーの可能性があります。"
       render :edit
+    end
+  end
+
+  def destroy
+    @order = Order.find(params[:id])
+    product = Product.find(@order.product_id)
+    if @order.destroy
+      stock = product.stock + @order.quantity
+      product.stock = stock
+      product.save
+      flash[:notice] = "ご注文をキャンセルしました"
+      redirect_to user_path(current_user.id)
     end
   end
 

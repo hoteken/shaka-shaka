@@ -15,7 +15,7 @@ Rails.application.routes.draw do
 
   resources :labels, only: [:index, :new, :create, :edit, :update]
   resources :artists, only: [:index, :new, :create, :edit, :update]
-  resources :orders, only: [:index, :show, :create, :edit, :update]
+  resources :orders
 
   get 'carts/confirm'
   get 'carts/thanks'
