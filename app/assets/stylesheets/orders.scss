@@ -46,8 +46,17 @@
 	display: flex;
 	flex-direction: row;
 }
+.order-container-title{
+	padding-left: 20px;
+}
 .order-container-button{
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-end;
+}
+.order-container-button-c{
+	margin-top: 5px;
+}
+.order-container-button-b{
+	margin-top: 5px;
 }

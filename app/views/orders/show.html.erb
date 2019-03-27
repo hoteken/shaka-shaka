@@ -35,7 +35,7 @@
 						<% end %></strong>
 					</h4>
 					<h5>注文商品詳細</h5>
-					<p><%= link_to product_path(@order_item) do %><%= @order_item.product_title %><% end %></p>
+					<p class="order-container-title"><%= link_to product_path(@order_item) do %><%= @order_item.product_title %><% end %></p>
 					<div class="order-container-product">
 						<%= link_to product_path(@order_item) do %>
 							<%= attachment_image_tag @order_item, :image ,:fill, 200, 200, format: 'jpeg', class: "jacket-image", fallback: "img/no_image.png", :size => "200x200" %>
@@ -44,22 +44,21 @@
 				</div>
 				<div class="order-container-product">
 					<ul>
-						<!-- <li><%= link_to product_path(@order_item) do %><%= @order_item.product_title %><% end %></li> -->
-						<li>単価：　　　¥<%= @order_item.product_price %></li>
-						<li>数量：　　　<%= @order.quantity %>枚</li>
-						<li>合計金額：　¥<%= @order.total_price %></li>
+						<li>単価：　　¥<%= @order_item.product_price %></li>
+						<li>数量：　　<%= @order.quantity %>枚</li>
+						<li>合計金額：¥<%= @order.total_price %></li>
 					</ul>
 				</div>
 				<div class="order-container-button">
 					<%= link_to "商品詳細", product_path(@order_item), class: "btn btn-default" %>
 					<% if current_user.admin? %>
-						<%= link_to "戻る", orders_path, class: "btn btn-default" %>
+						<%= link_to "戻る", orders_path, class: "btn btn-default order-container-button-b" %>
 					<% else %>
-						<%= link_to "戻る", user_path(current_user), class: "btn btn-default" %>
+						<%= link_to "戻る", user_path(current_user), class: "btn btn-default order-container-button-b" %>
 					<% end %>
 					<% if @order.status.to_i == 10 %>
 						<% if not current_user.admin? %>
-							<%= link_to "キャンセル", order_path, method: :delete, "data-confirm" => "本当にキャンセルしますか？", class: "btn btn-warning" %>
+							<%= link_to "キャンセル", order_path, method: :delete, "data-confirm" => "本当にキャンセルしますか？", class: "btn btn-warning order-container-button-c" %>
 						<% end %>
 					<% end %>
 					<%= link_to "編集", edit_order_path(@order), class: "btn btn-success" if current_user.admin? %>
