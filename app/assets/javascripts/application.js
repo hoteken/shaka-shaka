@@ -16,4 +16,5 @@
 //= require jquery
 //= require bootstrap-sprockets
 //= require cocoon
+//= require select2
 //= require_tree .
