@@ -26,13 +26,13 @@
         <h2>ご注文内容</h2>
         <% @cart_products.each do |cart_product| %>
           <div class="row purchase-product">
-            <div class="col-xs-3">
-              <%= attachment_image_tag cart_product.product, :image, :fill, 200, 200, format: 'jpeg', class:"jacket-image", fallback:"img/no_image.png", :size => '200x200' %>
+            <div class="cart_product_image">
+              <%= attachment_image_tag cart_product.product, :image, ormat: 'jpeg', class:"jacket-image", fallback:"img/no_image.png", :size => '300x300' %>
             </div>
-            <div class="col-xs-7 product-detail">
-              <h4>
+            <div class="product-detail">
+              <h3>
                 <strong><%= link_to cart_product.product.product_title, product_path(cart_product.product) %></strong>
-              </h4>
+              </h3>
               <p>
                 <% artist_ary = cart_product.product.artists.uniq %>
                 <% artist_ary.each do |artist| %>
