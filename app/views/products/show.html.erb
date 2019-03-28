@@ -15,11 +15,17 @@
               </li>
               <li>
                 <strong>
-                  <% artist_ary = @product.artists.uniq %>
                   <h4>
+                  <% if @product.artists.count > 0 %>
+                    <% artist_ary = @product.artists.uniq %>
+                    <% artist_names = [] %>
                     <% artist_ary.each do |artist| %>
-                      <%= artist.artist_name %>,
+                      <% artist_names << artist.artist_name %>
                     <% end %>
+                    <%= truncate(artist_names.join(", "), length: 36, omission: "…他") %>
+                  <% else %>
+                    no artist
+                  <% end %>
                   </h4>
                 </strong>
               </li>
