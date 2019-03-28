@@ -20,6 +20,7 @@ class OrdersController < ApplicationController
     @cart_products = CartProduct.where(cart_id:@cart.id)
     @destination_id = session[:selected_dest_id]
 
+    #送付先取得処理
     if @destination_id == "default"
       @destination = @user
     else
@@ -27,6 +28,8 @@ class OrdersController < ApplicationController
     end
     session.delete(:selected_dest_id)
 
+    #カート商品をオーダーに洗い替えしつつ配列に入れる
+    #送付先変更有無で入力情報制御
     @orders = []
     @cart_products.each do |cart_product|
       @order = Order.new
@@ -46,6 +49,10 @@ class OrdersController < ApplicationController
       # 在庫を減算
         product = cart_product.product
         left_stock = product.stock - @order.quantity
+        if left_stock < 0
+          flash[:danger] = "購入枚数が在庫数を超えました。在庫を確認してから、商品を入れ直してください。"
+          redirect_to cart_path(current_user.cart) and return
+        end
         product.stock = left_stock
         product.save
       @order.total_price = cart_product.product.product_price*cart_product.quantity
@@ -56,7 +63,7 @@ class OrdersController < ApplicationController
       Order.transaction do
         @orders.each { |order| order.save! }
       end
-      @cart_products.destroy_all
+      @cart_products.destroy_all #保存完了後はカート内商品削除
       redirect_to carts_thanks_path
       rescue ActionRecord::RecordInvalid, ActionRecord::RecordNotSaved => ex
       flash.now[:danger] = "注文処理でエラーが発生しました"
