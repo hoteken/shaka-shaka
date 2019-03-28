@@ -50,7 +50,12 @@
               <div class="product-box">
                 <p><%= random_product.product_title.truncate(15) %><%= "  ¥" + random_product.product_price.to_s %></p>
                 <% if random_product.artists.count > 0  %>
-                  <%= random_product.artists.first.artist_name.truncate(15) %>
+                  <% artist_ary = random_product.artists.uniq %>
+                  <% artist_names = [] %>
+                  <% artist_ary.each do |artist| %>
+                    <% artist_names << artist.artist_name %>
+                  <% end %>
+                  <%= truncate(artist_names.join(", "), length: 20, omission: "…他") %>
                 <% else %>
                   no artist
                 <% end %>
