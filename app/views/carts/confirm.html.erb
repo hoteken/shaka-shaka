@@ -27,7 +27,7 @@
         <% @cart_products.each do |cart_product| %>
           <div class="row purchase-product">
             <div class="col-xs-3">
-              <%= attachment_url(cart_product.product, :image, :fill, 300, 300, class:"jacket-image",fallback: "img/no_image.png") %> 
+              <%= attachment_url(cart_product.product, :image, class:"jacket-image",fallback: "img/no_image.png", size:"200x200") %> 
             </div>
             <div class="col-xs-7 product-detail">
               <h4>
