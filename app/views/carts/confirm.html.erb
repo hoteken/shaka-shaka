@@ -32,7 +32,7 @@
  <%= attachment_image_tag cart_product.product, :image, :fill, 200, 200, format: 'jpeg', class:"jacket-image", fallback:"img/no_image.png", :size => '200x200' %> 
 <%
 =end%>
-              <%= attachment_image_tag cart_product.product, :image, format: 'jpeg', class:"jacket-image", fallback:"img/no_image.png", size:'200x200' %>
+              <%= attachment_image_tag cart_product.product, :image, :fill, 200, 200, format: 'jpeg', class:"jacket-image", fallback:"img/no_image.png" %>
             </div>
             <div class="col-xs-7 product-detail">
               <h4>
