@@ -79,7 +79,13 @@
 .cart_products {
 	background-color: rgb(255, 255, 239);
 	margin: 15px;
+	padding: 15px;
 	border-radius: 5px;
+	position: relative;
+}
+
+.cart_product_image {
+	margin: 0 15px;
 }
 
 .cart_show_body {
@@ -88,11 +94,12 @@
 
 .cart_buttons {
 	display: inline-block;
-	text-align: right;
 }
 
 .forms {
-	margin: 55px 0 0 330px;
+	position: absolute;
+	right: 25px;
+	bottom: 25px;
 }
 
 // 注文確認画面
@@ -107,8 +114,6 @@
 .order_price {
 	padding: 20px;
 	text-align: center;
-	// padding-bottom: 10px;
-	// padding-left: 20px;
 	border-radius: 5px;
 }
 

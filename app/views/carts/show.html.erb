@@ -13,45 +13,40 @@
   </div>
 
   <div class="row center-block">
-    <div class="col-xs-10">
-      <% if @cart_products.count == 0 %>
-        <p>カートの中身は空です。</p>
-      <% else %>
-        <% @cart_products.each do |cart_product| %>
-          <div class="cart_products">
-            <div class="row">
-              <div class="col-xs-3">
-                <%= attachment_image_tag cart_product.product, :image, :fill, 200, 200, format: 'jpeg', class:"jacket-image", fallback:"img/no_image.png", :size => '200x200' %>
+    <% if @cart_products.count == 0 %>
+      <p>カートの中身は空です。</p>
+    <% else %>
+      <% @cart_products.each do |cart_product| %>
+        <div class="cart_products">
+          <div class="row">
+            <div class="cart_product_image"><%= attachment_image_tag cart_product.product, :image, format: 'jpeg', class:"jacket-image", fallback:"img/no_image.png", :size => '300x300' %></div>
+            <div class="cart-product-details">
+              <h3>
+                <strong><%= link_to cart_product.product.product_title, product_path(cart_product.product) %></strong>
+              </h3>
+              <p>
+                <% artist_ary = cart_product.product.artists.uniq %>
+                <% artist_ary.each do |artist| %>
+                  <%= artist.artist_name %>
+                <% end %>
+              </p>
+              <p><%= cart_product.product.genre.genre_name %></p>
+              <p>単価：¥<%= cart_product.product.product_price %></p>
+            </div>
+            <div class="forms">
+              <div class="cart_buttons">
+                <%= form_for([@cart, cart_product]) do |f| %>
+                  <%= f.label :quantity, "枚数" %>
+                  <%= f.select :quantity, [["1", 1], ["2", 2], ["3", 3], ["4", 4], ["5", 5]] ,class:"form-control" %>
+                  <%= f.submit "枚数変更を反映", class:"btn btn-info" %>
+                <% end %>
               </div>
-              <div class="col-xs-9 cart-product-details">
-                <p>
-                  <strong><%= link_to cart_product.product.product_title, product_path(cart_product.product) %></strong>
-                </p>
-                <p>
-                  <% artist_ary = cart_product.product.artists.uniq %>
-                  <% artist_ary.each do |artist| %>
-                    <%= artist.artist_name %>
-                  <% end %>
-                </p>
-                <p><%= cart_product.product.genre.genre_name %></p>
-                <p>単価：¥<%= cart_product.product.product_price %></p>
-
-                <div class="forms">
-                  <div class="cart_buttons">
-                    <%= form_for([@cart, cart_product]) do |f| %>
-                      <%= f.label :quantity, "枚数" %>
-                      <%= f.select :quantity, [["1", 1], ["2", 2], ["3", 3], ["4", 4], ["5", 5]] ,class:"form-control" %>
-                      <%= f.submit "枚数変更を反映", class:"btn btn-info" %>
-                    <% end %>
-                  </div>
-                  <div class="cart_buttons"><%= link_to "カートから削除", cart_cart_product_path(@cart, cart_product), method: :delete, class:"btn btn-danger", data: { confirm: "本当に削除しますか？" } %></div>
-                </div>
-              </div>
+              <div class="cart_buttons"><%= link_to "カートから削除", cart_cart_product_path(@cart, cart_product), method: :delete, class:"btn btn-danger", data: { confirm: "本当に削除しますか？" } %></div>
             </div>
           </div>
-        <% end %>
+        </div>
       <% end %>
-    </div>
+    <% end %>
   </div>
 </div>
 </body>

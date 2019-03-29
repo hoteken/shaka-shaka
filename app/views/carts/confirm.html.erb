@@ -26,13 +26,13 @@
         <h2>ご注文内容</h2>
         <% @cart_products.each do |cart_product| %>
           <div class="row purchase-product">
-            <div class="col-xs-3">
-              <%= attachment_image_tag cart_product.product, :image, :fill, 200, 200, format: 'jpeg', class:"jacket-image", fallback:"img/no_image.png", :size => '200x200' %>
+            <div class="cart_product_image">
+              <%= attachment_image_tag cart_product.product, :image, ormat: 'jpeg', class:"jacket-image", fallback:"img/no_image.png", :size => '300x300' %>
             </div>
-            <div class="col-xs-7 product-detail">
-              <h4>
+            <div class="product-detail">
+              <h3>
                 <strong><%= link_to cart_product.product.product_title, product_path(cart_product.product) %></strong>
-              </h4>
+              </h3>
               <p>
                 <% artist_ary = cart_product.product.artists.uniq %>
                 <% artist_ary.each do |artist| %>
@@ -83,33 +83,3 @@
     </div>
   </div>
 </body>
-
-<script>
-	$(function(){
-    // モーダル表示用
-		$('#dest-select').on('click',function(){
-			$('#overlay,#result').fadeIn();
-    });
-		$('#close,#overlay').on('click', function(){
-      $('#overlay,#result').fadeOut();
-    });
-    $('#result').on('click', function(e){
-        e.stopPropagation();
-    });
-
-    // 確定ボタン
-    $('.go').on('click', function(){
-      $('#overlay,#result').fadeOut();
-      swal("Changed Successfully!", "送付先の変更に成功しました", "success");
-    });
-
-    $('.request_ajax_update').on('ajax:complete', function(event) {
-      var response;
-      response = event.detail[0].response;
-      $('#updated_by_ajax').html(response);
-    });
-
-
-	});
-</script>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
