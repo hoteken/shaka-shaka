@@ -3,12 +3,13 @@
     <div id="item-detail-top">
       <h2>商品詳細</h2>
     </div>
-    <% if @product.jacket_image.attached? %>
-      <%= image_tag @product.jacket_image, class:"detail-jacket-image", fallback:"img/no_image.png", :size => '430x430' %>
-    <% else %>
-      <%= image_tag 'img/no_image.png', class:"detail-jacket-image", :size => '430x430' %>
-    <% end %>
-
+    <div class="product-detail-info">
+      <% if @product.jacket_image.attached? %>
+        <%= image_tag @product.jacket_image, class:"detail-jacket-image", fallback:"img/no_image.png", :size => '430x430' %>
+      <% else %>
+        <%= image_tag 'img/no_image.png', class:"detail-jacket-image", :size => '430x430' %>
+      <% end %>
+    </div>
     <div class="product-detail-info">
       <div class="product-information">
         <div class="item-details">

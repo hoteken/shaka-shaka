@@ -45,11 +45,13 @@
         <% @result.each do |random_product| %>
           <div class="product">
             <%= link_to random_product do %>
-              <% if random_product.jacket_image.attached? %>
-                <%= image_tag random_product.jacket_image, class:"jacket-image", fallback:"img/no_image.png", :size => '280x280' %>
-              <% else %>
-                <%= image_tag 'img/no_image.png', class:"jacket-image", :size => '280x280' %>
-              <% end %>
+              <div class="index-jacket">
+                <% if random_product.jacket_image.attached? %>
+                  <%= image_tag random_product.jacket_image, class:"jacket-image", fallback:"img/no_image.png", :size => '280x280' %>
+                <% else %>
+                  <%= image_tag 'img/no_image.png', class:"jacket-image", :size => '280x280' %>
+                <% end %>
+              </div>
               <br>
               <div class="product-box">
                 <p><%= random_product.product_title.truncate(15) %><%= "  ¥" + random_product.product_price.to_s %></p>
