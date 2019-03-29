@@ -83,3 +83,4 @@ gem 'devise-i18n-views'
 gem 'rails-i18n', '~> 5.1'
 gem 'cocoon'
 gem "select2-rails"
+gem "aws-sdk-s3", require: false
