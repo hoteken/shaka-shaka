@@ -37,6 +37,7 @@ class SongsController < ApplicationController
   def destroy
     @song = Song.find(params[:id])
     @song.destroy
+    flash[:notice] = "楽曲の削除に成功しました"
     redirect_to songs_path
   end
 

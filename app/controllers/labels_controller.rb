@@ -13,7 +13,7 @@ class LabelsController < ApplicationController
   def create
     @label = Label.new(label_params)
     if @label.save
-    flash[:notice] = "送付先の追加に成功しました"
+    flash[:notice] = "レーベルの追加に成功しました"
     redirect_to labels_path
     else
     render :new
@@ -27,7 +27,7 @@ class LabelsController < ApplicationController
   def update
     @label = Label.find(params[:id])
     if @label.update(label_params)
-       flash[:notice] = "送付先情報を変更しました"
+       flash[:notice] = "レーベル情報を変更しました"
        redirect_to labels_path
     else
        render :edit
