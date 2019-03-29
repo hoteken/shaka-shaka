@@ -38,11 +38,11 @@
 					<p class="order-container-title"><%= link_to product_path(@order_item) do %><%= @order_item.product_title %><% end %></p>
 					<div class="order-container-product">
 						<%= link_to product_path(@order_item) do %>
-              <% if @order_item.jacket_image.attached? %>
-                <%= image_tag @order_item.jacket_image, class:"jacket-image", fallback:"img/no_image.png", :size => '200x200' %>
-              <% else %>
-                <%= image_tag 'img/no_image.png', class:"jacket-image", :size => '200x200' %>
-              <% end %>
+              				<% if @order_item.jacket_image.attached? %>
+                				<%= image_tag @order_item.jacket_image, class:"jacket-image", fallback:"img/no_image.png", :size => '200x200' %>
+              				<% else %>
+                				<%= image_tag 'img/no_image.png', class:"jacket-image", :size => '200x200' %>
+              				<% end %>
 						<% end %>
 					</div>
 				</div>
@@ -63,6 +63,8 @@
 					<% if @order.status.to_i == 10 %>
 						<% if not current_user.admin? %>
 							<%= link_to "キャンセル", order_path, method: :delete, "data-confirm" => "本当にキャンセルしますか？", class: "btn btn-warning order-container-button-c" %>
+						<% elsif @user == nil && current_user.admin? %>
+							<%= link_to "削除", order_path, method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-warning order-container-button-c" %>
 						<% end %>
 					<% end %>
 					<%= link_to "編集", edit_order_path(@order), class: "btn btn-success order-container-button-e" if current_user.admin? %>
