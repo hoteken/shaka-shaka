@@ -13,7 +13,7 @@ class ArtistsController < ApplicationController
   def create
     @artist = Artist.new(artist_params)
     if @artist.save
-      flash[:notice] = "アーティスト名の追加に成功しました"
+      flash[:notice] = "アーティストの追加に成功しました"
       redirect_to artists_path
     else
       render :new

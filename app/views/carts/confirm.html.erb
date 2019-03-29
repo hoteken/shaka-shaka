@@ -27,7 +27,11 @@
         <% @cart_products.each do |cart_product| %>
           <div class="row purchase-product">
             <div class="cart_product_image">
-              <%= attachment_image_tag cart_product.product, :image, ormat: 'jpeg', class:"jacket-image", fallback:"img/no_image.png", :size => '300x300' %>
+              <% if cart_product.product.jacket_image.attached? %>
+                <%= image_tag cart_product.product.jacket_image, class:"jacket-image", fallback:"img/no_image.png", :size => '300x300' %>
+              <% else %>
+                <%= image_tag 'img/no_image.png', class:"jacket-image", :size => '300x300' %>
+              <% end %>
             </div>
             <div class="product-detail">
               <h3>

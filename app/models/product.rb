@@ -12,6 +12,7 @@ class Product < ApplicationRecord
   validates :product_price, presence: true
   validates :stock, presence: true
 
-  attachment :image
+  # attachment :image
+  has_one_attached :jacket_image
 
 end
