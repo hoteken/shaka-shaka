@@ -94,11 +94,19 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
     product = Product.find(@order.product_id)
     if @order.destroy
-      stock = product.stock + @order.quantity
-      product.stock = stock
-      product.save
-      flash[:notice] = "ご注文をキャンセルしました"
-      redirect_to user_path(current_user.id)
+      if current_user.admin?
+        stock = product.stock + @order.quantity
+        product.stock = stock
+        product.save
+        flash[:notice] = "注文を削除しました"
+        redirect_to orders_path
+      else 
+        stock = product.stock + @order.quantity
+        product.stock = stock
+        product.save
+        flash[:notice] = "ご注文をキャンセルしました"
+        redirect_to user_path(current_user.id)
+      end
     end
   end
 
